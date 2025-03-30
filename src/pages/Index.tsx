@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   CertificateHeader,
@@ -18,9 +19,9 @@ const Index = () => {
     {
       title: "iPad",
       price: "399₽",
-      iconBgColor: "bg-gradient-to-br from-gray-500 to-gray-600",
+      iconBgColor: "bg-theme-green",
       gradientColors:
-        "bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800",
+        "bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -30,9 +31,9 @@ const Index = () => {
     {
       title: "Обычный",
       price: "999₽",
-      iconBgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
+      iconBgColor: "bg-theme-green",
       gradientColors:
-        "bg-gradient-to-br from-blue-100 to-teal-100 dark:from-blue-800 dark:to-teal-900",
+        "bg-gradient-to-br from-gray-100 to-theme-green/10 dark:from-gray-800 dark:to-theme-green/20",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -42,9 +43,9 @@ const Index = () => {
     {
       title: "Моментальный",
       price: "1499₽",
-      iconBgColor: "bg-gradient-to-br from-teal-500 to-teal-600",
+      iconBgColor: "bg-theme-green",
       gradientColors:
-        "bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900 dark:to-blue-900",
+        "bg-gradient-to-br from-theme-green/10 to-gray-100 dark:from-theme-green/20 dark:to-gray-800",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 30 минут" },
@@ -78,20 +79,17 @@ const Index = () => {
         logoAlt="iCert Logo"
       />
 
-      {/* Divider */}
-      <div className="w-full h-px bg-gray-200 dark:bg-gray-800 my-12" />
-
       {/* Features section */}
       <FeaturesSection />
 
       {/* Pricing section */}
       <section id="pricing" className="py-20 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-        <h2 className="section-title">Тарифы</h2>
-        <p className="section-description">
+        <h2 className="section-title mb-4">Тарифы</h2>
+        <p className="section-description mb-12">
           Выберите оптимальный вариант для ваших потребностей
         </p>
         
-        <div className="flex gap-[34px] max-md:flex-col max-md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {pricingCards.map((card, index) => (
             <PricingCard
               key={index}

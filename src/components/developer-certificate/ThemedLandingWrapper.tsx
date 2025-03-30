@@ -8,10 +8,7 @@ interface ThemedLandingWrapperProps {
 
 export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ children }) => {
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-[#0F172A] relative transition-colors duration-300">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50 dark:from-transparent dark:to-blue-900/5" />
-
+    <div className="w-full min-h-screen bg-white dark:bg-black relative transition-colors duration-300">
       {/* Theme toggle */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />

@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CertificateHeader } from "./CertificateHeader";
+import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   title: string;
@@ -16,33 +17,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   logoAlt,
 }) => {
   return (
-    <section className="pb-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-      <CertificateHeader
-        title={title}
-        subtitle={subtitle}
-        logoUrl={logoUrl}
-        logoAlt={logoAlt}
-      />
-      <div className="flex flex-col md:flex-row gap-6 mt-10">
-        <div className="flex-1 glass-card animate-float">
-          <h3 className="text-xl text-theme-blue dark:text-theme-blue mb-3 font-title">
-            Что такое сертификат разработчика?
-          </h3>
-          <p className="text-theme-light-muted dark:text-theme-light-muted text-[15px] leading-relaxed">
-            Сертификат разработчика позволяет устанавливать приложения, которые не прошли проверку App Store, 
-            тестировать бета-версии, а также использовать эксклюзивные функции на вашем iPhone или iPad. 
-            Это идеальное решение для разработчиков, тестировщиков и продвинутых пользователей.
-          </p>
-        </div>
-        <div className="flex-1 glass-card animate-float" style={{ animationDelay: "1s" }}>
-          <h3 className="text-xl text-theme-blue dark:text-theme-blue mb-3 font-title">
-            Почему стоит выбрать нас?
-          </h3>
-          <p className="text-theme-light-muted dark:text-theme-light-muted text-[15px] leading-relaxed">
-            Мы предлагаем быструю выдачу сертификатов, надежную техническую поддержку и простую процедуру 
-            оформления. Наши сертификаты обеспечивают максимальную свободу использования ваших устройств 
-            по доступным ценам.
-          </p>
+    <section className="pb-12 animate-fade-in-up flex flex-col md:flex-row md:items-center md:justify-between" style={{ animationDelay: "0.2s" }}>
+      <div className="md:w-1/2 mb-10 md:mb-0">
+        <h1 className="text-5xl md:text-6xl font-bold text-black dark:text-white mb-6 leading-tight">
+          Расширенные возможности <br/>
+          <span className="text-theme-green">для ваших устройств</span>
+        </h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-md">
+          Устанавливайте любые приложения, тестируйте бета-версии и
+          используйте эксклюзивные функции на вашем iPhone и iPad
+        </p>
+        <Button className="bg-black hover:bg-gray-900 text-white dark:bg-theme-green dark:text-black text-base py-3 px-8 rounded-full">
+          Начать сейчас
+        </Button>
+      </div>
+      <div className="md:w-1/2 flex justify-center">
+        <div className="relative">
+          <img 
+            src="/lovable-uploads/590d7b03-b886-4449-95bc-aeecd65e03a2.png" 
+            alt="Hero illustration" 
+            className="w-full max-w-md"
+          />
         </div>
       </div>
     </section>
