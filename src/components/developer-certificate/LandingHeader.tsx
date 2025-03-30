@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
 
 interface LandingHeaderProps {
   logoUrl: string;
@@ -49,7 +50,7 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
   
   // Filter menu items for mobile - show only Wiki
   const filteredMenuItems = isMobile 
-    ? menuItems.filter(item => item.label === "Wiki" || item.href === "/wiki")
+    ? menuItems.filter(item => item.label === "Wiki" || item.href === "/wiki" || item.label === "VPN" || item.href === "/vpn-pricing")
     : menuItems;
   
   return (
@@ -85,18 +86,23 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
           ))}
         </nav>
         
-        {/* Mobile menu button */}
-        <button 
-          className="md:hidden p-2 text-gray-800 dark:text-gray-200 focus:outline-none z-20 
-                    hover:bg-blue-500/10 rounded-lg border border-transparent hover:border-blue-500/30"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        {/* Mobile direct links instead of dropdown */}
+        <div className="md:hidden flex items-center gap-2">
+          <Link 
+            to="/wiki" 
+            onClick={scrollToTop}
+            className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium"
+          >
+            Wiki
+          </Link>
+          <Link 
+            to="/vpn-pricing" 
+            onClick={scrollToTop}
+            className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium"
+          >
+            VPN
+          </Link>
+        </div>
         
         {/* Contact button - always visible */}
         <a 
@@ -111,33 +117,6 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
           <span className="relative z-10">{isMobile ? 'Заказать' : 'Заказать'}</span>
         </a>
       </div>
-      
-      {/* Mobile navigation menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 backdrop-blur-xl bg-white/50 dark:bg-black/50 border border-blue-500/30 dark:border-blue-500/30 z-10 flex flex-col items-center justify-center transition-all duration-300 rounded-lg">
-          <nav className="flex flex-col items-center gap-6">
-            {menuItems.map((item, index) => (
-              <Link
-                key={index}
-                to={item.href}
-                onClick={scrollToTop}
-                className={`text-gray-800 dark:text-gray-200 hover:text-theme-blue transition-colors text-xl font-medium font-montserrat ${
-                  location.pathname === item.href ? 'text-theme-blue' : ''
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link 
-              to="/wiki" 
-              onClick={scrollToTop}
-              className="mt-4 text-gray-800 dark:text-gray-200 hover:text-theme-blue transition-colors text-xl font-medium font-montserrat"
-            >
-              Wiki
-            </Link>
-          </nav>
-        </div>
-      )}
     </header>
   );
 };

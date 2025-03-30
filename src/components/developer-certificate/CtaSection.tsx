@@ -9,8 +9,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const CtaSection: React.FC = () => {
+  const isMobile = useIsMobile();
+  
   // Function to scroll to top when navigating
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -18,7 +21,7 @@ export const CtaSection: React.FC = () => {
 
   return (
     <section className="py-20 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-      <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-20 text-center relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
+      <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-10 md:p-20 text-center md:text-left relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
         {/* Animated background effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
         
@@ -30,12 +33,12 @@ export const CtaSection: React.FC = () => {
           <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
         </h2>
         
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 max-w-2xl mx-auto md:mx-0">
           Выберите подходящий тариф и начните использовать все преимущества
           сертификата разработчика уже сегодня
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-8 justify-center">
+        <div className="flex flex-col sm:flex-row gap-8 justify-center md:justify-start">
           <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
             <Button 
               className="bg-black dark:bg-theme-blue dark:text-white text-base 
