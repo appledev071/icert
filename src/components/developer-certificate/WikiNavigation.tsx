@@ -1,19 +1,15 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const WikiNavigation: React.FC = () => {
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
-  const [initialRender, setInitialRender] = useState(true);
   
-  // Update currentPath when location changes, but skip animation after first render
-  useEffect(() => {
-    if (initialRender) {
-      setInitialRender(false);
-    }
+  // Update currentPath when location changes
+  React.useEffect(() => {
     setCurrentPath(location.pathname);
-  }, [location.pathname, initialRender]);
+  }, [location.pathname]);
   
   const wikiLinks = [
     { path: "/wiki", label: "Wiki" },
@@ -25,7 +21,7 @@ export const WikiNavigation: React.FC = () => {
   ];
 
   return (
-    <nav className={`flex overflow-x-auto py-2 mb-4 border-b border-gray-200 dark:border-gray-800 ${initialRender ? 'animate-fade-in-down' : ''}`}>
+    <nav className="flex overflow-x-auto py-2 mb-4 border-b border-gray-200 dark:border-gray-800">
       <div className="flex gap-1 md:gap-3">
         {wikiLinks.map((link, index) => (
           <Link
