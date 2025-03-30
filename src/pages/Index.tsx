@@ -83,9 +83,9 @@ const Index = () => {
 
       {/* Pricing section */}
       <section id="pricing" className="py-20 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-        <h2 className="section-title mb-4">Тарифы</h2>
+        <h2 className="section-title mb-4 font-montserrat">Тарифы сертификатов</h2>
         <p className="section-description mb-12">
-          Выберите оптимальный вариант для ваших потребностей
+          Выберите оптимальный вариант сертификата разработчика для ваших потребностей
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

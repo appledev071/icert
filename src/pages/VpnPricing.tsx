@@ -16,38 +16,38 @@ const VpnPricing = () => {
 
   const vpnPlans = [
     {
-      title: "Базовый",
+      title: "1 месяц",
       price: "299₽",
-      period: "в месяц",
+      period: "месяц",
       features: [
         "Высокая скорость соединения",
         "Доступ к глобальному контенту",
-        "Шифрование трафика",
+        "Защищенный канал связи",
         "Поддержка всех устройств",
       ],
       highlighted: false,
     },
     {
-      title: "Премиум",
-      price: "499₽",
-      period: "в месяц",
+      title: "3 месяца",
+      price: "799₽",
+      period: "3 месяца",
       features: [
         "Максимальная скорость соединения",
         "Доступ к глобальному контенту",
-        "Военное шифрование трафика",
+        "Защищенный канал связи",
         "Приоритетная поддержка",
         "Одновременное подключение до 5 устройств",
       ],
       highlighted: true,
     },
     {
-      title: "Годовой",
+      title: "1 год",
       price: "2999₽",
-      period: "в год",
+      period: "год",
       features: [
         "Максимальная скорость соединения",
         "Доступ к глобальному контенту",
-        "Военное шифрование трафика",
+        "Защищенный канал связи",
         "Приоритетная поддержка",
         "Одновременное подключение до 5 устройств",
         "Экономия более 40%",
@@ -127,7 +127,7 @@ const VpnPricing = () => {
             </div>
             <h3 className="text-xl font-montserrat font-semibold text-black dark:text-white mb-3">Надежная защита</h3>
             <p className="text-gray-700 dark:text-gray-300">
-              Шифрование военного уровня и политика отсутствия логов обеспечивают 
+              Защищенный канал связи и политика отсутствия логов обеспечивают 
               максимальную защиту ваших данных и конфиденциальность в сети.
             </p>
           </div>
@@ -159,7 +159,7 @@ const VpnPricing = () => {
               </h3>
               <div className="flex items-end mb-6">
                 <span className="text-3xl font-bold text-black dark:text-white">{plan.price}</span>
-                <span className="text-gray-600 dark:text-gray-400 ml-1">{plan.period}</span>
+                <span className="text-gray-600 dark:text-gray-400 ml-1">/ {plan.period}</span>
               </div>
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, idx) => (
