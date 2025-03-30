@@ -13,7 +13,6 @@ import FAQ from "./pages/FAQ";
 import WikiIndex from "./pages/WikiIndex";
 import AboutUs from "./pages/AboutUs";
 import VpnPricing from "./pages/VpnPricing";
-import { WikiNavigation } from "./components/developer-certificate/WikiNavigation";
 
 const queryClient = new QueryClient();
 
