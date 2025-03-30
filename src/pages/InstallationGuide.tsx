@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -158,7 +157,7 @@ const InstallationGuide = () => {
             <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
           
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl font-inter">
             Подробная инструкция по установке VPN на различные устройства и платформы. 
             Выберите ваше устройство для получения соответствующей инструкции.
           </p>
@@ -187,7 +186,7 @@ const InstallationGuide = () => {
               }`}>
                 {device.icon}
               </div>
-              <span className={`text-sm font-medium ${
+              <span className={`text-sm font-medium font-montserrat ${
                 selectedDevice === device.id ? 'text-theme-blue' : 'text-gray-800 dark:text-gray-200'
               }`}>
                 {device.name}
@@ -199,7 +198,7 @@ const InstallationGuide = () => {
           ))}
         </div>
 
-        {/* Device specific instructions */}
+        {/* Device specific instructions - only shown when a device is selected */}
         {selectedDevice && devices.find(d => d.id === selectedDevice) && (
           <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-12 animate-fade-in transition-all duration-500">
             {devices.map((device) => (
@@ -216,7 +215,7 @@ const InstallationGuide = () => {
                   
                   <div className="mb-6">
                     <h4 className="font-medium text-black dark:text-white mb-2 font-montserrat">Рекомендуемые приложения:</h4>
-                    <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                    <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300 font-inter">
                       {device.apps.map((app, index) => (
                         <li key={index}>{app}</li>
                       ))}
@@ -225,14 +224,14 @@ const InstallationGuide = () => {
                   
                   <div className="mb-6">
                     <h4 className="font-medium text-black dark:text-white mb-2 font-montserrat">Шаги по установке:</h4>
-                    <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
+                    <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300 font-inter">
                       {device.instructions.map((instruction, index) => (
                         <li key={index}>{instruction}</li>
                       ))}
                     </ol>
                   </div>
                   
-                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300 font-inter">
                     <p className="font-medium font-montserrat">Совет:</p>
                     <p>{device.tip}</p>
                   </div>
@@ -247,7 +246,7 @@ const InstallationGuide = () => {
           <h3 className="text-2xl font-bold font-montserrat text-black dark:text-white mb-4">
             Нужна помощь?
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-6">
+          <p className="text-gray-700 dark:text-gray-300 mb-6 font-inter">
             Если у вас возникли сложности с установкой или настройкой VPN, наша техническая поддержка всегда готова помочь. 
             Свяжитесь с нами через Telegram, и мы оперативно решим ваш вопрос.
           </p>
@@ -261,7 +260,14 @@ const InstallationGuide = () => {
         
         {/* Back to top and main page buttons */}
         <div className="flex flex-col items-center justify-center">
-          <Link to="/" onClick={scrollToTop} className="mb-8">
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300 mb-8"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
+          
+          <Link to="/" onClick={scrollToTop}>
             <Button
               variant="outline"
               className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -270,13 +276,6 @@ const InstallationGuide = () => {
               Вернуться на главную
             </Button>
           </Link>
-          
-          <button
-            onClick={scrollToTop}
-            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
-          >
-            <ArrowUp className="w-5 h-5 text-theme-blue" />
-          </button>
         </div>
       </section>
     </ThemedLandingWrapper>

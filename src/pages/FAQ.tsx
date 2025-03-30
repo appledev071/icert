@@ -128,13 +128,13 @@ const FAQ = () => {
             </h2>
           </div>
           
-          <Accordion type="single" collapsible className="w-full space-y-2">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden px-1">
-                <AccordionTrigger className="text-lg font-medium text-black dark:text-white hover:text-theme-blue transition-colors duration-300 py-5 px-4">
+                <AccordionTrigger className="text-lg font-medium text-black dark:text-white hover:text-theme-blue transition-colors duration-300 py-6 px-6">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700 dark:text-gray-300 pb-5 pt-2 px-4">
+                <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6 pt-2 px-6">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -169,7 +169,14 @@ const FAQ = () => {
         
         {/* Back to top and main page buttons */}
         <div className="flex flex-col items-center justify-center mt-12">
-          <Link to="/" onClick={scrollToTop} className="mb-8">
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300 mb-8"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
+          
+          <Link to="/" onClick={scrollToTop}>
             <Button
               variant="outline"
               className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -178,13 +185,6 @@ const FAQ = () => {
               Вернуться на главную
             </Button>
           </Link>
-          
-          <button
-            onClick={scrollToTop}
-            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
-          >
-            <ArrowUp className="w-5 h-5 text-theme-blue" />
-          </button>
         </div>
       </section>
     </ThemedLandingWrapper>

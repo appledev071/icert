@@ -1,15 +1,9 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const WikiNavigation: React.FC = () => {
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState(location.pathname);
-  
-  // Update currentPath when location changes
-  React.useEffect(() => {
-    setCurrentPath(location.pathname);
-  }, [location.pathname]);
   
   const wikiLinks = [
     { path: "/wiki", label: "Wiki" },
@@ -20,6 +14,11 @@ export const WikiNavigation: React.FC = () => {
     { path: "/about", label: "О нас" },
   ];
 
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <nav className="flex overflow-x-auto py-2 mb-4 border-b border-gray-200 dark:border-gray-800">
       <div className="flex gap-1 md:gap-3">
@@ -27,8 +26,9 @@ export const WikiNavigation: React.FC = () => {
           <Link
             key={index}
             to={link.path}
+            onClick={scrollToTop}
             className={`px-4 py-2 whitespace-nowrap rounded-md transition-colors duration-300 text-sm font-medium font-montserrat ${
-              currentPath === link.path
+              location.pathname === link.path
                 ? "bg-theme-blue text-white"
                 : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             }`}

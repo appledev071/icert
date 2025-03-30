@@ -17,7 +17,7 @@ export const CtaSection: React.FC = () => {
   };
 
   return (
-    <section className="py-32 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+    <section className="py-40 my-20 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
       <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-20 text-center relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
         {/* Animated background effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
@@ -38,7 +38,7 @@ export const CtaSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-8 justify-center">
           <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
             <Button 
-              className="bg-black dark:bg-theme-blue dark:text-white text-white text-base 
+              className="bg-black dark:bg-theme-blue dark:text-white text-base 
                         py-4 px-12 rounded-full font-medium shadow-md hover:shadow-glow 
                         transition-all duration-300 group relative overflow-hidden shine-effect"
             >
