@@ -40,7 +40,7 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
         </div>
         <div>
           <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
-            Контакты
+            Написать нам
           </h3>
           <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium mb-4">
             <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="hover:underline">
