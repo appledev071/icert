@@ -1,9 +1,7 @@
 
 import React from "react";
 import {
-  CertificateHeader,
   PricingCard,
-  CertificateFooter,
   ThemedLandingWrapper,
 } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -19,7 +17,7 @@ const Index = () => {
     {
       title: "iPad",
       price: "399₽",
-      iconBgColor: "bg-theme-green",
+      iconBgColor: "bg-theme-blue",
       gradientColors:
         "bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900",
       features: [
@@ -31,9 +29,9 @@ const Index = () => {
     {
       title: "Обычный",
       price: "999₽",
-      iconBgColor: "bg-theme-green",
+      iconBgColor: "bg-theme-blue",
       gradientColors:
-        "bg-gradient-to-br from-gray-100 to-theme-green/10 dark:from-gray-800 dark:to-theme-green/20",
+        "bg-gradient-to-br from-gray-100 to-theme-blue/10 dark:from-gray-800 dark:to-theme-blue/20",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -43,9 +41,9 @@ const Index = () => {
     {
       title: "Моментальный",
       price: "1499₽",
-      iconBgColor: "bg-theme-green",
+      iconBgColor: "bg-theme-blue",
       gradientColors:
-        "bg-gradient-to-br from-theme-green/10 to-gray-100 dark:from-theme-green/20 dark:to-gray-800",
+        "bg-gradient-to-br from-theme-blue/10 to-gray-100 dark:from-theme-blue/20 dark:to-gray-800",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 30 минут" },

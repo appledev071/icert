@@ -14,7 +14,7 @@ export const CtaSection: React.FC = () => {
           сертификата разработчика уже сегодня
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button className="bg-black text-white dark:bg-theme-green dark:text-black text-base py-2 px-8 rounded-full font-medium">
+          <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white dark:bg-theme-blue dark:text-white dark:border-white text-base py-2 px-8 rounded-full font-medium">
             Выбрать тариф
           </Button>
           <Button variant="outline" className="border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-base py-2 px-8 rounded-full">

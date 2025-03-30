@@ -16,8 +16,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 114 100% 62%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 210 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 0%;
@@ -25,29 +25,29 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 114 100% 62%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 210 100% 60%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 114 100% 62%;
+    --ring: 210 100% 60%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 45%;
-    --sidebar-primary: 114 100% 62%;
-    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 96%;
     --sidebar-accent-foreground: 0 0% 0%;
     --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 114 100% 62%;
+    --sidebar-ring: 210 100% 60%;
 
     /* Project theme colors */
-    --theme-green: 114 100% 62%;
+    --theme-blue: 210 100% 60%;
     --theme-black: 0 0% 0%;
     --theme-gray: 0 0% 45%;
     --theme-darker-bg: 0 0% 0%;
@@ -67,8 +67,8 @@
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 114 100% 62%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 210 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 100%;
@@ -76,24 +76,24 @@
     --muted: 0 0% 10%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 114 100% 62%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 210 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 10%;
     --input: 0 0% 10%;
-    --ring: 114 100% 62%;
+    --ring: 210 100% 60%;
     
     --sidebar-background: 0 0% 0%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 114 100% 62%;
-    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 10%;
-    --sidebar-ring: 114 100% 62%;
+    --sidebar-ring: 210 100% 60%;
 
     /* Project theme colors - dark mode */
     --theme-darker-bg: 0 0% 0%;
@@ -138,7 +138,7 @@
   }
   
   .button-primary {
-    @apply bg-theme-green text-black font-medium py-2 px-6 rounded-lg transition-all;
+    @apply bg-theme-blue text-white font-medium py-2 px-6 rounded-lg transition-all;
   }
   
   .feature-icon {
@@ -179,12 +179,12 @@
 }
 
 /* Theme color utilities */
-.text-theme-green {
-  color: hsl(var(--theme-green));
+.text-theme-blue {
+  color: hsl(var(--theme-blue));
 }
 
-.bg-theme-green {
-  background-color: hsl(var(--theme-green));
+.bg-theme-blue {
+  background-color: hsl(var(--theme-blue));
 }
 
 .text-theme-black {

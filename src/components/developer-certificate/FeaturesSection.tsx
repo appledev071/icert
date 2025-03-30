@@ -33,12 +33,12 @@ export const FeaturesSection: React.FC = () => {
         {features.map((feature, index) => (
           <div 
             key={index} 
-            className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-green transition-duration-300"
+            className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-blue transition-duration-300"
             style={{ animationDelay: `${(index + 1) * 0.15}s` }}
           >
             <div className="flex items-start gap-4">
               <div className="mt-1">
-                <CheckCircle className="h-6 w-6 text-theme-green" />
+                <CheckCircle className="h-6 w-6 text-theme-blue" />
               </div>
               <div>
                 <h3 className="text-xl font-medium text-black dark:text-white mb-2">

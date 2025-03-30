@@ -46,10 +46,10 @@ export const ThemeToggle: React.FC = () => {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full w-10 h-10 bg-white dark:bg-black border-gray-200 dark:border-gray-800 hover:border-theme-green dark:hover:border-theme-green transition-all duration-300"
+      className="rounded-full w-10 h-10 bg-white dark:bg-black border-gray-200 dark:border-gray-800 hover:border-theme-blue dark:hover:border-theme-blue transition-all duration-300"
     >
       {isDarkMode ? (
-        <Sun className="h-5 w-5 text-theme-green" />
+        <Sun className="h-5 w-5 text-theme-blue" />
       ) : (
         <Moon className="h-5 w-5 text-black" />
       )}
