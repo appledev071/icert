@@ -13,6 +13,7 @@ interface PricingCardProps {
   features: Feature[];
   iconBgColor: string;
   gradientColors: string;
+  glowColor?: string;
 }
 
 export const PricingCard: React.FC<PricingCardProps> = ({
@@ -21,17 +22,27 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   features,
   iconBgColor,
   gradientColors,
+  glowColor = "rgba(59, 130, 246, 0.5)" // Default blue glow
 }) => {
   return (
-    <div className="flex-1 p-6 border border-gray-200 dark:border-gray-800 rounded-lg group 
-                  hover:border-theme-blue transition-all duration-500 glow-card card-lift
-                  relative overflow-hidden running-border">
+    <div 
+      className="flex-1 p-6 border border-gray-200 dark:border-gray-800 rounded-lg group 
+                hover:border-theme-blue transition-all duration-500 glow-card card-lift
+                relative overflow-hidden running-border"
+      style={{ "--custom-glow-color": glowColor } as React.CSSProperties}
+    >
       {/* Shine effect on hover */}
       <div className="absolute -inset-px opacity-0 group-hover:opacity-100 duration-700 bg-gradient-to-r from-transparent via-theme-blue/5 to-transparent -z-10 animate-shimmer"></div>
       
-      {/* Animated glow effect */}
+      {/* Animated glow effect with custom color */}
       <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute inset-0 bg-gradient-to-br from-theme-blue/5 to-transparent rounded-lg blur-xl"></div>
+        <div 
+          className="absolute inset-0 rounded-lg blur-xl" 
+          style={{ 
+            background: `radial-gradient(circle at center, ${glowColor} 0%, transparent 70%)`,
+            opacity: 0.3 
+          }}
+        ></div>
       </div>
       
       <div className="relative">
@@ -68,7 +79,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         
         {/* Button that appears on hover */}
         <div className="mt-8 pt-4 border-t border-gray-100 dark:border-gray-800 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-          <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2 text-sm text-theme-blue hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 shine-effect relative overflow-hidden">
+          <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2 text-sm text-theme-blue hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 shine-effect relative overflow-hidden">
             <span className="relative z-10">Выбрать тариф</span> <ArrowRight className="w-4 h-4 relative z-10" />
           </a>
         </div>

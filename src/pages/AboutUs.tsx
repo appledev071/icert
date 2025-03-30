@@ -1,13 +1,26 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Users, ShieldCheck, Clock, Award } from "lucide-react";
+import { ArrowLeft, Users, ShieldCheck, Clock, Award, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const AboutUs = () => {
+  const isMobile = useIsMobile();
+
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
@@ -28,7 +41,7 @@ const AboutUs = () => {
       <WikiNavigation />
 
       <div className="mb-8 animate-fade-in-left">
-        <Link to="/">
+        <Link to="/" onClick={scrollToTop}>
           <Button
             variant="outline"
             className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -61,7 +74,7 @@ const AboutUs = () => {
       {/* Main Content */}
       <section className="py-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
         <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm mb-10 running-border">
-          <div className="flex items-start gap-4 mb-10">
+          <div className="flex flex-col md:flex-row items-start gap-4 mb-10">
             <div className="mt-1 w-16 h-16 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
               <Users className="w-8 h-8 text-theme-blue" />
             </div>
@@ -122,17 +135,37 @@ const AboutUs = () => {
               Мы всегда рады помочь!
             </p>
             <div className="flex justify-center">
-              <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
                 <Button 
                   className="bg-black dark:bg-theme-blue dark:text-white text-base 
                           py-2 px-8 rounded-full font-medium font-montserrat shadow-md
                           transition-all duration-300 group relative overflow-hidden shine-effect"
                 >
-                  <span className="relative z-10">@icertstoremanager</span>
+                  <span className="relative z-10">@icertmanager</span>
                 </Button>
               </a>
             </div>
           </div>
+        </div>
+        
+        {/* Back to top and main page buttons */}
+        <div className="flex flex-col items-center justify-center mt-12">
+          <Link to="/" onClick={scrollToTop} className="mb-8">
+            <Button
+              variant="outline"
+              className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              Вернуться на главную
+            </Button>
+          </Link>
+          
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
         </div>
       </section>
     </ThemedLandingWrapper>

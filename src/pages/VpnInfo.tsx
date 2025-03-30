@@ -1,13 +1,26 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Shield, Globe, Zap, Lock, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowUp, Globe, Shield, Zap, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const VpnInfo = () => {
+  const isMobile = useIsMobile();
+
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
@@ -27,9 +40,8 @@ const VpnInfo = () => {
       {/* Wiki Navigation */}
       <WikiNavigation />
 
-      {/* Back button */}
       <div className="mb-8 animate-fade-in-left">
-        <Link to="/">
+        <Link to="/" onClick={scrollToTop}>
           <Button
             variant="outline"
             className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -40,7 +52,7 @@ const VpnInfo = () => {
         </Link>
       </div>
 
-      {/* VPN Info Hero */}
+      {/* VPN Info Content */}
       <section className="py-12 animate-fade-in-up">
         <div className="relative">
           {/* Background effects */}
@@ -48,149 +60,208 @@ const VpnInfo = () => {
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
           <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
-            VLESS Протокол VPN
-            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
+            VPN-сервис
+            <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
-            VLESS — это современный протокол туннелирования трафика, обеспечивающий высокую скорость соединения 
-            и обход блокировок. Разработан как улучшенная версия V2Ray, предлагает минимальные накладные расходы 
-            и максимальную производительность.
+            Наш VPN-сервис обеспечивает безопасное и анонимное подключение к интернету, защищая вашу конфиденциальность 
+            и предоставляя доступ к глобальному контенту без ограничений.
           </p>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-10 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Shield className="w-7 h-7 text-theme-blue" />
-            </div>
-            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Повышенная безопасность</h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              VLESS обеспечивает высокий уровень шифрования и защиты данных. Используется протокол TLS для создания 
-              безопасного туннеля, что делает ваше соединение невидимым для посторонних глаз.
-            </p>
-          </div>
-          
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Zap className="w-7 h-7 text-theme-blue" />
-            </div>
-            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Высокая скорость</h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              В отличие от традиционных VPN-протоколов, VLESS создан с акцентом на производительность. 
-              Минимальные накладные расходы позволяют достигать скорости до 1 Гбит/с без компромиссов по безопасности.
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Globe className="w-7 h-7 text-theme-blue" />
-            </div>
-            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Обход блокировок</h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              VLESS эффективно обходит даже самые сложные системы блокировок и цензуры в интернете. 
-              Технология маскирует VPN-трафик под обычный HTTPS-трафик, что позволяет получить доступ к заблокированным ресурсам.
-            </p>
-          </div>
-          
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Lock className="w-7 h-7 text-theme-blue" />
-            </div>
-            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Нет логов</h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              Наша реализация VLESS протокола полностью соответствует политике отсутствия логов. 
-              Мы не отслеживаем и не храним информацию о ваших действиях в интернете, обеспечивая полную конфиденциальность.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical details */}
-      <section className="py-12 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-        <h2 className="text-3xl font-bold font-montserrat mb-8 text-black dark:text-white">
-          Технические особенности
-          <div className="h-1 w-24 bg-theme-blue mt-2"></div>
-        </h2>
-        
-        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm">
-          <ul className="space-y-6">
-            <li className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Мультиплексирование</h4>
-                <p className="text-gray-700 dark:text-gray-300">
-                  VLESS использует мультиплексирование для создания нескольких подключений в рамках одного TCP-соединения, 
-                  что уменьшает задержки и повышает стабильность работы.
-                </p>
-              </div>
-            </li>
-            
-            <li className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Поддержка TLS 1.3</h4>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Протокол интегрирован с последней версией TLS 1.3, обеспечивая более быстрое установление защищенного 
-                  соединения и улучшенные алгоритмы шифрования.
-                </p>
-              </div>
-            </li>
-            
-            <li className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">XTLS Direct Mode</h4>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Расширенная технология XTLS Direct Mode позволяет передавать зашифрованные данные без дополнительной 
-                  обработки, значительно повышая скорость при работе с большими файлами.
-                </p>
-              </div>
-            </li>
-            
-            <li className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Reality Протокол</h4>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Дополнительный уровень защиты с использованием Reality протокола, который имитирует TLS-рукопожатие 
-                  реальных популярных веб-сайтов, делая обнаружение VPN-соединения практически невозможным.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-12 text-center relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
-          {/* Animated background effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
-          
-          <h2 className="text-3xl font-bold font-montserrat mb-4 text-black dark:text-white">
-            Готовы попробовать наш VPN на базе VLESS?
+      {/* Main Content */}
+      <section className="py-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm mb-10 running-border">
+          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-8">
+            Преимущества нашего VPN-сервиса
           </h2>
           
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Получите доступ к быстрому, безопасному и надежному VPN-соединению уже сегодня
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            <div className="flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-theme-blue group transition-all duration-500">
+              <div className="w-16 h-16 bg-theme-blue/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Shield className="w-8 h-8 text-theme-blue" />
+              </div>
+              <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-3">Безопасность</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Шифрование военного уровня защищает ваши данные от посторонних глаз, предотвращая слежку и кражу информации.
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-theme-blue group transition-all duration-500">
+              <div className="w-16 h-16 bg-theme-blue/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Globe className="w-8 h-8 text-theme-blue" />
+              </div>
+              <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-3">Глобальный доступ</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Серверы в более чем 30 странах позволяют обходить географические ограничения и получать доступ к любому контенту.
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-theme-blue group transition-all duration-500">
+              <div className="w-16 h-16 bg-theme-blue/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Zap className="w-8 h-8 text-theme-blue" />
+              </div>
+              <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-3">Высокая скорость</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Оптимизированные серверы обеспечивают стабильное соединение с высокой скоростью для комфортного использования интернета.
+              </p>
+            </div>
+          </div>
+          
+          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 mb-8">
+            <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-4">
+              Почему стоит выбрать наш VPN?
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Без логирования:</strong> мы не храним информацию о вашей активности
+                </span>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Безлимитный трафик:</strong> без ограничений по объему передаваемых данных
+                </span>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Множество устройств:</strong> до 5 устройств на одну подписку
+                </span>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Кросс-платформенность:</strong> поддержка всех популярных платформ
+                </span>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Техническая поддержка:</strong> помощь в настройке и решении проблем
+                </span>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
+                <span className="text-gray-700 dark:text-gray-300">
+                  <strong>Высокая надежность:</strong> стабильное соединение 24/7
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-6">
+              Готовы повысить уровень своей безопасности в сети?
+            </h3>
+            
+            <Link to="/vpn-pricing" onClick={scrollToTop}>
+              <Button className="bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base py-3 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+                Выбрать тариф
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+        
+        {/* How VPN works section */}
+        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm mb-12 running-border">
+          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-6">
+            Как работает VPN?
+          </h2>
+          
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            VPN (Virtual Private Network) создает защищенное соединение между вашим устройством и интернетом.
+            Вот как это работает:
           </p>
           
-          <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
-            <Button 
-              className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                      dark:bg-theme-blue dark:text-white dark:border-white text-base 
-                      py-2 px-8 rounded-full font-medium font-montserrat shadow-md hover:shadow-glow 
-                      transition-all duration-300 group relative overflow-hidden shine-effect"
+          <div className="space-y-6">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
+              <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">1</div>
+              <div>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Шифрование данных</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Все данные, которые вы отправляете и получаете, шифруются, что делает их невидимыми для посторонних глаз,
+                  включая вашего интернет-провайдера и операторов общественных Wi-Fi сетей.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
+              <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">2</div>
+              <div>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Туннельное соединение</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  VPN создает защищенный "туннель" через интернет от вашего устройства до VPN-сервера, через который 
+                  проходит весь ваш интернет-трафик.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
+              <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">3</div>
+              <div>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Изменение IP-адреса</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  При подключении к VPN-серверу ваш реальный IP-адрес заменяется на IP-адрес сервера, что делает 
+                  вашу активность анонимной и позволяет обходить географические ограничения.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+              <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">4</div>
+              <div>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Доступ к контенту</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Подключившись к серверу в определенной стране, вы получаете доступ к контенту, доступному в этом регионе,
+                  обходя блокировки и цензуру.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Back to top and main page buttons */}
+        <div className="flex flex-col items-center justify-center">
+          <Link to="/" onClick={scrollToTop} className="mb-8">
+            <Button
+              variant="outline"
+              className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
             >
-              <span className="relative z-10">Подключить VPN сейчас</span>
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              Вернуться на главную
             </Button>
-          </a>
+          </Link>
+          
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
         </div>
       </section>
     </ThemedLandingWrapper>

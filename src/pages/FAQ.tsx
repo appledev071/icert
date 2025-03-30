@@ -1,9 +1,9 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, HelpCircle } from "lucide-react";
+import { ArrowLeft, HelpCircle, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   Accordion,
@@ -14,6 +14,16 @@ import {
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
 
 const FAQ = () => {
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
@@ -77,7 +87,7 @@ const FAQ = () => {
       <WikiNavigation />
 
       <div className="mb-8 animate-fade-in-left">
-        <Link to="/">
+        <Link to="/" onClick={scrollToTop}>
           <Button
             variant="outline"
             className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -113,18 +123,18 @@ const FAQ = () => {
             <div className="mt-1 w-12 h-12 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
               <HelpCircle className="w-6 h-6 text-theme-blue" />
             </div>
-            <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white">
+            <h2 className="text-2xl font-semibold font-montserrat text-black dark:text-white">
               Основные вопросы
             </h2>
           </div>
           
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-2">
             {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200 dark:border-gray-800">
-                <AccordionTrigger className="text-lg font-medium text-black dark:text-white hover:text-theme-blue transition-colors duration-300 py-4">
+              <AccordionItem key={index} value={`item-${index}`} className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden px-1">
+                <AccordionTrigger className="text-lg font-medium text-black dark:text-white hover:text-theme-blue transition-colors duration-300 py-5 px-4">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700 dark:text-gray-300 pb-4 pt-2">
+                <AccordionContent className="text-gray-700 dark:text-gray-300 pb-5 pt-2 px-4">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -137,7 +147,7 @@ const FAQ = () => {
           {/* Animated background effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
           
-          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
+          <h2 className="text-2xl font-semibold font-montserrat text-black dark:text-white mb-4">
             Не нашли ответ на свой вопрос?
           </h2>
           
@@ -146,15 +156,35 @@ const FAQ = () => {
             Мы готовы помочь вам с любыми вопросами, связанными с нашими услугами.
           </p>
           
-          <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
             <Button 
               className="bg-black dark:bg-theme-blue dark:text-white text-base 
                       py-2 px-8 rounded-full font-medium shadow-md
                       transition-all duration-300 group relative overflow-hidden shine-effect"
             >
-              <span className="relative z-10">@icertstoremanager</span>
+              <span className="relative z-10">Написать</span>
             </Button>
           </a>
+        </div>
+        
+        {/* Back to top and main page buttons */}
+        <div className="flex flex-col items-center justify-center mt-12">
+          <Link to="/" onClick={scrollToTop} className="mb-8">
+            <Button
+              variant="outline"
+              className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              Вернуться на главную
+            </Button>
+          </Link>
+          
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
         </div>
       </section>
     </ThemedLandingWrapper>

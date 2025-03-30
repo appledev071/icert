@@ -8,6 +8,7 @@ interface HeroSectionProps {
   subtitle: string;
   logoUrl: string;
   logoAlt: string;
+  hideSparkles?: boolean;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
@@ -15,6 +16,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   subtitle,
   logoUrl,
   logoAlt,
+  hideSparkles = false,
 }) => {
   return (
     <section className="pb-12 animate-fade-in-up relative" style={{ animationDelay: "0.2s" }}>
@@ -27,16 +29,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           Расширенные возможности <br/>
           <span className="text-theme-blue relative inline-block">
             для ваших устройств
-            <span className="absolute -top-1 -right-6">
-              <Sparkles className="h-6 w-6 text-yellow-400 animate-pulse-slow" />
-            </span>
+            {!hideSparkles && (
+              <span className="absolute -top-1 -right-6">
+                <Sparkles className="h-6 w-6 text-yellow-400 animate-pulse-slow" />
+              </span>
+            )}
           </span>
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-2xl">
           Устанавливайте любые приложения, тестируйте бета-версии и
           используйте эксклюзивные функции на вашем iPhone и iPad
         </p>
-        <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
           <Button className="bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base py-6 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
             Начать сейчас
             <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

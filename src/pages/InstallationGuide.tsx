@@ -1,19 +1,125 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Smartphone, Monitor, Laptop, Tablet } from "lucide-react";
+import { ArrowLeft, ArrowUp, Smartphone, Monitor, Laptop, Tablet, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const InstallationGuide = () => {
+  const isMobile = useIsMobile();
+  const [selectedDevice, setSelectedDevice] = useState<string | null>(null);
+
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "Тарифы", href: "/#pricing" },
-    { label: "VPN", href: "/#vpn" },
-    { label: "О нас", href: "/#about" },
-    { label: "Контакты", href: "/#contacts" },
+    { label: "Wiki", href: "/wiki" },
+    { label: "VPN", href: "/vpn-pricing" },
+    { label: "О нас", href: "/about" },
+  ];
+
+  const devices = [
+    {
+      id: "ios",
+      name: "iOS (iPhone/iPad)",
+      icon: <Smartphone className="w-6 h-6" />,
+      apps: ["Streisand (V2Ray)", "ShadowRocket", "V2Box"],
+      instructions: [
+        "Скачайте одно из рекомендуемых приложений из App Store",
+        "После покупки VPN, вы получите конфигурационную ссылку или QR-код",
+        "В приложении найдите опцию 'Импортировать из ссылки' или 'Сканировать QR-код'",
+        "После импорта конфигурации, выберите сервер и нажмите 'Подключиться'",
+        "При первом подключении разрешите приложению добавить VPN конфигурацию",
+        "Готово! Теперь ваше соединение защищено"
+      ],
+      tip: "Для iOS устройств рекомендуем использовать ShadowRocket как наиболее стабильное и функциональное приложение"
+    },
+    {
+      id: "android",
+      name: "Android",
+      icon: <Smartphone className="w-6 h-6" />,
+      apps: ["V2rayNG", "V2Ray Plugin", "Shadowsocks"],
+      instructions: [
+        "Установите приложение V2rayNG из Google Play или загрузите APK с официального сайта",
+        "После покупки VPN, вы получите конфигурационную ссылку или QR-код",
+        "Откройте V2rayNG и нажмите на кнопку '+' в верхнем правом углу",
+        "Выберите 'Импортировать конфигурацию из буфера обмена' или 'Сканировать QR код'",
+        "После импорта, выберите новый профиль и нажмите кнопку подключения внизу экрана",
+        "Примите запрос на настройку VPN-соединения"
+      ],
+      tip: "Для стабильной работы рекомендуем использовать V2rayNG, который поддерживает все современные протоколы"
+    },
+    {
+      id: "windows",
+      name: "Windows",
+      icon: <Monitor className="w-6 h-6" />,
+      apps: ["v2rayN", "Clash for Windows", "Qv2ray"],
+      instructions: [
+        "Скачайте и установите v2rayN с официального GitHub репозитория",
+        "После установки запустите программу от имени администратора",
+        "После покупки VPN, вы получите конфигурационный файл или ссылку",
+        "В программе выберите 'Servers' → 'Add VMess Server' → 'Import from clipboard'",
+        "Вставьте полученную ссылку и нажмите 'OK'",
+        "Выберите добавленный сервер в списке и включите VPN нажатием кнопки в правом нижнем углу"
+      ],
+      tip: "Рекомендуем настроить автозапуск программы вместе с Windows для постоянной защиты"
+    },
+    {
+      id: "macos",
+      name: "macOS",
+      icon: <Laptop className="w-6 h-6" />,
+      apps: ["V2rayU", "ClashX", "V2RayX"],
+      instructions: [
+        "Загрузите и установите V2rayU из GitHub или App Store",
+        "После установки запустите приложение (может потребоваться разрешение в настройках безопасности)",
+        "Нажмите на значок V2rayU в строке меню и выберите 'Import Config'",
+        "Вставьте полученную ссылку или выберите конфигурационный файл",
+        "После импорта конфигурации нажмите 'Connect' для подключения к VPN",
+        "Для автоматического подключения при запуске системы, настройте опцию 'Launch at Login'"
+      ],
+      tip: "В macOS Monterey и новее может потребоваться разрешение для VPN в настройках конфиденциальности и безопасности"
+    },
+    {
+      id: "linux",
+      name: "Linux",
+      icon: <Monitor className="w-6 h-6" />,
+      apps: ["Qv2ray", "v2rayA", "v2ray-core"],
+      instructions: [
+        "Установите v2ray-core с помощью менеджера пакетов вашего дистрибутива (apt, yum, pacman и т.д.)",
+        "Установите Qv2ray графический интерфейс для управления VPN",
+        "Настройте путь к исполняемым файлам v2ray в настройках Qv2ray",
+        "Импортируйте полученную конфигурацию через меню 'Импорт'",
+        "Выберите добавленный профиль и нажмите кнопку подключения",
+        "Для автозагрузки добавьте Qv2ray в автозапуск вашего окружения рабочего стола"
+      ],
+      tip: "Для продвинутых пользователей: можно настроить systemd сервис для автоматического запуска v2ray без GUI"
+    },
+    {
+      id: "router",
+      name: "Роутер",
+      icon: <Monitor className="w-6 h-6" />,
+      apps: ["OpenWrt", "AsusWRT", "Padavan"],
+      instructions: [
+        "Убедитесь, что ваш роутер поддерживает OpenWrt или другую кастомную прошивку",
+        "Установите пакет v2ray через менеджер пакетов или вручную",
+        "Загрузите на роутер конфигурационный файл, полученный после покупки VPN",
+        "Настройте перенаправление трафика согласно документации вашей прошивки",
+        "Включите автозапуск службы v2ray при загрузке роутера",
+        "Проверьте подключение, посетив сайт для проверки IP-адреса"
+      ],
+      tip: "Настройка VPN на уровне роутера защищает все устройства в сети, но может потребовать технических знаний"
+    }
   ];
 
   return (
@@ -29,7 +135,7 @@ const InstallationGuide = () => {
       <WikiNavigation />
 
       <div className="mb-8 animate-fade-in-left">
-        <Link to="/">
+        <Link to="/" onClick={scrollToTop}>
           <Button
             variant="outline"
             className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
@@ -47,217 +153,130 @@ const InstallationGuide = () => {
           <div className="absolute -z-10 top-20 left-10 w-72 h-72 bg-theme-blue/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
-          <h1 className="text-4xl md:text-5xl font-bold font-playfair text-black dark:text-white mb-6 relative">
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             Инструкция по установке
             <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
             Подробная инструкция по установке VPN на различные устройства и платформы. 
-            Следуйте пошаговым рекомендациям для быстрой настройки защищенного соединения.
+            Выберите ваше устройство для получения соответствующей инструкции.
           </p>
         </div>
       </section>
 
-      {/* Device Specific Instructions */}
+      {/* Device Selection */}
       <section className="py-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-        <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-6">
-          Выберите свое устройство
+        <h2 className="text-2xl font-bold font-montserrat text-black dark:text-white mb-6">
+          Выберите ваше устройство
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* iOS */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="flex gap-4 items-start">
-              <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Smartphone className="w-7 h-7 text-theme-blue" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+          {devices.map((device) => (
+            <button
+              key={device.id}
+              onClick={() => setSelectedDevice(selectedDevice === device.id ? null : device.id)}
+              className={`flex flex-col items-center p-4 rounded-lg border transition-all duration-300 ${
+                selectedDevice === device.id 
+                  ? 'border-theme-blue bg-theme-blue/5 dark:bg-theme-blue/10' 
+                  : 'border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
+              }`}
+            >
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${
+                selectedDevice === device.id ? 'text-theme-blue' : 'text-gray-600 dark:text-gray-400'
+              }`}>
+                {device.icon}
               </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-playfair font-semibold mb-4 text-black dark:text-white">iOS (iPhone/iPad)</h3>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Рекомендуемые приложения:</h4>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>Streisand (V2Ray)</li>
-                    <li>ShadowRocket</li>
-                    <li>V2Box</li>
-                  </ul>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Шаги по установке:</h4>
-                  <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
-                    <li>Скачайте одно из рекомендуемых приложений из App Store</li>
-                    <li>После покупки VPN, вы получите конфигурационную ссылку или QR-код</li>
-                    <li>В приложении найдите опцию "Импортировать из ссылки" или "Сканировать QR-код"</li>
-                    <li>После импорта конфигурации, выберите сервер и нажмите "Подключиться"</li>
-                    <li>При первом подключении разрешите приложению добавить VPN конфигурацию</li>
-                    <li>Готово! Теперь ваше соединение защищено</li>
-                  </ol>
-                </div>
-                
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-                  <p className="font-medium">Совет:</p>
-                  <p>Для iOS устройств рекомендуем использовать ShadowRocket как наиболее стабильное и функциональное приложение для работы с VLESS протоколом.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Android */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="flex gap-4 items-start">
-              <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Smartphone className="w-7 h-7 text-theme-blue" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-playfair font-semibold mb-4 text-black dark:text-white">Android</h3>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Рекомендуемые приложения:</h4>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>v2rayNG</li>
-                    <li>Clash for Android</li>
-                    <li>Nekoray (если доступно)</li>
-                  </ul>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Шаги по установке:</h4>
-                  <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
-                    <li>Скачайте и установите v2rayNG из Google Play или APK файл с официального сайта</li>
-                    <li>После покупки VPN, вы получите конфигурационную ссылку или QR-код</li>
-                    <li>Откройте v2rayNG и нажмите на "+" внизу экрана</li>
-                    <li>Выберите "Импортировать из буфера обмена" или "Сканировать QR-код"</li>
-                    <li>После импорта выберите добавленный сервер и нажмите на кнопку подключения</li>
-                    <li>Разрешите приложению создать VPN подключение при запросе</li>
-                    <li>Готово! Теперь ваше соединение защищено</li>
-                  </ol>
-                </div>
-                
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-                  <p className="font-medium">Совет:</p>
-                  <p>Для большинства устройств Android рекомендуем v2rayNG как наиболее простое и эффективное решение для VLESS протокола.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+              <span className={`text-sm font-medium ${
+                selectedDevice === device.id ? 'text-theme-blue' : 'text-gray-800 dark:text-gray-200'
+              }`}>
+                {device.name}
+              </span>
+              <ChevronDown className={`mt-2 w-4 h-4 transition-transform duration-300 ${
+                selectedDevice === device.id ? 'rotate-180 text-theme-blue' : 'text-gray-400'
+              }`} />
+            </button>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Windows */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="flex gap-4 items-start">
-              <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Monitor className="w-7 h-7 text-theme-blue" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-playfair font-semibold mb-4 text-black dark:text-white">Windows</h3>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Рекомендуемые приложения:</h4>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>v2rayN</li>
-                    <li>Clash for Windows</li>
-                    <li>Nekoray</li>
-                  </ul>
+        {/* Device specific instructions */}
+        {selectedDevice && devices.find(d => d.id === selectedDevice) && (
+          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-12 animate-fade-in transition-all duration-500">
+            {devices.map((device) => (
+              device.id === selectedDevice && (
+                <div key={device.id}>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-theme-blue/10 rounded-full flex items-center justify-center">
+                      {device.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold font-montserrat text-black dark:text-white">
+                      Установка на {device.name}
+                    </h3>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h4 className="font-medium text-black dark:text-white mb-2 font-montserrat">Рекомендуемые приложения:</h4>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                      {device.apps.map((app, index) => (
+                        <li key={index}>{app}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <h4 className="font-medium text-black dark:text-white mb-2 font-montserrat">Шаги по установке:</h4>
+                    <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
+                      {device.instructions.map((instruction, index) => (
+                        <li key={index}>{instruction}</li>
+                      ))}
+                    </ol>
+                  </div>
+                  
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
+                    <p className="font-medium font-montserrat">Совет:</p>
+                    <p>{device.tip}</p>
+                  </div>
                 </div>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Шаги по установке:</h4>
-                  <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
-                    <li>Скачайте и установите v2rayN с GitHub</li>
-                    <li>После запуска, найдите иконку программы в трее (внизу справа)</li>
-                    <li>Правый клик по иконке → Импортировать из буфера обмена → VLESS</li>
-                    <li>Вставьте полученную от нас конфигурационную ссылку</li>
-                    <li>После импорта сервера, правый клик по иконке v2rayN → Системный прокси → Режим прокси PAC/Global</li>
-                    <li>Готово! Теперь ваше соединение защищено</li>
-                  </ol>
-                </div>
-                
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-                  <p className="font-medium">Совет:</p>
-                  <p>Для Windows пользователей рекомендуем v2rayN или Nekoray для максимальной производительности и гибкости настроек.</p>
-                </div>
-              </div>
-            </div>
+              )
+            ))}
           </div>
-
-          {/* macOS */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-            <div className="flex gap-4 items-start">
-              <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Laptop className="w-7 h-7 text-theme-blue" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-playfair font-semibold mb-4 text-black dark:text-white">macOS</h3>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Рекомендуемые приложения:</h4>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>V2rayU</li>
-                    <li>ClashX</li>
-                    <li>FairVPN</li>
-                  </ul>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="font-medium text-black dark:text-white mb-2">Шаги по установке:</h4>
-                  <ol className="list-decimal pl-5 space-y-3 text-gray-700 dark:text-gray-300">
-                    <li>Скачайте и установите V2rayU с GitHub</li>
-                    <li>Запустите приложение и найдите его иконку в строке меню</li>
-                    <li>Нажмите на иконку → Servers → Import from clipboard</li>
-                    <li>Вставьте полученную конфигурационную ссылку</li>
-                    <li>Выберите импортированный сервер и нажмите "Turn V2Ray On"</li>
-                    <li>При первом включении потребуется ввести пароль администратора</li>
-                    <li>Готово! Теперь ваше соединение защищено</li>
-                  </ol>
-                </div>
-                
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-gray-700 dark:text-gray-300">
-                  <p className="font-medium">Совет:</p>
-                  <p>Для пользователей Mac рекомендуем V2rayU как наиболее стабильное и интуитивно понятное решение.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Troubleshooting */}
-        <div className="mt-12 border border-gray-200 dark:border-gray-800 rounded-lg p-8 group hover:border-theme-blue/30 transition-all duration-500 relative overflow-hidden shine-on-hover running-border">
-          <h3 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-6">
-            Устранение неполадок
+        )}
+        
+        {/* Support section */}
+        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm mb-12">
+          <h3 className="text-2xl font-bold font-montserrat text-black dark:text-white mb-4">
+            Нужна помощь?
           </h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            Если у вас возникли сложности с установкой или настройкой VPN, наша техническая поддержка всегда готова помочь. 
+            Свяжитесь с нами через Telegram, и мы оперативно решим ваш вопрос.
+          </p>
           
-          <div className="space-y-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="bg-red-100 dark:bg-red-900/20 rounded-lg p-4 text-gray-700 dark:text-gray-300 flex-1">
-                <p className="font-medium text-red-600 dark:text-red-400 mb-2">Проблема: Не удается подключиться к VPN</p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>Убедитесь, что ваше интернет-соединение стабильно</li>
-                  <li>Проверьте правильность импортированной конфигурации</li>
-                  <li>Перезапустите приложение VPN-клиента</li>
-                  <li>Попробуйте подключиться к другому серверу (если доступно)</li>
-                </ul>
-              </div>
-              
-              <div className="bg-yellow-100 dark:bg-yellow-900/20 rounded-lg p-4 text-gray-700 dark:text-gray-300 flex-1">
-                <p className="font-medium text-yellow-600 dark:text-yellow-400 mb-2">Проблема: Низкая скорость соединения</p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>Выберите сервер, который географически ближе к вам</li>
-                  <li>Проверьте скорость вашего базового интернет-соединения</li>
-                  <li>Убедитесь, что никакие другие приложения не потребляют большую часть трафика</li>
-                  <li>Попробуйте изменить протокол в настройках (если доступно)</li>
-                </ul>
-              </div>
-            </div>
-            
-            <p className="text-gray-700 dark:text-gray-300">
-              Если у вас возникли проблемы с подключением или настройкой VPN, свяжитесь с нашей технической
-              поддержкой через Telegram для получения дополнительной помощи: 
-              <a href="https://t.me/icertstore" className="text-theme-blue hover:underline ml-1">t.me/icertstore</a>
-            </p>
-          </div>
+          <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
+            <Button className="bg-black dark:bg-theme-blue dark:text-white text-white px-6 py-2 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
+              Написать в поддержку
+            </Button>
+          </a>
+        </div>
+        
+        {/* Back to top and main page buttons */}
+        <div className="flex flex-col items-center justify-center">
+          <Link to="/" onClick={scrollToTop} className="mb-8">
+            <Button
+              variant="outline"
+              className="group flex items-center gap-2 border-theme-blue/30 hover:border-theme-blue transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+              Вернуться на главную
+            </Button>
+          </Link>
+          
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center w-10 h-10 bg-theme-blue/10 rounded-full hover:bg-theme-blue/20 transition-colors duration-300"
+          >
+            <ArrowUp className="w-5 h-5 text-theme-blue" />
+          </button>
         </div>
       </section>
     </ThemedLandingWrapper>
