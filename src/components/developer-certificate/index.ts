@@ -8,3 +8,4 @@ export * from "./FeaturesSection";
 export * from "./VpnSection";
 export * from "./CtaSection";
 export * from "./LandingFooter";
+export * from "./ThemedLandingWrapper";
