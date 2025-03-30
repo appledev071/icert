@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -18,6 +18,28 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const [deviceType, setDeviceType] = useState("desktop");
+  
+  // Detect device type
+  useEffect(() => {
+    const detectDeviceType = () => {
+      const width = window.innerWidth;
+      if (width < 480) {
+        setDeviceType("mobile");
+      } else if (width < 768) {
+        setDeviceType("tablet");
+      } else {
+        setDeviceType("desktop");
+      }
+    };
+    
+    detectDeviceType();
+    window.addEventListener('resize', detectDeviceType);
+    
+    return () => {
+      window.removeEventListener('resize', detectDeviceType);
+    };
+  }, []);
   
   // Function to scroll to top when navigating
   const scrollToTop = () => {
@@ -25,8 +47,13 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
     setIsMenuOpen(false);
   };
   
+  // Filter menu items for mobile - show only Wiki
+  const filteredMenuItems = isMobile 
+    ? menuItems.filter(item => item.label === "Wiki" || item.href === "/wiki")
+    : menuItems;
+  
   return (
-    <header className="flex justify-between items-center py-6 mb-12 md:mb-16 animate-fade-in-up">
+    <header className="flex justify-between items-center py-6 mb-8 md:mb-12 animate-fade-in-up">
       <Link to="/" onClick={scrollToTop} className="flex items-center gap-2 z-20">
         <img
           src={logoUrl}
@@ -34,14 +61,14 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
           className="w-8 h-8 rounded-none"
         />
         <div className="text-black dark:text-white text-xl font-bold font-montserrat">
-          iCert
+          iCert {deviceType === "mobile" && <span className="text-xs ml-1 text-gray-500">(Mobile)</span>}
         </div>
       </Link>
       
       <div className="flex items-center gap-3 md:gap-6">
         {/* Desktop navigation */}
         <nav className="hidden md:flex gap-4 lg:gap-8">
-          {menuItems.map((item, index) => (
+          {filteredMenuItems.map((item, index) => (
             <Link
               key={index}
               to={item.href}
@@ -75,7 +102,10 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
           href="https://t.me/icertmanager" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="bg-black dark:bg-theme-blue dark:text-white text-white py-2 px-5 rounded-full text-sm font-medium font-montserrat hover:bg-gray-800 dark:hover:bg-blue-600 transition-all relative group overflow-hidden shine-effect z-20"
+          className={`bg-black dark:bg-theme-blue dark:text-white text-white py-2 
+            ${isMobile ? 'px-3 text-xs' : 'px-5 text-sm'} 
+            rounded-full font-medium font-montserrat hover:bg-gray-800 
+            dark:hover:bg-blue-600 transition-all relative group overflow-hidden shine-effect z-20`}
         >
           <span className="relative z-10">{isMobile ? 'Заказать' : 'Заказать'}</span>
         </a>

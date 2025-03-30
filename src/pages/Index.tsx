@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   PricingCard,
   ThemedLandingWrapper,
@@ -10,10 +10,18 @@ import { FeaturesSection } from "@/components/developer-certificate/FeaturesSect
 import { CtaSection } from "@/components/developer-certificate/CtaSection";
 import { LandingFooter } from "@/components/developer-certificate/LandingFooter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   // Pricing card data with different glow colors
   const pricingCards = [
     {
@@ -169,8 +177,18 @@ const Index = () => {
       </section>
 
       {/* CTA section with more spacing */}
-      <div className="py-16">
+      <div className="py-24 mb-10">
         <CtaSection />
+      </div>
+
+      {/* Back to top button */}
+      <div className="flex justify-center mb-10">
+        <button 
+          onClick={scrollToTop}
+          className="bg-theme-blue/10 hover:bg-theme-blue/20 text-theme-blue w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
       </div>
 
       {/* Footer section */}

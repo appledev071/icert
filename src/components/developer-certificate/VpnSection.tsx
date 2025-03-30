@@ -3,8 +3,16 @@ import React from "react";
 import { Globe, Shield, Zap, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const VpnSection: React.FC = () => {
+  const isMobile = useIsMobile();
+  
+  // Function to scroll to top when navigating
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
   const vpnFeatures = [
     {
       title: "Высокая скорость",
@@ -42,7 +50,7 @@ export const VpnSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {vpnFeatures.map((feature, index) => (
-          <Link to="/vpn-info" key={index}>
+          <Link to="/vpn-info" key={index} onClick={scrollToTop}>
             <div 
               className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 
                       hover:border-theme-blue transition-all duration-500 group hover:shadow-glow
@@ -111,7 +119,7 @@ export const VpnSection: React.FC = () => {
           </div>
           
           <div className="md:ml-8 flex-shrink-0">
-            <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
               <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
                               dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
                               py-2 px-6 rounded-full font-medium group/btn animate-border-glow

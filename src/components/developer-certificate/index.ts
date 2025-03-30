@@ -9,3 +9,6 @@ export * from "./VpnSection";
 export * from "./CtaSection";
 export * from "./LandingFooter";
 export * from "./ThemedLandingWrapper";
+export * from "./BackToTopButton";
+export * from "./BackToHomeButton";
+export * from "./WikiNavigation";
