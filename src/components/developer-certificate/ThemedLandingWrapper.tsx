@@ -75,6 +75,20 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
             opacity: '0.2'
           }}
         ></div>
+        
+        {/* NEW: Random blue light flashes */}
+        <div className="blue-flash absolute w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-flash" 
+             style={{ top: '20%', left: '30%', animationDelay: '0s' }}></div>
+        <div className="blue-flash absolute w-16 h-16 rounded-full bg-blue-500/30 blur-xl animate-flash" 
+             style={{ top: '70%', left: '65%', animationDelay: '3s' }}></div>
+        <div className="blue-flash absolute w-24 h-24 rounded-full bg-blue-500/20 blur-xl animate-flash" 
+             style={{ top: '40%', left: '80%', animationDelay: '5s' }}></div>
+        <div className="blue-flash absolute w-32 h-32 rounded-full bg-blue-500/15 blur-xl animate-flash" 
+             style={{ top: '85%', left: '15%', animationDelay: '7s' }}></div>
+        <div className="blue-flash absolute w-28 h-28 rounded-full bg-blue-500/25 blur-xl animate-flash" 
+             style={{ top: '10%', left: '70%', animationDelay: '9s' }}></div>
+        <div className="blue-flash absolute w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-flash" 
+             style={{ top: '50%', left: '40%', animationDelay: '12s' }}></div>
       </div>
 
       {/* Content container */}

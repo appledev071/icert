@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
@@ -295,6 +296,12 @@
     opacity: 0.3;
   }
   
+  /* Blue flash animation element */
+  .blue-flash {
+    opacity: 0;
+    animation: flash 8s infinite ease-in-out;
+  }
+  
   /* Accordion styles */
   .accordion-content {
     overflow: hidden;
@@ -512,6 +519,26 @@
   }
 }
 
+/* New flash animation */
+@keyframes flash {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  35% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  65% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -557,6 +584,11 @@
 
 .animate-glow-pulse {
   animation: glow-pulse 2s infinite;
+}
+
+/* Animation for blue flashes */
+.animate-flash {
+  animation: flash 8s infinite ease-in-out;
 }
 
 /* Shadow effects */
