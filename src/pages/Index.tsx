@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   CertificateHeader,
@@ -18,9 +19,9 @@ const Index = () => {
     {
       title: "iPad",
       price: "399₽",
-      iconBgColor: "bg-theme-pink",
+      iconBgColor: "bg-theme-gray",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(69,214,202,0.10)_70.71%,rgba(241,91,181,0.10)_0%)]",
+        "bg-[linear-gradient(135deg,rgba(45,212,191,0.10)_70.71%,rgba(148,163,184,0.10)_0%)]",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -32,7 +33,7 @@ const Index = () => {
       price: "999₽",
       iconBgColor: "bg-theme-teal",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(130,71,229,0.10)_70.71%,rgba(69,214,202,0.10)_0%)]",
+        "bg-[linear-gradient(135deg,rgba(59,130,246,0.10)_70.71%,rgba(45,212,191,0.10)_0%)]",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -42,9 +43,9 @@ const Index = () => {
     {
       title: "Моментальный",
       price: "1499₽",
-      iconBgColor: "bg-theme-purple",
+      iconBgColor: "bg-theme-blue",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(241,91,181,0.10)_70.71%,rgba(130,71,229,0.10)_0%)]",
+        "bg-[linear-gradient(135deg,rgba(148,163,184,0.10)_70.71%,rgba(59,130,246,0.10)_0%)]",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 30 минут" },
@@ -79,7 +80,7 @@ const Index = () => {
       />
 
       {/* Divider */}
-      <div className="w-full h-0.5 bg-[rgba(255,255,255,0.10)] my-8" />
+      <div className="w-full h-px bg-[rgba(255,255,255,0.08)] my-12" />
 
       {/* Features section */}
       <FeaturesSection />

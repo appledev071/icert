@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface Feature {
@@ -20,12 +21,12 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   gradientColors,
 }) => {
   return (
-    <div className="flex-1 border bg-[rgba(255,255,255,0.05)] backdrop-blur-[[2.5px]] relative overflow-hidden p-6 rounded-3xl border-[rgba(255,255,255,0.10)]">
-      <div className={`absolute ${gradientColors} inset-0`} />
+    <div className="flex-1 glass-card group hover:translate-y-[-5px]">
+      <div className={`absolute ${gradientColors} inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-300`} />
       <div className="relative">
         <div className="flex items-center gap-4 mb-8">
           <div
-            className={`w-12 h-12 ${iconBgColor} flex items-center justify-center rounded-xl`}
+            className={`w-12 h-12 ${iconBgColor} flex items-center justify-center rounded-lg`}
           >
             <div>
               <div
@@ -36,14 +37,14 @@ export const PricingCard: React.FC<PricingCardProps> = ({
               />
             </div>
           </div>
-          <h3 className="text-[#E6E6FF] text-[32px] leading-[48px]">{title}</h3>
+          <h3 className="text-[#EFF6FF] text-[32px] leading-[48px] font-spectral font-medium">{title}</h3>
         </div>
-        <div className="text-[#E6E6FF] text-[64px] leading-[96px] mb-8">
+        <div className="text-[#EFF6FF] text-[64px] leading-[96px] mb-8 font-spectral">
           {price}
         </div>
         <div className="flex flex-col gap-[21px]">
           {features.map((feature, index) => (
-            <div key={index} className="text-[#BFBFE0] text-xl leading-[30px]">
+            <div key={index} className="text-[#CBD5E1] text-xl leading-[30px]">
               • {feature.text}
             </div>
           ))}
