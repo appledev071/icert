@@ -35,7 +35,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <span className="text-theme-blue relative inline-block">
             Расширенные возможности <br/>
           </span>
-          для ваших устройств
+          <span className="block">для ваших устройств</span>
         </h1>
         <p className={`${isMobile ? 'text-base' : 'text-lg'} text-gray-700 dark:text-gray-300 mb-10 max-w-2xl text-left`}>
           Устанавливайте любые приложения, тестируйте бета-версии и
