@@ -21,30 +21,30 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   gradientColors,
 }) => {
   return (
-    <div className="flex-1 glass-card group hover:translate-y-[-5px]">
-      <div className={`absolute ${gradientColors} inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-300`} />
+    <div className="flex-1 glass-card group hover:translate-y-[-3px]">
+      <div className={`absolute ${gradientColors} inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
       <div className="relative">
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <div
-            className={`w-12 h-12 ${iconBgColor} flex items-center justify-center rounded-lg`}
+            className={`w-10 h-10 ${iconBgColor} flex items-center justify-center rounded-md`}
           >
             <div>
               <div
                 dangerouslySetInnerHTML={{
                   __html:
-                    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[24px] h-[24px]"> <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>',
+                    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px]"> <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>',
                 }}
               />
             </div>
           </div>
-          <h3 className="text-[#EFF6FF] text-[32px] leading-[48px] font-spectral font-medium">{title}</h3>
+          <h3 className="text-[#EFF6FF] text-xl leading-tight font-title">{title}</h3>
         </div>
-        <div className="text-[#EFF6FF] text-[64px] leading-[96px] mb-8 font-spectral">
+        <div className="text-[#EFF6FF] text-4xl mb-6 font-title">
           {price}
         </div>
-        <div className="flex flex-col gap-[21px]">
+        <div className="flex flex-col gap-3">
           {features.map((feature, index) => (
-            <div key={index} className="text-[#CBD5E1] text-xl leading-[30px]">
+            <div key={index} className="text-[#CBD5E1] text-[15px] leading-tight">
               • {feature.text}
             </div>
           ))}

@@ -14,31 +14,30 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
   menuItems = [],
 }) => {
   return (
-    <header className="flex justify-between items-center py-6 mb-12 animate-fade-in-up">
+    <header className="flex justify-between items-center py-4 mb-8 animate-fade-in-up">
       <div className="flex items-center gap-2">
         <img
           src={logoUrl}
           alt={logoAlt}
-          className="w-12 h-12 rounded-xl"
+          className="w-10 h-10 rounded-lg"
         />
-        <div className="text-theme-light-purple dark:text-theme-light-purple text-xl font-bold">
+        <div className="text-theme-blue dark:text-theme-blue text-lg font-medium">
           iCert
         </div>
       </div>
       
-      <div className="flex items-center gap-8">
-        <nav className="hidden md:flex gap-6">
+      <div className="flex items-center gap-6">
+        <nav className="hidden md:flex gap-5">
           {menuItems.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="text-theme-light-muted hover:text-theme-light-purple transition-colors"
+              className="text-theme-muted-blue hover:text-theme-blue transition-colors text-[15px]"
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <ThemeToggle />
       </div>
     </header>
   );

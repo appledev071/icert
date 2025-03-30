@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -75,8 +74,8 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ['Space Grotesk', 'sans-serif'],
-				spectral: ['Spectral', 'serif'],
+				sans: ['Inter', 'sans-serif'],
+				title: ['Montserrat', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
