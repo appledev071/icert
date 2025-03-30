@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -115,7 +116,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     @apply font-medium tracking-tight;
   }
 }
@@ -144,6 +145,36 @@
   .feature-icon {
     @apply w-12 h-12 flex items-center justify-center rounded-lg mb-4;
   }
+
+  .glow-card {
+    @apply relative overflow-hidden;
+  }
+
+  .glow-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-theme-blue/20 to-blue-400/20 opacity-0 transition-opacity duration-700 rounded-lg -z-10;
+  }
+
+  .glow-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .button-hover {
+    @apply hover:shadow-md hover:shadow-theme-blue/20 transition-all duration-300;
+  }
+
+  .border-animated {
+    @apply relative;
+  }
+  
+  .border-animated::after {
+    content: '';
+    @apply absolute inset-0 border-2 border-theme-blue/0 transition-all duration-500 ease-out rounded-lg;
+  }
+  
+  .border-animated:hover::after {
+    @apply border-theme-blue/50 scale-105;
+  }
 }
 
 /* Animations */
@@ -170,12 +201,60 @@
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.animate-border-pulse {
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg, 
+    rgba(59, 130, 246, 0) 0%, 
+    rgba(59, 130, 246, 0.1) 50%, 
+    rgba(59, 130, 246, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
 }
 
 /* Theme color utilities */
@@ -221,4 +300,14 @@
 
 .bg-theme-dark-bg {
   background-color: hsl(var(--theme-dark-bg));
+}
+
+/* Card hover effects */
+.card-lift {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
 }
