@@ -20,7 +20,7 @@ export const CtaSection: React.FC = () => {
         {/* Animated glow effect */}
         <div className="absolute -inset-px rounded-lg opacity-0 group-hover:opacity-100 duration-1000 bg-gradient-to-r from-transparent via-theme-blue/20 to-transparent -z-10 animate-shimmer pointer-events-none"></div>
         
-        <h2 className="text-3xl font-bold font-playfair mb-4 text-black dark:text-white relative inline-block">
+        <h2 className="text-3xl font-bold font-montserrat mb-4 text-black dark:text-white relative inline-block">
           Готовы расширить возможности?
           <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
         </h2>
@@ -31,10 +31,9 @@ export const CtaSection: React.FC = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
             <Button 
-              className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                        dark:bg-theme-blue dark:text-white dark:border-white text-base 
+              className="bg-black dark:bg-theme-blue dark:text-white text-white text-base 
                         py-2 px-8 rounded-full font-medium shadow-md hover:shadow-glow 
                         transition-all duration-300 group relative overflow-hidden shine-effect"
             >

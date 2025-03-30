@@ -16,10 +16,9 @@ import { WikiNavigation } from "@/components/developer-certificate/WikiNavigatio
 const FAQ = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "Тарифы", href: "/#pricing" },
-    { label: "VPN", href: "/#vpn" },
-    { label: "О нас", href: "/#about" },
-    { label: "Контакты", href: "/#contacts" },
+    { label: "Wiki", href: "/wiki" },
+    { label: "VPN", href: "/vpn-pricing" },
+    { label: "О нас", href: "/about" },
   ];
 
   const faqItems = [
@@ -29,11 +28,11 @@ const FAQ = () => {
     },
     {
       question: "Как долго действует тариф VPN?",
-      answer: "Стандартный срок действия наших VPN тарифов составляет 1 месяц с момента активации. Мы также предлагаем тарифы на 3 месяца, 6 месяцев и 1 год с существенными скидками. После окончания срока действия тарифа вы можете продлить его, обратившись к нам через Telegram.",
+      answer: "Стандартный срок действия наших VPN тарифов составляет 1 месяц с момента активации. Мы также предлагаем годовой тариф со значительной скидкой. После окончания срока действия тарифа вы можете продлить его, обратившись к нам через Telegram.",
     },
     {
       question: "Для чего нужен сертификат разработчика Apple?",
-      answer: "Сертификат разработчика Apple позволяет установить неограниченное количество приложений на iOS устройства в обход App Store. Это дает возможность использовать эмуляторы, модифицированные приложения и другой контент, недоступный в официальном магазине. Также сертификат позволяет разработчикам тестировать свои приложения на реальных устройствах.",
+      answer: "Сертификат разработчика Apple позволяет установить неограниченное количество приложений на iOS устройство в обход App Store. Это дает возможность использовать эмуляторы, модифицированные приложения и другой контент, недоступный в официальном магазине. Также сертификат позволяет разработчикам тестировать свои приложения на реальных устройствах.",
     },
     {
       question: "Есть ли гарантия на сертификаты разработчика?",
@@ -45,7 +44,7 @@ const FAQ = () => {
     },
     {
       question: "Сколько устройств можно привязать к одному сертификату?",
-      answer: "К одному сертификату разработчика Apple можно привязать до 100 устройств. Однако для стабильной работы и во избежание отзыва сертификата мы рекомендуем ограничиться привязкой не более 10 устройств к одному сертификату.",
+      answer: "К одному сертификату разработчика Apple можно привязать только одно устройство. Это ограничение введено нами для обеспечения стабильной работы сертификатов и минимизации рисков их отзыва.",
     },
     {
       question: "Какие приложения можно установить с помощью сертификата?",
@@ -96,7 +95,7 @@ const FAQ = () => {
           <div className="absolute -z-10 top-20 left-10 w-72 h-72 bg-theme-blue/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
-          <h1 className="text-4xl md:text-5xl font-bold font-playfair text-black dark:text-white mb-6 relative">
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             Часто задаваемые вопросы
             <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
@@ -114,7 +113,7 @@ const FAQ = () => {
             <div className="mt-1 w-12 h-12 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
               <HelpCircle className="w-6 h-6 text-theme-blue" />
             </div>
-            <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white">
+            <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white">
               Основные вопросы
             </h2>
           </div>
@@ -138,23 +137,22 @@ const FAQ = () => {
           {/* Animated background effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
           
-          <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-4">
+          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
             Не нашли ответ на свой вопрос?
           </h2>
           
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            Если вы не нашли ответ на свой вопрос в этом разделе, обратитесь в нашу техническую поддержку через Telegram. 
+            Если вы не нашли ответ на свой вопрос в этом разделе, обратитесь к нашей технической поддержке через Telegram. 
             Мы готовы помочь вам с любыми вопросами, связанными с нашими услугами.
           </p>
           
-          <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
             <Button 
-              className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                      dark:bg-theme-blue dark:text-white dark:border-white text-base 
-                      py-2 px-8 rounded-full font-medium shadow-md hover:shadow-glow 
+              className="bg-black dark:bg-theme-blue dark:text-white text-base 
+                      py-2 px-8 rounded-full font-medium shadow-md
                       transition-all duration-300 group relative overflow-hidden shine-effect"
             >
-              <span className="relative z-10">Связаться с поддержкой</span>
+              <span className="relative z-10">@icertstoremanager</span>
             </Button>
           </a>
         </div>

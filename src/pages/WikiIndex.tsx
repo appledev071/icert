@@ -3,44 +3,49 @@ import React from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, FileText, HelpCircle, Smartphone, Shield } from "lucide-react";
+import { ArrowLeft, FileText, HelpCircle, Shield, Smartphone, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
 
 const WikiIndex = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "Тарифы", href: "/#pricing" },
-    { label: "VPN", href: "/#vpn" },
-    { label: "О нас", href: "/#about" },
-    { label: "Контакты", href: "/#contacts" },
+    { label: "Wiki", href: "/wiki" },
+    { label: "VPN", href: "/vpn-pricing" },
+    { label: "О нас", href: "/about" },
   ];
 
-  const wikiSections = [
+  const wikiCategories = [
     {
       title: "О сертификатах разработчика",
-      description: "Информация о сертификатах разработчика Apple, их преимуществах и применении",
+      description: "Подробная информация о сертификатах разработчика Apple, их возможностях и преимуществах",
       icon: <FileText className="w-6 h-6 text-theme-blue" />,
       link: "/developer-certificate-info"
     },
     {
-      title: "VPN и VLESS протокол",
-      description: "Подробная информация о VPN сервисе и протоколе VLESS",
+      title: "VPN-сервис",
+      description: "Информация о нашем VPN-сервисе, его особенностях и преимуществах",
       icon: <Shield className="w-6 h-6 text-theme-blue" />,
       link: "/vpn-info"
     },
     {
       title: "Инструкция по установке",
-      description: "Пошаговые инструкции по установке и настройке VPN на различных устройствах",
+      description: "Пошаговые руководства по установке и настройке наших продуктов на различных устройствах",
       icon: <Smartphone className="w-6 h-6 text-theme-blue" />,
       link: "/installation-guide"
     },
     {
       title: "Часто задаваемые вопросы",
-      description: "Ответы на популярные вопросы о наших услугах",
+      description: "Ответы на самые популярные вопросы о наших услугах",
       icon: <HelpCircle className="w-6 h-6 text-theme-blue" />,
       link: "/faq"
     },
+    {
+      title: "О нас",
+      description: "Информация о нашей компании, миссии и ценностях",
+      icon: <Info className="w-6 h-6 text-theme-blue" />,
+      link: "/about"
+    }
   ];
 
   return (
@@ -74,45 +79,63 @@ const WikiIndex = () => {
           <div className="absolute -z-10 top-20 left-10 w-72 h-72 bg-theme-blue/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
-          <div className="flex items-center gap-4 mb-6">
-            <BookOpen className="w-10 h-10 text-theme-blue" />
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-black dark:text-white relative">
-              Вики
-              <div className="absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
-            </h1>
-          </div>
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
+            База знаний
+            <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
+          </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
-            Добро пожаловать в наш справочный центр. Здесь вы найдете полезную информацию о сертификатах разработчика,
-            VPN-сервисе и ответы на часто задаваемые вопросы.
+            Добро пожаловать в нашу базу знаний. Здесь вы найдете всю необходимую информацию 
+            о наших продуктах и услугах, инструкции по установке и ответы на часто задаваемые вопросы.
           </p>
         </div>
       </section>
 
-      {/* Wiki Sections */}
-      <section className="py-6 animate-fade-in-up grid grid-cols-1 md:grid-cols-2 gap-8" style={{animationDelay: '0.2s'}}>
-        {wikiSections.map((section, index) => (
-          <Link to={section.link} key={index} className="block">
-            <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 h-full hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm running-border">
-              <div className="flex gap-4">
-                <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                  {section.icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-playfair font-semibold mb-4 text-black dark:text-white group-hover:text-theme-blue transition-colors duration-300">
-                    {section.title}
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300 mb-6">
-                    {section.description}
-                  </p>
-                  <div className="text-theme-blue flex items-center group-hover:translate-x-2 transition-transform duration-300">
-                    Подробнее <ArrowLeft className="w-4 h-4 rotate-180 ml-2" />
+      {/* Wiki Categories */}
+      <section className="py-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {wikiCategories.map((category, index) => (
+            <Link key={index} to={category.link}>
+              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-blue group transition-all duration-500 shadow-sm hover:shadow-glow-sm min-h-[180px] flex flex-col">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 bg-theme-blue/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    {category.icon}
                   </div>
+                  <h3 className="text-xl font-montserrat font-semibold text-black dark:text-white group-hover:text-theme-blue transition-colors duration-300">
+                    {category.title}
+                  </h3>
                 </div>
+                <p className="text-gray-700 dark:text-gray-300 ml-16">
+                  {category.description}
+                </p>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
+
+        {/* Help Section */}
+        <div className="mt-12 border border-gray-200 dark:border-gray-800 rounded-lg p-8 text-center relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
+          
+          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
+            Нужна дополнительная помощь?
+          </h2>
+          
+          <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            Если вы не нашли ответ на свой вопрос в нашей базе знаний, свяжитесь с нашим менеджером, 
+            и мы с радостью поможем вам решить любую проблему.
+          </p>
+          
+          <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
+            <Button 
+              className="bg-black dark:bg-theme-blue dark:text-white text-white text-base 
+                        py-2 px-8 rounded-full font-medium shadow-md
+                        transition-all duration-300 group relative overflow-hidden shine-effect"
+            >
+              <span className="relative z-10">Связаться с менеджером</span>
+            </Button>
+          </a>
+        </div>
       </section>
     </ThemedLandingWrapper>
   );

@@ -7,11 +7,12 @@ export const WikiNavigation: React.FC = () => {
   const currentPath = location.pathname;
   
   const wikiLinks = [
-    { path: "/wiki", label: "Вики" },
+    { path: "/wiki", label: "Wiki" },
     { path: "/developer-certificate-info", label: "О сертификатах" },
     { path: "/vpn-info", label: "VPN" },
     { path: "/installation-guide", label: "Установка" },
     { path: "/faq", label: "FAQ" },
+    { path: "/about", label: "О нас" },
   ];
 
   return (

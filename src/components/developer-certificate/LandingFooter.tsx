@@ -1,6 +1,5 @@
 
 import React from "react";
-import { CertificateFooter } from "./CertificateFooter";
 import { Link } from "react-router-dom";
 
 interface LandingFooterProps {
@@ -17,42 +16,41 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
     <footer className="py-12 border-t border-[rgba(255,255,255,0.10)] animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div>
-          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
+          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
             О нас
           </h3>
           <p className="text-theme-light-muted dark:text-theme-light-muted">
-            Мы предоставляем сертификаты для разработчиков iOS с 2018 года.
-            Более 10,000 довольных клиентов уже оценили удобство и надежность
-            наших услуг.
+            Мы — молодая и амбициозная команда энтузиастов, помогающая людям раскрыть 
+            полный потенциал своих устройств и получить доступ к расширенным возможностям.
           </p>
         </div>
         <div>
-          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
-            Полезные ссылки
+          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
+            Навигация
           </h3>
           <ul className="space-y-2 text-theme-light-muted dark:text-theme-light-muted">
+            <li><Link to="/wiki" className="hover:text-theme-blue transition-colors">Wiki</Link></li>
             <li><Link to="/installation-guide" className="hover:text-theme-blue transition-colors">Инструкция по установке</Link></li>
             <li><Link to="/faq" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</Link></li>
-            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Политика конфиденциальности</a></li>
-            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Условия использования</a></li>
-            <li><Link to="/wiki" className="hover:text-theme-blue transition-colors">Узнать больше</Link></li>
+            <li><Link to="/vpn-pricing" className="hover:text-theme-blue transition-colors">VPN</Link></li>
+            <li><Link to="/about" className="hover:text-theme-blue transition-colors">О нас</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
+          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
             Контакты
           </h3>
           <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium">
-            <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:underline">t.me/icertstore</a>
+            <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer" className="hover:underline">
+              {contactHandle}
+            </a>
           </p>
         </div>
       </div>
       
-      <CertificateFooter
-        contactMessage=""
-        contactHandle={contactHandle}
-        disclaimer={disclaimer}
-      />
+      <div className="text-[#BFBFE0] text-base leading-6 mt-6 max-w-xl mx-auto border-t border-gray-800 pt-6 text-center">
+        {disclaimer}
+      </div>
     </footer>
   );
 };
