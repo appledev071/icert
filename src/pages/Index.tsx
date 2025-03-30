@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import {
   PricingCard,
@@ -9,8 +8,9 @@ import { HeroSection } from "@/components/developer-certificate/HeroSection";
 import { FeaturesSection } from "@/components/developer-certificate/FeaturesSection";
 import { CtaSection } from "@/components/developer-certificate/CtaSection";
 import { LandingFooter } from "@/components/developer-certificate/LandingFooter";
+import { VpnSection } from "@/components/developer-certificate/VpnSection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -120,61 +120,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Expanded VPN section with more benefits */}
-      <section id="vpn" className="py-28 animate-fade-in-up text-center" style={{ animationDelay: "0.4s" }}>
-        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-14 relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
-          
-          <h2 className="text-3xl font-bold font-montserrat mb-6 text-black dark:text-white relative inline-block">
-            VPN-сервис
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-          </h2>
-          
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-            Защитите свою конфиденциальность и получите доступ к глобальному контенту с помощью нашего VPN-сервиса
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
-            <div className="bg-white/50 dark:bg-black/50 p-8 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 transition-all duration-300">
-              <h3 className="text-xl font-medium text-black dark:text-white mb-4">Высокая скорость</h3>
-              <p className="text-gray-600 dark:text-gray-400">До 1 Гбит/с для комфортного серфинга, стриминга и быстрых загрузок</p>
-            </div>
-            
-            <div className="bg-white/50 dark:bg-black/50 p-8 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 transition-all duration-300">
-              <h3 className="text-xl font-medium text-black dark:text-white mb-4">100% анонимность</h3>
-              <p className="text-gray-600 dark:text-gray-400">Шифрование военного уровня и отсутствие логирования для полной защиты данных</p>
-            </div>
-            
-            <div className="bg-white/50 dark:bg-black/50 p-8 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 transition-all duration-300">
-              <h3 className="text-xl font-medium text-black dark:text-white mb-4">Доступ к контенту</h3>
-              <p className="text-gray-600 dark:text-gray-400">Обход географических ограничений и доступ к заблокированным сайтам и сервисам</p>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
-            <div className="bg-white/50 dark:bg-black/50 p-8 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 transition-all duration-300">
-              <h3 className="text-xl font-medium text-black dark:text-white mb-4">Мультиплатформенность</h3>
-              <p className="text-gray-600 dark:text-gray-400">Поддержка всех популярных устройств: iOS, Android, Windows, macOS, Smart TV</p>
-            </div>
-            
-            <div className="bg-white/50 dark:bg-black/50 p-8 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-theme-blue/50 transition-all duration-300">
-              <h3 className="text-xl font-medium text-black dark:text-white mb-4">Безлимитный трафик</h3>
-              <p className="text-gray-600 dark:text-gray-400">Никаких ограничений по объему передаваемых данных или скорости соединения</p>
-            </div>
-          </div>
-          
-          <Link to="/vpn-pricing" onClick={scrollToTop}>
-            <Button 
-              className="bg-black dark:bg-theme-blue dark:text-white text-base 
-                        py-3 px-10 rounded-full font-medium shadow-md hover:shadow-glow
-                        transition-all duration-300 group relative overflow-hidden shine-effect"
-            >
-              <span className="relative z-10">Узнать больше</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 relative z-10" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+      {/* VPN section */}
+      <VpnSection />
 
       {/* CTA section with standard spacing */}
       <div className="py-12">

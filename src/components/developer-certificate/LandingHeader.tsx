@@ -87,7 +87,8 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
         
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-2 text-gray-800 dark:text-gray-200 focus:outline-none z-20"
+          className="md:hidden p-2 text-gray-800 dark:text-gray-200 focus:outline-none z-20 
+                    hover:bg-blue-500/10 rounded-lg border border-transparent hover:border-blue-500/30"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -113,7 +114,7 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
       
       {/* Mobile navigation menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 backdrop-blur-lg bg-white/70 dark:bg-black/70 border border-gray-200 dark:border-gray-800 z-10 flex flex-col items-center justify-center transition-all duration-300">
+        <div className="fixed inset-0 backdrop-blur-xl bg-white/50 dark:bg-black/50 border border-blue-500/30 dark:border-blue-500/30 z-10 flex flex-col items-center justify-center transition-all duration-300 rounded-lg">
           <nav className="flex flex-col items-center gap-6">
             {menuItems.map((item, index) => (
               <Link

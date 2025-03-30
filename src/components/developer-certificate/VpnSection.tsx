@@ -40,11 +40,11 @@ export const VpnSection: React.FC = () => {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
       <div className="absolute top-40 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-float"></div>
       
-      <h2 className="section-title mb-4 relative inline-block">
+      <h2 className="section-title text-center md:text-left mb-4 relative inline-block">
         VPN-сервис
         <span className="absolute -bottom-2 left-0 w-full h-1 bg-theme-blue transform scale-x-0 hover:scale-x-100 transition-transform duration-500 origin-left"></span>
       </h2>
-      <p className="section-description mb-12">
+      <p className="section-description text-center md:text-left mb-12">
         Защитите свою конфиденциальность и получите доступ к глобальному контенту
       </p>
 
@@ -79,7 +79,7 @@ export const VpnSection: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-12 border border-gray-200 dark:border-gray-800 rounded-lg p-8 group hover:border-theme-blue/30 transition-all duration-500 relative overflow-hidden shine-on-hover">
+      <div className="mt-12 border border-gray-200 dark:border-gray-800 rounded-lg p-6 md:p-8 group hover:border-theme-blue/30 transition-all duration-500 relative overflow-hidden shine-on-hover">
         {/* Animated background on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/10 dark:to-indigo-950/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
         {/* Animated glow effect */}
@@ -118,7 +118,7 @@ export const VpnSection: React.FC = () => {
             </ul>
           </div>
           
-          <div className="md:ml-8 flex-shrink-0">
+          <div className="md:ml-8 flex-shrink-0 text-center md:text-left">
             <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
               <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
                               dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 

@@ -32,10 +32,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       
       <div className="w-full">
         <h1 className={`${isMobile ? 'text-4xl leading-tight' : 'text-5xl md:text-6xl leading-tight'} font-bold text-black dark:text-white mb-6`}>
-          Расширенные возможности <br/>
           <span className="text-theme-blue relative inline-block">
-            для ваших устройств
+            Расширенные возможности <br/>
           </span>
+          для ваших устройств
         </h1>
         <p className={`${isMobile ? 'text-base' : 'text-lg'} text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto`}>
           Устанавливайте любые приложения, тестируйте бета-версии и
