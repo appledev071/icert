@@ -1,6 +1,8 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 
 interface LandingFooterProps {
   contactMessage: string;
@@ -40,11 +42,17 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
           <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
             Контакты
           </h3>
-          <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium">
-            <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer" className="hover:underline">
+          <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium mb-4">
+            <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="hover:underline">
               {contactHandle}
             </a>
           </p>
+          <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer">
+            <Button className="rounded-full bg-black hover:bg-gray-900 dark:bg-theme-blue dark:hover:bg-blue-600 text-white">
+              Связаться с нами
+              <Send className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         </div>
       </div>
       

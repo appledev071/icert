@@ -86,7 +86,7 @@ const Index = () => {
         menuItems={menuItems}
       />
 
-      {/* Hero section */}
+      {/* Hero section as main CTA */}
       <HeroSection
         title="Сертификаты разработчика"
         subtitle="Расширенные возможности для вашего iPhone и iPad"
@@ -99,9 +99,9 @@ const Index = () => {
       <FeaturesSection />
 
       {/* Pricing section */}
-      <section id="pricing" className="py-20 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
+      <section id="pricing" className="py-20 animate-fade-in-up text-center" style={{ animationDelay: "0.35s" }}>
         <h2 className="section-title mb-4 font-montserrat">Тарифы сертификатов</h2>
-        <p className="section-description mb-12">
+        <p className="section-description mb-12 mx-auto">
           Выберите оптимальный вариант сертификата разработчика для ваших потребностей
         </p>
         
@@ -121,8 +121,8 @@ const Index = () => {
       </section>
 
       {/* Expanded VPN section with more benefits */}
-      <section id="vpn" className="py-28 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-14 text-center relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
+      <section id="vpn" className="py-28 animate-fade-in-up text-center" style={{ animationDelay: "0.4s" }}>
+        <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-14 relative overflow-hidden group hover:border-theme-blue/30 transition-all duration-500">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
           
           <h2 className="text-3xl font-bold font-montserrat mb-6 text-black dark:text-white relative inline-block">
@@ -176,8 +176,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA section with more spacing */}
-      <div className="py-24 mb-10">
+      {/* CTA section with standard spacing */}
+      <div className="py-12">
         <CtaSection />
       </div>
 

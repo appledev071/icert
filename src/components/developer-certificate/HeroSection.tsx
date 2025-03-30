@@ -23,7 +23,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   
   return (
     <section 
-      className="min-h-screen flex items-center animate-fade-in-up relative py-24 md:py-32" 
+      className="min-h-[calc(100vh-100px)] flex items-center justify-center animate-fade-in-up relative" 
       style={{ animationDelay: "0.2s" }}
     >
       {/* Background effect */}
@@ -35,14 +35,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           Расширенные возможности <br/>
           <span className="text-theme-blue relative inline-block">
             для ваших устройств
-            {!hideSparkles && (
-              <span className="absolute -top-1 -right-6">
-                <Sparkles className="h-6 w-6 text-yellow-400 animate-pulse-slow" />
-              </span>
-            )}
           </span>
         </h1>
-        <p className={`${isMobile ? 'text-base' : 'text-lg'} text-gray-700 dark:text-gray-300 mb-10 max-w-2xl`}>
+        <p className={`${isMobile ? 'text-base' : 'text-lg'} text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto`}>
           Устанавливайте любые приложения, тестируйте бета-версии и
           используйте эксклюзивные функции на вашем iPhone и iPad
         </p>

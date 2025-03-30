@@ -53,7 +53,7 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
     : menuItems;
   
   return (
-    <header className="flex justify-between items-center py-6 mb-8 md:mb-12 animate-fade-in-up">
+    <header className="flex justify-between items-center py-6 mb-8 md:mb-0 animate-fade-in-up">
       <Link to="/" onClick={scrollToTop} className="flex items-center gap-2 z-20">
         <img
           src={logoUrl}
@@ -113,7 +113,7 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
       
       {/* Mobile navigation menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white dark:bg-black z-10 flex flex-col items-center justify-center transition-all duration-300">
+        <div className="fixed inset-0 backdrop-blur-lg bg-white/70 dark:bg-black/70 border border-gray-200 dark:border-gray-800 z-10 flex flex-col items-center justify-center transition-all duration-300">
           <nav className="flex flex-col items-center gap-6">
             {menuItems.map((item, index) => (
               <Link

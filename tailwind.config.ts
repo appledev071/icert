@@ -106,6 +106,12 @@ const config = {
           "50%": { backgroundPosition: "100% 100%" },
           "75%": { backgroundPosition: "0% 100%" },
           "100%": { backgroundPosition: "0% 0%" }
+        },
+        "blob-float": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(5%, -5%) scale(1.05)" },
+          "50%": { transform: "translate(0, -10%) scale(0.95)" },
+          "75%": { transform: "translate(-5%, -5%) scale(1.05)" }
         }
       },
       animation: {
@@ -115,6 +121,7 @@ const config = {
         "pulse-slow": "pulse-slow 3s infinite",
         "float": "float 6s ease-in-out infinite",
         "border-run": "border-run 4s linear infinite",
+        "blob-float": "blob-float 15s ease-in-out infinite",
       },
     },
   },

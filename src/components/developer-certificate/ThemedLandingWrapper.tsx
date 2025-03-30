@@ -19,6 +19,20 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
         {/* Dot pattern */}
         <div className="absolute inset-0 dot-pattern opacity-30 dark:opacity-10"></div>
         
+        {/* Animated glow blobs */}
+        <div 
+          className="absolute w-[500px] h-[500px] rounded-full bg-blue-300/10 dark:bg-blue-500/10 blur-[100px] 
+                    animate-blob-float opacity-50 top-1/4 -left-[250px]"
+        ></div>
+        <div 
+          className="absolute w-[600px] h-[600px] rounded-full bg-purple-300/10 dark:bg-purple-500/10 blur-[120px] 
+                    animate-blob-float animation-delay-2000 opacity-40 bottom-0 right-0"
+        ></div>
+        <div 
+          className="absolute w-[300px] h-[300px] rounded-full bg-teal-300/10 dark:bg-teal-500/10 blur-[80px] 
+                    animate-blob-float animation-delay-4000 opacity-30 top-0 right-1/4"
+        ></div>
+        
         {/* Floating circles */}
         <div 
           className="floating-circle" 
