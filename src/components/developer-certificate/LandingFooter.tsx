@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CertificateFooter } from "./CertificateFooter";
+import { Link } from "react-router-dom";
 
 interface LandingFooterProps {
   contactMessage: string;
@@ -9,7 +10,6 @@ interface LandingFooterProps {
 }
 
 export const LandingFooter: React.FC<LandingFooterProps> = ({
-  contactMessage,
   contactHandle,
   disclaimer,
 }) => {
@@ -17,7 +17,7 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
     <footer className="py-12 border-t border-[rgba(255,255,255,0.10)] animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div>
-          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
+          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
             О нас
           </h3>
           <p className="text-theme-light-muted dark:text-theme-light-muted">
@@ -27,22 +27,21 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
           </p>
         </div>
         <div>
-          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
+          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
             Полезные ссылки
           </h3>
           <ul className="space-y-2 text-theme-light-muted dark:text-theme-light-muted">
-            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Инструкция по установке</a></li>
-            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</a></li>
+            <li><Link to="/installation-guide" className="hover:text-theme-blue transition-colors">Инструкция по установке</Link></li>
+            <li><Link to="/faq" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</Link></li>
             <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Политика конфиденциальности</a></li>
             <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Условия использования</a></li>
-            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Узнать больше</a></li>
+            <li><Link to="/wiki" className="hover:text-theme-blue transition-colors">Узнать больше</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="text-2xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
+          <h3 className="text-2xl font-playfair text-theme-blue dark:text-theme-blue mb-4">
             Контакты
           </h3>
-          <p className="text-theme-light-muted dark:text-theme-light-muted mb-2">{contactMessage}</p>
           <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium">
             <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:underline">t.me/icertstore</a>
           </p>
@@ -50,7 +49,7 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
       </div>
       
       <CertificateFooter
-        contactMessage={contactMessage}
+        contactMessage=""
         contactHandle={contactHandle}
         disclaimer={disclaimer}
       />

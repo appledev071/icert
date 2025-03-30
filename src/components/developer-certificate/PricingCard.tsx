@@ -36,7 +36,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
       
       <div className="relative">
         <div className="flex items-start justify-between mb-8">
-          <h3 className="text-black dark:text-white text-xl leading-tight font-medium group-hover:text-theme-blue transition-colors duration-300">{title}</h3>
+          <h3 className="text-black dark:text-white text-xl leading-tight font-medium font-playfair group-hover:text-theme-blue transition-colors duration-300">{title}</h3>
           <div className={`w-8 h-8 ${iconBgColor} flex items-center justify-center rounded-full shadow-sm group-hover:shadow-glow-sm transition-all duration-300 animate-pulse-slow`}>
             <Check className="w-5 h-5 text-white" />
           </div>

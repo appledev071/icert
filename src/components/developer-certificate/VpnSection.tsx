@@ -42,31 +42,32 @@ export const VpnSection: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {vpnFeatures.map((feature, index) => (
-          <div 
-            key={index} 
-            className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 
-                    hover:border-theme-blue transition-all duration-500 group hover:shadow-glow
-                    glow-card running-border overflow-hidden"
-            style={{ animationDelay: `${(index + 1) * 0.2}s` }}
-          >
-            <div className={`w-12 h-12 ${feature.bgColor} rounded-full flex items-center justify-center mb-6 
-                          group-hover:scale-110 transition-all duration-300 shadow-md`}>
-              {feature.icon}
+          <Link to="/vpn-info" key={index}>
+            <div 
+              className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 
+                      hover:border-theme-blue transition-all duration-500 group hover:shadow-glow
+                      glow-card running-border overflow-hidden h-full"
+              style={{ animationDelay: `${(index + 1) * 0.2}s` }}
+            >
+              <div className={`w-12 h-12 ${feature.bgColor} rounded-full flex items-center justify-center mb-6 
+                            group-hover:scale-110 transition-all duration-300 shadow-md`}>
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-medium text-black dark:text-white mb-3 group-hover:text-theme-blue transition-colors duration-300">
+                {feature.title}
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                {feature.description}
+              </p>
+              
+              {/* Button that appears on hover */}
+              <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                <span className="flex items-center text-sm text-theme-blue">
+                  Узнать больше <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </div>
             </div>
-            <h3 className="text-xl font-medium text-black dark:text-white mb-3 group-hover:text-theme-blue transition-colors duration-300">
-              {feature.title}
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              {feature.description}
-            </p>
-            
-            {/* Button that appears on hover */}
-            <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-              <Link to="/vpn-info" className="flex items-center text-sm text-theme-blue">
-                Узнать больше <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -110,25 +111,15 @@ export const VpnSection: React.FC = () => {
           </div>
           
           <div className="md:ml-8 flex-shrink-0">
-            <Link to="/vpn-info">
-              <Button className="mb-3 bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                            dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
-                            py-2 px-6 rounded-full font-medium group/btn animate-border-glow
-                            relative overflow-hidden shine-effect">
-                <span className="relative z-10">Подробнее о VPN</span>
+            <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
+                              dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
+                              py-2 px-6 rounded-full font-medium group/btn animate-border-glow
+                              relative overflow-hidden shine-effect">
+                <span className="relative z-10">Подключить VPN</span>
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 relative z-10" />
               </Button>
-            </Link>
-            <div className="flex justify-center">
-              <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                                dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
-                                py-2 px-6 rounded-full font-medium group/btn animate-border-glow
-                                relative overflow-hidden shine-effect">
-                  <span className="relative z-10">Подключить VPN</span>
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 relative z-10" />
-                </Button>
-              </a>
-            </div>
+            </a>
           </div>
         </div>
       </div>

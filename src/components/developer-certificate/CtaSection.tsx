@@ -20,7 +20,7 @@ export const CtaSection: React.FC = () => {
         {/* Animated glow effect */}
         <div className="absolute -inset-px rounded-lg opacity-0 group-hover:opacity-100 duration-1000 bg-gradient-to-r from-transparent via-theme-blue/20 to-transparent -z-10 animate-shimmer pointer-events-none"></div>
         
-        <h2 className="text-3xl font-bold mb-4 text-black dark:text-white relative inline-block">
+        <h2 className="text-3xl font-bold font-playfair mb-4 text-black dark:text-white relative inline-block">
           Готовы расширить возможности?
           <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
         </h2>
@@ -46,7 +46,7 @@ export const CtaSection: React.FC = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link to="/vpn-info">
+                <Link to="/developer-certificate-info">
                   <Button 
                     variant="outline" 
                     className="border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 
@@ -59,7 +59,7 @@ export const CtaSection: React.FC = () => {
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Подробная информация о VPN и сертификатах</p>
+                <p>Подробная информация о сертификатах разработчика</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
