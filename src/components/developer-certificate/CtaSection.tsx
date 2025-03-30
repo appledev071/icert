@@ -27,28 +27,32 @@ export const CtaSection: React.FC = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                      dark:bg-theme-blue dark:text-white dark:border-white text-base 
-                      py-2 px-8 rounded-full font-medium shadow-md hover:shadow-glow 
-                      transition-all duration-300 group"
-          >
-            Выбрать тариф
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
+          <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+            <Button 
+              className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
+                        dark:bg-theme-blue dark:text-white dark:border-white text-base 
+                        py-2 px-8 rounded-full font-medium shadow-md hover:shadow-glow 
+                        transition-all duration-300 group"
+            >
+              Выбрать тариф
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </a>
           
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button 
-                  variant="outline" 
-                  className="border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 
-                            text-base py-2 px-8 rounded-full group hover:border-theme-blue/50 
-                            transition-all duration-300 flex items-center"
-                >
-                  Узнать больше
-                  <Info className="ml-2 h-4 w-4 text-gray-400 group-hover:text-theme-blue transition-colors duration-300" />
-                </Button>
+                <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    variant="outline" 
+                    className="border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 
+                              text-base py-2 px-8 rounded-full group hover:border-theme-blue/50 
+                              transition-all duration-300 flex items-center"
+                  >
+                    Узнать больше
+                    <Info className="ml-2 h-4 w-4 text-gray-400 group-hover:text-theme-blue transition-colors duration-300" />
+                  </Button>
+                </a>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Подробная информация о сертификатах</p>

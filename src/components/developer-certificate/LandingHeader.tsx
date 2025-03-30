@@ -37,9 +37,9 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
             </a>
           ))}
         </nav>
-        <button className="border border-gray-300 dark:border-gray-700 text-black dark:text-white py-2 px-5 rounded-full text-sm font-medium hover:border-theme-green transition-colors">
+        <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="border border-gray-300 dark:border-gray-700 text-black dark:text-white py-2 px-5 rounded-full text-sm font-medium hover:border-theme-green transition-colors">
           Заказать
-        </button>
+        </a>
       </div>
     </header>
   );

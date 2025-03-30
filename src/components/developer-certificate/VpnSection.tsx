@@ -60,9 +60,9 @@ export const VpnSection: React.FC = () => {
             
             {/* Button that appears on hover */}
             <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-              <button className="flex items-center text-sm text-theme-blue">
+              <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-theme-blue">
                 Узнать больше <ArrowRight className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              </a>
             </div>
           </div>
         ))}
@@ -106,12 +106,14 @@ export const VpnSection: React.FC = () => {
           </div>
           
           <div className="md:ml-8 flex-shrink-0">
-            <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
-                            dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
-                            py-2 px-6 rounded-full font-medium group/btn animate-border-glow">
-              Подключить VPN
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-            </Button>
+            <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
+                              dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base 
+                              py-2 px-6 rounded-full font-medium group/btn animate-border-glow">
+                Подключить VPN
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+              </Button>
+            </a>
           </div>
         </div>
       </div>

@@ -36,10 +36,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           Устанавливайте любые приложения, тестируйте бета-версии и
           используйте эксклюзивные функции на вашем iPhone и iPad
         </p>
-        <Button className="bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base py-6 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
-          Начать сейчас
-          <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-        </Button>
+        <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer">
+          <Button className="bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white text-base py-6 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+            Начать сейчас
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </Button>
+        </a>
       </div>
     </section>
   );

@@ -31,11 +31,11 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
             Полезные ссылки
           </h3>
           <ul className="space-y-2 text-theme-light-muted dark:text-theme-light-muted">
-            <li><a href="#" className="hover:text-theme-blue transition-colors">Инструкция по установке</a></li>
-            <li><a href="#" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</a></li>
-            <li><a href="#" className="hover:text-theme-blue transition-colors">Политика конфиденциальности</a></li>
-            <li><a href="#" className="hover:text-theme-blue transition-colors">Условия использования</a></li>
-            <li><a href="#" className="hover:text-theme-blue transition-colors">Узнать больше</a></li>
+            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Инструкция по установке</a></li>
+            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</a></li>
+            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Политика конфиденциальности</a></li>
+            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Условия использования</a></li>
+            <li><a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:text-theme-blue transition-colors">Узнать больше</a></li>
           </ul>
         </div>
         <div>
@@ -44,7 +44,7 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
           </h3>
           <p className="text-theme-light-muted dark:text-theme-light-muted mb-2">{contactMessage}</p>
           <p className="text-theme-blue dark:text-theme-blue text-2xl font-medium">
-            <a href="https://t.me/icertstore" className="hover:underline">t.me/icertstore</a>
+            <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="hover:underline">t.me/icertstore</a>
           </p>
         </div>
       </div>
