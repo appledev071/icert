@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowUp, Globe, Shield, Zap, Check } from "lucide-react";
+import { ArrowLeft, ArrowUp, Globe, Shield, Zap, Check, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
 import { useIsMobile } from "@/hooks/use-mobile";
