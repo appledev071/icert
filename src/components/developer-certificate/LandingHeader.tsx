@@ -31,14 +31,15 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
             <a
               key={index}
               href={item.href}
-              className="text-gray-800 dark:text-gray-200 hover:text-theme-green transition-colors text-[15px] font-medium"
+              className="text-gray-800 dark:text-gray-200 hover:text-theme-blue transition-colors text-[15px] font-medium relative group"
             >
               {item.label}
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-theme-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
           ))}
         </nav>
-        <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="border border-gray-300 dark:border-gray-700 text-black dark:text-white py-2 px-5 rounded-full text-sm font-medium hover:border-theme-green transition-colors">
-          Заказать
+        <a href="https://t.me/icertstore" target="_blank" rel="noopener noreferrer" className="border border-gray-300 dark:border-gray-700 text-black dark:text-white py-2 px-5 rounded-full text-sm font-medium hover:border-theme-blue transition-colors relative group overflow-hidden shine-effect">
+          <span className="relative z-10">Заказать</span>
         </a>
       </div>
     </header>
