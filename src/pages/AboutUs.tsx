@@ -24,6 +24,9 @@ const AboutUs = () => {
         menuItems={menuItems}
       />
 
+      {/* Wiki Navigation */}
+      <WikiNavigation />
+
       <div className="mb-8 animate-fade-in-left">
         <Link to="/">
           <Button
@@ -122,7 +125,7 @@ const AboutUs = () => {
               <a href="https://t.me/icertstoremanager" target="_blank" rel="noopener noreferrer">
                 <Button 
                   className="bg-black dark:bg-theme-blue dark:text-white text-base 
-                          py-2 px-8 rounded-full font-medium shadow-md
+                          py-2 px-8 rounded-full font-medium font-montserrat shadow-md
                           transition-all duration-300 group relative overflow-hidden shine-effect"
                 >
                   <span className="relative z-10">@icertstoremanager</span>

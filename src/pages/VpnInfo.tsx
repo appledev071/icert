@@ -5,14 +5,14 @@ import { LandingHeader } from "@/components/developer-certificate/LandingHeader"
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Shield, Globe, Zap, Lock, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
 
 const VpnInfo = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "Тарифы", href: "/#pricing" },
-    { label: "VPN", href: "/#vpn" },
-    { label: "О нас", href: "/#about" },
-    { label: "Контакты", href: "/#contacts" },
+    { label: "Wiki", href: "/wiki" },
+    { label: "VPN", href: "/vpn-pricing" },
+    { label: "О нас", href: "/about" },
   ];
 
   return (
@@ -23,6 +23,9 @@ const VpnInfo = () => {
         logoAlt="iCert Logo"
         menuItems={menuItems}
       />
+
+      {/* Wiki Navigation */}
+      <WikiNavigation />
 
       {/* Back button */}
       <div className="mb-8 animate-fade-in-left">
@@ -44,7 +47,7 @@ const VpnInfo = () => {
           <div className="absolute -z-10 top-20 left-10 w-72 h-72 bg-theme-blue/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 relative">
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             VLESS Протокол VPN
             <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
@@ -64,7 +67,7 @@ const VpnInfo = () => {
             <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Shield className="w-7 h-7 text-theme-blue" />
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">Повышенная безопасность</h3>
+            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Повышенная безопасность</h3>
             <p className="text-gray-700 dark:text-gray-300">
               VLESS обеспечивает высокий уровень шифрования и защиты данных. Используется протокол TLS для создания 
               безопасного туннеля, что делает ваше соединение невидимым для посторонних глаз.
@@ -75,7 +78,7 @@ const VpnInfo = () => {
             <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Zap className="w-7 h-7 text-theme-blue" />
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">Высокая скорость</h3>
+            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Высокая скорость</h3>
             <p className="text-gray-700 dark:text-gray-300">
               В отличие от традиционных VPN-протоколов, VLESS создан с акцентом на производительность. 
               Минимальные накладные расходы позволяют достигать скорости до 1 Гбит/с без компромиссов по безопасности.
@@ -88,7 +91,7 @@ const VpnInfo = () => {
             <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Globe className="w-7 h-7 text-theme-blue" />
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">Обход блокировок</h3>
+            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Обход блокировок</h3>
             <p className="text-gray-700 dark:text-gray-300">
               VLESS эффективно обходит даже самые сложные системы блокировок и цензуры в интернете. 
               Технология маскирует VPN-трафик под обычный HTTPS-трафик, что позволяет получить доступ к заблокированным ресурсам.
@@ -99,7 +102,7 @@ const VpnInfo = () => {
             <div className="w-14 h-14 bg-theme-blue/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Lock className="w-7 h-7 text-theme-blue" />
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">Нет логов</h3>
+            <h3 className="text-2xl font-montserrat font-semibold mb-4 text-black dark:text-white">Нет логов</h3>
             <p className="text-gray-700 dark:text-gray-300">
               Наша реализация VLESS протокола полностью соответствует политике отсутствия логов. 
               Мы не отслеживаем и не храним информацию о ваших действиях в интернете, обеспечивая полную конфиденциальность.
@@ -110,7 +113,7 @@ const VpnInfo = () => {
 
       {/* Technical details */}
       <section className="py-12 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-        <h2 className="text-3xl font-bold mb-8 text-black dark:text-white">
+        <h2 className="text-3xl font-bold font-montserrat mb-8 text-black dark:text-white">
           Технические особенности
           <div className="h-1 w-24 bg-theme-blue mt-2"></div>
         </h2>
@@ -120,7 +123,7 @@ const VpnInfo = () => {
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-black dark:text-white text-lg mb-1">Мультиплексирование</h4>
+                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Мультиплексирование</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   VLESS использует мультиплексирование для создания нескольких подключений в рамках одного TCP-соединения, 
                   что уменьшает задержки и повышает стабильность работы.
@@ -131,7 +134,7 @@ const VpnInfo = () => {
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-black dark:text-white text-lg mb-1">Поддержка TLS 1.3</h4>
+                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Поддержка TLS 1.3</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Протокол интегрирован с последней версией TLS 1.3, обеспечивая более быстрое установление защищенного 
                   соединения и улучшенные алгоритмы шифрования.
@@ -142,7 +145,7 @@ const VpnInfo = () => {
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-black dark:text-white text-lg mb-1">XTLS Direct Mode</h4>
+                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">XTLS Direct Mode</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Расширенная технология XTLS Direct Mode позволяет передавать зашифрованные данные без дополнительной 
                   обработки, значительно повышая скорость при работе с большими файлами.
@@ -153,7 +156,7 @@ const VpnInfo = () => {
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-theme-blue flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-black dark:text-white text-lg mb-1">Reality Протокол</h4>
+                <h4 className="font-montserrat font-semibold text-black dark:text-white text-lg mb-1">Reality Протокол</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Дополнительный уровень защиты с использованием Reality протокола, который имитирует TLS-рукопожатие 
                   реальных популярных веб-сайтов, делая обнаружение VPN-соединения практически невозможным.
@@ -170,7 +173,7 @@ const VpnInfo = () => {
           {/* Animated background effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
           
-          <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">
+          <h2 className="text-3xl font-bold font-montserrat mb-4 text-black dark:text-white">
             Готовы попробовать наш VPN на базе VLESS?
           </h2>
           
@@ -182,7 +185,7 @@ const VpnInfo = () => {
             <Button 
               className="bg-black border-2 border-theme-blue hover:bg-gray-900 text-white 
                       dark:bg-theme-blue dark:text-white dark:border-white text-base 
-                      py-2 px-8 rounded-full font-medium shadow-md hover:shadow-glow 
+                      py-2 px-8 rounded-full font-medium font-montserrat shadow-md hover:shadow-glow 
                       transition-all duration-300 group relative overflow-hidden shine-effect"
             >
               <span className="relative z-10">Подключить VPN сейчас</span>

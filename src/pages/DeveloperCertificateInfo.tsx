@@ -10,10 +10,9 @@ import { WikiNavigation } from "@/components/developer-certificate/WikiNavigatio
 const DeveloperCertificateInfo = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "Тарифы", href: "/#pricing" },
-    { label: "VPN", href: "/#vpn" },
-    { label: "О нас", href: "/#about" },
-    { label: "Контакты", href: "/#contacts" },
+    { label: "Wiki", href: "/wiki" },
+    { label: "VPN", href: "/vpn-pricing" },
+    { label: "О нас", href: "/about" },
   ];
 
   return (
@@ -47,7 +46,7 @@ const DeveloperCertificateInfo = () => {
           <div className="absolute -z-10 top-20 left-10 w-72 h-72 bg-theme-blue/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -z-10 bottom-10 right-10 w-80 h-80 bg-theme-blue/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
           
-          <h1 className="text-4xl md:text-5xl font-bold font-playfair text-black dark:text-white mb-6 relative">
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             Сертификаты разработчика Apple
             <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
@@ -68,7 +67,7 @@ const DeveloperCertificateInfo = () => {
               <FileText className="w-6 h-6 text-theme-blue" />
             </div>
             <div>
-              <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-4">
+              <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
                 Что такое сертификат разработчика?
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
@@ -90,7 +89,7 @@ const DeveloperCertificateInfo = () => {
               <CheckCircle className="w-6 h-6 text-theme-blue" />
             </div>
             <div>
-              <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-4">
+              <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
                 Для чего нужен сертификат?
               </h2>
               <ul className="list-disc pl-5 space-y-3 text-gray-700 dark:text-gray-300">
@@ -108,7 +107,7 @@ const DeveloperCertificateInfo = () => {
               <AlertTriangle className="w-6 h-6 text-theme-blue" />
             </div>
             <div>
-              <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-4">
+              <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-4">
                 Особенности и ограничения
               </h2>
               <ul className="list-disc pl-5 space-y-3 text-gray-700 dark:text-gray-300 mb-4">
@@ -127,7 +126,7 @@ const DeveloperCertificateInfo = () => {
         
         {/* How it works section */}
         <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-8 bg-gradient-to-br from-transparent to-blue-50/5 dark:from-transparent dark:to-blue-950/10 shadow-sm running-border">
-          <h2 className="text-2xl font-playfair font-semibold text-black dark:text-white mb-6">
+          <h2 className="text-2xl font-montserrat font-semibold text-black dark:text-white mb-6">
             Как это работает?
           </h2>
           
@@ -135,7 +134,7 @@ const DeveloperCertificateInfo = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
               <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">1</div>
               <div>
-                <h3 className="text-xl font-medium text-black dark:text-white mb-2">Покупка сертификата</h3>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Покупка сертификата</h3>
                 <p className="text-gray-700 dark:text-gray-300">
                   Выберите подходящий тариф на нашем сайте и свяжитесь с нами через Telegram для оформления заказа.
                 </p>
@@ -145,7 +144,7 @@ const DeveloperCertificateInfo = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
               <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">2</div>
               <div>
-                <h3 className="text-xl font-medium text-black dark:text-white mb-2">Предоставление UDID</h3>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Предоставление UDID</h3>
                 <p className="text-gray-700 dark:text-gray-300">
                   Мы попросим вас предоставить UDID вашего устройства. Инструкцию по получению UDID можно найти в разделе "Инструкция по установке".
                 </p>
@@ -155,7 +154,7 @@ const DeveloperCertificateInfo = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center border-b border-gray-200 dark:border-gray-800 pb-6">
               <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">3</div>
               <div>
-                <h3 className="text-xl font-medium text-black dark:text-white mb-2">Активация сертификата</h3>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Активация сертификата</h3>
                 <p className="text-gray-700 dark:text-gray-300">
                   После оплаты мы регистрируем ваше устройство в системе и выдаем вам активированный сертификат в зависимости от выбранного тарифа.
                 </p>
@@ -165,7 +164,7 @@ const DeveloperCertificateInfo = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="bg-theme-blue/10 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-theme-blue flex-shrink-0">4</div>
               <div>
-                <h3 className="text-xl font-medium text-black dark:text-white mb-2">Использование</h3>
+                <h3 className="text-xl font-montserrat font-medium text-black dark:text-white mb-2">Использование</h3>
                 <p className="text-gray-700 dark:text-gray-300">
                   Теперь вы можете устанавливать приложения, подписанные вашим сертификатом, на свое устройство. 
                   Срок действия сертификата составляет 1 год с момента активации.
