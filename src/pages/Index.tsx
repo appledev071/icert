@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   CertificateHeader,
@@ -19,9 +18,9 @@ const Index = () => {
     {
       title: "iPad",
       price: "399₽",
-      iconBgColor: "bg-theme-gray",
+      iconBgColor: "bg-gradient-to-br from-gray-500 to-gray-600",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(45,212,191,0.10)_70.71%,rgba(148,163,184,0.10)_0%)]",
+        "bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -31,9 +30,9 @@ const Index = () => {
     {
       title: "Обычный",
       price: "999₽",
-      iconBgColor: "bg-theme-teal",
+      iconBgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(59,130,246,0.10)_70.71%,rgba(45,212,191,0.10)_0%)]",
+        "bg-gradient-to-br from-blue-100 to-teal-100 dark:from-blue-800 dark:to-teal-900",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 3 дней" },
@@ -43,9 +42,9 @@ const Index = () => {
     {
       title: "Моментальный",
       price: "1499₽",
-      iconBgColor: "bg-theme-blue",
+      iconBgColor: "bg-gradient-to-br from-teal-500 to-teal-600",
       gradientColors:
-        "bg-[linear-gradient(135deg,rgba(148,163,184,0.10)_70.71%,rgba(59,130,246,0.10)_0%)]",
+        "bg-gradient-to-br from-teal-100 to-blue-100 dark:from-teal-900 dark:to-blue-900",
       features: [
         { text: "Срок действия 1 год" },
         { text: "Выдача в течение 30 минут" },
@@ -80,7 +79,7 @@ const Index = () => {
       />
 
       {/* Divider */}
-      <div className="w-full h-px bg-[rgba(255,255,255,0.08)] my-12" />
+      <div className="w-full h-px bg-gray-200 dark:bg-gray-800 my-12" />
 
       {/* Features section */}
       <FeaturesSection />

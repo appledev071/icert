@@ -22,11 +22,11 @@ export const PricingCard: React.FC<PricingCardProps> = ({
 }) => {
   return (
     <div className="flex-1 glass-card group hover:translate-y-[-3px]">
-      <div className={`absolute ${gradientColors} inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
+      <div className={`absolute ${gradientColors} inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl`} />
       <div className="relative">
         <div className="flex items-center gap-3 mb-6">
           <div
-            className={`w-10 h-10 ${iconBgColor} flex items-center justify-center rounded-md`}
+            className={`w-10 h-10 ${iconBgColor} flex items-center justify-center rounded-xl`}
           >
             <div>
               <div
@@ -37,14 +37,14 @@ export const PricingCard: React.FC<PricingCardProps> = ({
               />
             </div>
           </div>
-          <h3 className="text-[#EFF6FF] text-xl leading-tight font-title">{title}</h3>
+          <h3 className="text-gray-900 dark:text-white text-xl leading-tight font-medium">{title}</h3>
         </div>
-        <div className="text-[#EFF6FF] text-4xl mb-6 font-title">
+        <div className="text-gray-900 dark:text-white text-4xl mb-6 font-semibold">
           {price}
         </div>
         <div className="flex flex-col gap-3">
           {features.map((feature, index) => (
-            <div key={index} className="text-[#CBD5E1] text-[15px] leading-tight">
+            <div key={index} className="text-gray-600 dark:text-gray-300 text-[15px] leading-tight">
               • {feature.text}
             </div>
           ))}
