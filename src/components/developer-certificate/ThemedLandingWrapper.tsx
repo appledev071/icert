@@ -1,6 +1,5 @@
 
 import React from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface ThemedLandingWrapperProps {
   children: React.ReactNode;
@@ -9,11 +8,6 @@ interface ThemedLandingWrapperProps {
 export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ children }) => {
   return (
     <div className="w-full min-h-screen bg-white dark:bg-black relative transition-colors duration-300 overflow-x-hidden">
-      {/* Theme toggle */}
-      <div className="fixed top-6 right-6 z-50">
-        <ThemeToggle />
-      </div>
-
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         {/* Dot pattern */}
@@ -75,6 +69,13 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
             opacity: '0.2'
           }}
         ></div>
+        
+        {/* Light theme pencil sketch elements (visible only in light mode) */}
+        <div className="hidden absolute inset-0 light:block opacity-10 pointer-events-none">
+          <div className="absolute top-20 left-[10%] w-32 h-32 border-2 border-gray-400 rounded-md transform rotate-12"></div>
+          <div className="absolute bottom-40 right-[15%] w-24 h-24 border-2 border-gray-400 rounded-full transform -rotate-6"></div>
+          <div className="absolute top-[40%] right-[20%] w-48 h-16 border-2 border-gray-400 transform rotate-3"></div>
+        </div>
         
         {/* NEW: Random blue light flashes */}
         <div className="blue-flash absolute w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-flash" 

@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface LandingHeaderProps {
   logoUrl: string;
@@ -97,6 +98,9 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
             Wiki
           </Link>
         </div>
+        
+        {/* Theme Toggle Slider */}
+        <ThemeToggle />
         
         {/* Contact button - always visible */}
         <a 

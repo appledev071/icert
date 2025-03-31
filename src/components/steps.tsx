@@ -26,7 +26,9 @@ const Step = ({ children, className }: StepProps) => {
       <div className="w-6 h-6 rounded-full bg-theme-blue flex items-center justify-center text-white text-xs flex-shrink-0 mt-0.5">
         <span>•</span>
       </div>
-      <span className="text-gray-700 dark:text-gray-300">{children}</span>
+      <span className="text-gray-700 dark:text-gray-300 notion-box p-2 border-0 shadow-none">
+        {children}
+      </span>
     </li>
   );
 };

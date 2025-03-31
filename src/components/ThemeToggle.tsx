@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sun, Moon } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 
 export const ThemeToggle: React.FC = () => {
@@ -42,18 +42,15 @@ export const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={toggleTheme}
-      className="rounded-full w-10 h-10 bg-white dark:bg-black border-gray-200 dark:border-gray-800 hover:border-theme-blue dark:hover:border-theme-blue transition-all duration-300"
-    >
-      {isDarkMode ? (
-        <Sun className="h-5 w-5 text-theme-blue" />
-      ) : (
-        <Moon className="h-5 w-5 text-black" />
-      )}
+    <div className="flex items-center gap-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 px-3 py-1.5 rounded-full shadow-sm transition-all duration-300">
+      <Sun className="h-4 w-4 text-yellow-500 dark:text-gray-400" />
+      <Switch
+        checked={isDarkMode}
+        onCheckedChange={toggleTheme}
+        className="data-[state=checked]:bg-theme-blue data-[state=unchecked]:bg-gray-200"
+      />
+      <Moon className="h-4 w-4 text-gray-400 dark:text-theme-blue" />
       <span className="sr-only">Переключить тему</span>
-    </Button>
+    </div>
   );
 };
