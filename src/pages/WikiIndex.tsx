@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowUp, FileText, ShieldCheck, Monitor, HelpCircle, Info } from "lucide-react";
+import { ArrowLeft, ArrowUp, FileText, Monitor, HelpCircle, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { WikiNavigation } from "@/components/developer-certificate/WikiNavigation";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -24,7 +24,6 @@ const WikiIndex = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
-    { label: "VPN", href: "/vpn-pricing" },
     { label: "О нас", href: "/about" },
   ];
 
@@ -35,13 +34,6 @@ const WikiIndex = () => {
       description: "Информация о сертификатах, их применении и особенностях",
       link: "/developer-certificate-info",
       color: "bg-blue-50 dark:bg-blue-900/20"
-    },
-    {
-      title: "VPN-сервис",
-      icon: <ShieldCheck className="w-6 h-6 text-theme-blue" />,
-      description: "Подробная информация о нашем VPN-сервисе и его преимуществах",
-      link: "/vpn-info",
-      color: "bg-purple-50 dark:bg-purple-900/20"
     },
     {
       title: "Инструкции по установке",
@@ -103,8 +95,8 @@ const WikiIndex = () => {
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
-            Добро пожаловать в наш информационный центр. Здесь вы найдете всю необходимую информацию о сертификатах разработчика, 
-            VPN-сервисе и других наших услугах.
+            Добро пожаловать в наш информационный центр. Здесь вы найдете всю необходимую информацию о сертификатах разработчика 
+            и других наших услугах.
           </p>
         </div>
       </section>

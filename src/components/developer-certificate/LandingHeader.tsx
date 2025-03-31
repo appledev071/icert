@@ -48,10 +48,11 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
     setIsMenuOpen(false);
   };
   
-  // Filter menu items for mobile - show only Wiki
-  const filteredMenuItems = isMobile 
-    ? menuItems.filter(item => item.label === "Wiki" || item.href === "/wiki" || item.label === "VPN" || item.href === "/vpn-pricing")
-    : menuItems;
+  // Filter out VPN links
+  const filteredMenuItems = menuItems.filter(item => 
+    !item.label.toLowerCase().includes('vpn') && 
+    !item.href.toLowerCase().includes('vpn')
+  );
   
   return (
     <header className="flex justify-between items-center py-6 mb-8 md:mb-0 animate-fade-in-up">
@@ -94,13 +95,6 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
             className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium"
           >
             Wiki
-          </Link>
-          <Link 
-            to="/vpn-pricing" 
-            onClick={scrollToTop}
-            className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium"
-          >
-            VPN
           </Link>
         </div>
         

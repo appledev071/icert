@@ -16,7 +16,6 @@ export const WikiNavigation: React.FC = () => {
   const wikiLinks = [
     { path: "/wiki", label: "Wiki" },
     { path: "/developer-certificate-info", label: "О сертификатах" },
-    { path: "/vpn-info", label: "VPN" },
     { path: "/installation-guide", label: "Установка" },
     { path: "/faq", label: "FAQ" },
     { path: "/about", label: "О нас" },
