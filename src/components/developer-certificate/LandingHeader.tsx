@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -56,8 +55,8 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
   );
   
   return (
-    <header className="flex justify-between items-center py-6 mb-8 md:mb-0 animate-fade-in-up">
-      <Link to="/" onClick={scrollToTop} className="flex items-center gap-2 z-20">
+    <header className="flex justify-between items-center py-6 mb-8 md:mb-0 animate-fade-in-up relative z-50">
+      <Link to="/" onClick={scrollToTop} className="flex items-center gap-2 z-50">
         <img
           src={logoUrl}
           alt={logoAlt}
@@ -70,13 +69,13 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
       
       <div className="flex items-center gap-3 md:gap-6">
         {/* Desktop navigation */}
-        <nav className="hidden md:flex gap-4 lg:gap-8">
+        <nav className="hidden md:flex gap-4 lg:gap-8 z-50">
           {filteredMenuItems.map((item, index) => (
             <Link
               key={index}
               to={item.href}
               onClick={scrollToTop}
-              className={`text-gray-800 dark:text-gray-200 hover:text-theme-blue transition-colors text-[15px] font-medium font-montserrat relative group ${
+              className={`text-gray-800 dark:text-gray-200 hover:text-theme-blue transition-colors text-[15px] font-medium font-montserrat relative group z-50 ${
                 location.pathname === item.href ? 'text-theme-blue' : ''
               }`}
             >
@@ -89,18 +88,20 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
         </nav>
         
         {/* Mobile direct links instead of dropdown */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-2 z-50">
           <Link 
             to="/wiki" 
             onClick={scrollToTop}
-            className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium"
+            className="text-gray-800 dark:text-gray-200 hover:text-theme-blue px-2 py-1 text-sm font-medium z-50"
           >
             Wiki
           </Link>
         </div>
         
         {/* Theme Toggle Slider */}
-        <ThemeToggle />
+        <div className="z-50">
+          <ThemeToggle />
+        </div>
         
         {/* Contact button - always visible */}
         <a 
@@ -110,7 +111,7 @@ export const LandingHeader: React.FC<LandingHeaderProps> = ({
           className={`bg-black dark:bg-theme-blue dark:text-white text-white py-2 
             ${isMobile ? 'px-3 text-xs' : 'px-5 text-sm'} 
             rounded-full font-medium font-montserrat hover:bg-gray-800 
-            dark:hover:bg-blue-600 transition-all relative group overflow-hidden shine-effect z-20`}
+            dark:hover:bg-blue-600 transition-all relative group overflow-hidden shine-effect z-50`}
         >
           <span className="relative z-10">{isMobile ? 'Заказать' : 'Заказать'}</span>
         </a>

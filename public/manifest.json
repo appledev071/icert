@@ -1,0 +1,36 @@
+{
+  "name": "iCert - Профессиональные сертификаты разработчика",
+  "short_name": "iCert",
+  "description": "Получите профессиональный сертификат разработчика. Быстро, надежно и с гарантией качества.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "https://cdn.builder.io/api/v1/image/assets/TEMP/2e98bfd98eea8e1e9276756a26afa94aea5545d6",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.builder.io/api/v1/image/assets/TEMP/2e98bfd98eea8e1e9276756a26afa94aea5545d6",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "prefer_related_applications": false,
+  "categories": ["business", "education", "productivity"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Заказать сертификат",
+      "url": "/order",
+      "description": "Быстрое оформление заказа на сертификат"
+    },
+    {
+      "name": "Wiki",
+      "url": "/wiki",
+      "description": "Полезная информация и документация"
+    }
+  ]
+} 
