@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface ThemedLandingWrapperProps {
@@ -71,11 +70,7 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
         ></div>
         
         {/* Light theme pencil sketch elements (visible only in light mode) */}
-        <div className="hidden absolute inset-0 light:block opacity-10 pointer-events-none">
-          <div className="absolute top-20 left-[10%] w-32 h-32 border-2 border-gray-400 rounded-md transform rotate-12"></div>
-          <div className="absolute bottom-40 right-[15%] w-24 h-24 border-2 border-gray-400 rounded-full transform -rotate-6"></div>
-          <div className="absolute top-[40%] right-[20%] w-48 h-16 border-2 border-gray-400 transform rotate-3"></div>
-        </div>
+        {/* Removed the div containing the pencil sketch elements */}
         
         {/* NEW: Random blue light flashes */}
         <div className="blue-flash absolute w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-flash" 
@@ -96,9 +91,7 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
                       dark:bg-none opacity-30 mix-blend-overlay pointer-events-none"></div>
         
         {/* NEW: Animated pencil lines for light theme */}
-        <div className="absolute h-[2px] w-[200px] bg-gray-300/30 dark:bg-transparent top-[15%] left-[5%] transform rotate-[30deg] hidden light:block"></div>
-        <div className="absolute h-[2px] w-[150px] bg-gray-300/30 dark:bg-transparent top-[35%] right-[10%] transform -rotate-[15deg] hidden light:block"></div>
-        <div className="absolute h-[2px] w-[300px] bg-gray-300/30 dark:bg-transparent bottom-[25%] left-[20%] transform rotate-[5deg] hidden light:block"></div>
+        {/* Removed the three divs for animated pencil lines */}
         
         {/* NEW: Notion-style decorative elements */}
         <div className="absolute w-16 h-16 border-[3px] border-dashed border-gray-300/30 dark:border-transparent rounded-full top-[22%] right-[15%] transform rotate-12 hidden light:block"></div>
