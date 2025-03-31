@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import {
   PricingCard,
@@ -13,6 +12,27 @@ import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from "framer-motion";
+
+// Reusable animation variants 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Slightly faster stagger for pricing cards
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5 } 
+  },
+};
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -140,16 +160,23 @@ const Index = () => {
       <FeaturesSection />
 
       {/* Pricing section */}
-      <section id="pricing" className="py-20 animate-fade-in-up text-center" style={{ animationDelay: "0.35s" }}>
+      <section id="pricing" className="py-20 text-center">
         <h2 className="section-title mb-4 font-montserrat">Тарифы сертификатов</h2>
         <p className="section-description mb-12 mx-auto">
           Выберите оптимальный вариант сертификата разработчика для ваших потребностей
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {pricingCards.map((card, index) => (
             <PricingCard
               key={index}
+              variants={itemVariants}
               title={card.title}
               price={card.price}
               iconBgColor={card.iconBgColor}
@@ -158,7 +185,7 @@ const Index = () => {
               glowColor={card.glowColor}
             />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA section with standard spacing */}

@@ -1,13 +1,13 @@
-
 import React from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, MotionProps } from "framer-motion";
 
 interface Feature {
   text: string;
 }
 
-interface PricingCardProps {
+interface PricingCardProps extends MotionProps {
   title: string;
   price: string;
   features: Feature[];
@@ -22,19 +22,19 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   features,
   iconBgColor,
   gradientColors,
-  glowColor = "rgba(59, 130, 246, 0.5)" // Default blue glow
+  glowColor = "rgba(59, 130, 246, 0.5)",
+  ...rest
 }) => {
   return (
-    <div 
+    <motion.div 
       className="flex-1 p-6 border border-gray-200 dark:border-gray-800 rounded-lg group 
                 hover:border-theme-blue transition-all duration-500 glow-card card-lift
                 relative overflow-hidden running-border"
       style={{ "--custom-glow-color": glowColor } as React.CSSProperties}
+      {...rest}
     >
-      {/* Shine effect on hover */}
       <div className="absolute -inset-px opacity-0 group-hover:opacity-100 duration-700 bg-gradient-to-r from-transparent via-theme-blue/5 to-transparent -z-10 animate-shimmer"></div>
       
-      {/* Animated glow effect with custom color */}
       <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <div 
           className="absolute inset-0 rounded-lg blur-xl" 
@@ -65,9 +65,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             <div 
               key={index} 
               className="flex items-start gap-3 group/feature"
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5 group-hover/feature:scale-110 transition-all duration-300 group-hover:animate-pulse-slow" style={{ animationDelay: `${index * 0.5}s` }}>
+              <div className="w-5 h-5 flex-shrink-0 rounded-full bg-theme-blue flex items-center justify-center mt-0.5 group-hover/feature:scale-110 transition-all duration-300 group-hover:animate-pulse-slow">
                 <Check className="w-3 h-3 text-white" />
               </div>
               <span className="text-gray-700 dark:text-gray-300 text-[15px] leading-tight group-hover/feature:text-black dark:group-hover/feature:text-white transition-colors duration-300">
@@ -77,13 +76,12 @@ export const PricingCard: React.FC<PricingCardProps> = ({
           ))}
         </div>
         
-        {/* Button that appears on hover */}
         <div className="mt-8 pt-4 border-t border-gray-100 dark:border-gray-800 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
           <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2 text-sm text-theme-blue hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 shine-effect relative overflow-hidden">
             <span className="relative z-10">Выбрать тариф</span> <ArrowRight className="w-4 h-4 relative z-10" />
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

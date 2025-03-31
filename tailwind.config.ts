@@ -1,4 +1,3 @@
-
 import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
 
@@ -84,6 +83,33 @@ const config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" }
         },
+        "glow-pulse-slow": {
+          "0%": { 
+            opacity: "0.4",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            opacity: "0.6",
+            transform: "scale(1.05)"
+          },
+          "100%": { 
+            opacity: "0.4",
+            transform: "scale(1)"
+          }
+        },
+        "light-beam": {
+          "0%": { 
+            opacity: "0",
+            transform: "translateY(-100%) translateX(-100%)"
+          },
+          "50%": { 
+            opacity: "1"
+          },
+          "100%": { 
+            opacity: "0",
+            transform: "translateY(100%) translateX(100%)"
+          }
+        },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" }
@@ -122,6 +148,11 @@ const config = {
         "float": "float 6s ease-in-out infinite",
         "border-run": "border-run 4s linear infinite",
         "blob-float": "blob-float 15s ease-in-out infinite",
+        "glow-pulse-slow": "glow-pulse-slow 6s ease-in-out infinite",
+        "light-beam": "light-beam 8s ease-in-out infinite",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
     },
   },

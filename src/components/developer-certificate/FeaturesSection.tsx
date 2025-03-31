@@ -1,6 +1,26 @@
-
 import React from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Reusable animation variants (can be moved to a separate file later if needed)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Adjust delay between cards
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5 } 
+  },
+};
 
 export const FeaturesSection: React.FC = () => {
   const features = [
@@ -23,7 +43,7 @@ export const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+    <section className="py-20">
       <h2 className="section-title mb-4 relative inline-block">
         Преимущества
         <span className="absolute -bottom-2 left-0 w-full h-1 bg-theme-blue transform scale-x-0 hover:scale-x-100 transition-transform duration-500 origin-left"></span>
@@ -32,14 +52,20 @@ export const FeaturesSection: React.FC = () => {
         Почему тысячи пользователей выбирают наши сертификаты
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {features.map((feature, index) => (
-          <div 
+          <motion.div 
             key={index} 
+            variants={itemVariants}
             className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 
                       hover:border-theme-blue transition-all duration-500 group
                       hover:shadow-glow-sm border-animated"
-            style={{ animationDelay: `${(index + 1) * 0.15}s` }}
           >
             <div className="flex items-start gap-4">
               <div className="mt-1 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
@@ -60,9 +86,9 @@ export const FeaturesSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
