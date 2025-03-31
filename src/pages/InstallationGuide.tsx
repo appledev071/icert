@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -13,7 +14,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const InstallationGuide = () => {
   const isMobile = useIsMobile();
-  const [activeTab, setActiveTab] = useState("udid");
+  const [activeTab, setActiveTab] = useState("manager");
 
   // Function to scroll to top when navigating
   const scrollToTop = () => {
@@ -97,24 +98,30 @@ const InstallationGuide = () => {
         </div>
 
         {/* Installation Methods Tabs */}
-        <Tabs defaultValue="udid" value={activeTab} onValueChange={setActiveTab} className="w-full space-y-6">
+        <Tabs defaultValue="manager" value={activeTab} onValueChange={setActiveTab} className="w-full space-y-6">
           <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full h-auto overflow-x-auto">
+            <TabsTrigger value="manager" className="py-3 px-4">
+              <div className="flex flex-col items-center">
+                <Smartphone className="h-5 w-5 mb-1" />
+                <span>Ссылка от менеджера</span>
+              </div>
+            </TabsTrigger>
             <TabsTrigger value="udid" className="py-3 px-4">
               <div className="flex flex-col items-center">
                 <Smartphone className="h-5 w-5 mb-1" />
                 <span>Получение UDID</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="altstore" className="py-3 px-4">
+            <TabsTrigger value="esign" className="py-3 px-4">
               <div className="flex flex-col items-center">
                 <FileDown className="h-5 w-5 mb-1" />
-                <span>AltStore</span>
+                <span>ESign</span>
               </div>
             </TabsTrigger>
-            <TabsTrigger value="sideloadly" className="py-3 px-4">
+            <TabsTrigger value="gbox" className="py-3 px-4">
               <div className="flex flex-col items-center">
                 <Laptop className="h-5 w-5 mb-1" />
-                <span>Sideloadly</span>
+                <span>GBox</span>
               </div>
             </TabsTrigger>
             <TabsTrigger value="other" className="py-3 px-4">
@@ -124,6 +131,85 @@ const InstallationGuide = () => {
               </div>
             </TabsTrigger>
           </TabsList>
+
+          {/* Manager Link Section */}
+          <TabsContent value="manager" className="mt-6 space-y-8">
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-2xl font-montserrat">Установка через ссылку от менеджера</CardTitle>
+                    <CardDescription>
+                      Самый простой способ установки IPA с использованием сертификата разработчика
+                    </CardDescription>
+                  </div>
+                  <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800">
+                    Рекомендуемый метод
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="mt-1 w-10 h-10 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Info className="w-5 h-5 text-theme-blue" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">О методе</h3>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        После приобретения сертификата разработчика наш менеджер предоставит вам специальную ссылку для установки приложений. Это самый простой способ, который не требует дополнительных инструментов или сложных настроек.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold mb-4">Как установить приложение через ссылку</h3>
+
+                    <Steps>
+                      <Steps.Step>Связаться с нашим менеджером в Telegram: <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
+                      <Steps.Step>Сообщить менеджеру о приобретении сертификата и запросить ссылку для установки приложения</Steps.Step>
+                      <Steps.Step>Отправить менеджеру UDID вашего устройства (если вы еще не предоставили его при покупке сертификата)</Steps.Step>
+                      <Steps.Step>Получить от менеджера специальную ссылку для установки приложения</Steps.Step>
+                      <Steps.Step>Открыть полученную ссылку в браузере Safari на устройстве iOS</Steps.Step>
+                      <Steps.Step>Нажать на кнопку "Установить" или "Download" на открывшейся странице</Steps.Step>
+                      <Steps.Step>Подтвердить установку в появившемся диалоговом окне</Steps.Step>
+                      <Steps.Step>Дождаться завершения установки приложения на ваше устройство</Steps.Step>
+                      <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
+                      <Steps.Step>Найдите профиль разработчика и нажмите "Доверять"</Steps.Step>
+                    </Steps>
+
+                    <div className="mt-6 p-4 border border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50/50 dark:bg-blue-900/20">
+                      <div className="flex gap-3">
+                        <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
+                        <div>
+                          <p className="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Преимущества:</strong> Не требует установки дополнительных программ или подключения к компьютеру. Процесс установки занимает всего несколько минут.
+                          </p>
+                          <p className="text-gray-700 dark:text-gray-300 text-sm mt-2">
+                            Если ссылка перестала работать или вам нужно установить другое приложение, просто свяжитесь с менеджером повторно.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-orange-200 dark:border-orange-800 rounded-lg bg-orange-50/50 dark:bg-orange-900/20">
+                    <div className="flex gap-3">
+                      <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0 mt-1" />
+                      <p className="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Важно:</strong> Устанавливайте приложения только по ссылкам, полученным от официального менеджера @icertmanager. Не используйте ссылки из непроверенных источников, чтобы избежать установки вредоносного ПО.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Button variant="outline" onClick={() => setActiveTab("udid")}>
+                  Перейти к получению UDID
+                </Button>
+              </CardFooter>
+            </Card>
+          </TabsContent>
 
           {/* UDID Section */}
           <TabsContent value="udid" className="mt-6 space-y-8">
@@ -213,28 +299,24 @@ const InstallationGuide = () => {
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setActiveTab("altstore")}>
-                  Перейти к AltStore
+                <Button variant="outline" onClick={() => setActiveTab("manager")}>
+                  Назад к ссылке от менеджера
+                </Button>
+                <Button onClick={() => setActiveTab("esign")}>
+                  Перейти к ESign
                 </Button>
               </CardFooter>
             </Card>
           </TabsContent>
 
-          {/* AltStore Section */}
-          <TabsContent value="altstore" className="mt-6 space-y-8">
+          {/* ESign Section */}
+          <TabsContent value="esign" className="mt-6 space-y-8">
             <Card>
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-2xl font-montserrat">Установка через AltStore</CardTitle>
-                    <CardDescription>
-                      AltStore - популярное решение для установки IPA без джейлбрейка
-                    </CardDescription>
-                  </div>
-                  <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800">
-                    Рекомендуемый метод
-                  </Badge>
-                </div>
+                <CardTitle className="text-2xl font-montserrat">Установка через ESign</CardTitle>
+                <CardDescription>
+                  ESign - популярное решение для установки IPA напрямую на устройстве iOS без компьютера
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
@@ -245,56 +327,48 @@ const InstallationGuide = () => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">О методе</h3>
                       <p className="text-gray-700 dark:text-gray-300">
-                        AltStore - это альтернативный магазин приложений для устройств iOS, который не требует джейлбрейка. Он использует Apple ID для подписи приложений и позволяет устанавливать IPA-файлы. AltStore использует компьютер с AltServer, который периодически обновляет подпись приложений, чтобы они не переставали работать через 7 дней.
+                        ESign - это приложение для iOS, которое позволяет устанавливать IPA-файлы прямо на вашем устройстве без необходимости подключения к компьютеру. Оно может использовать ваш сертификат разработчика для подписи приложений, обеспечивая их работу в течение всего срока действия сертификата.
                       </p>
                     </div>
                   </div>
 
                   <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-4">Как установить AltStore</h3>
+                    <h3 className="text-xl font-semibold mb-4">Как установить ESign и использовать его</h3>
                     
-                    <h4 className="text-lg font-medium mb-3">Требования:</h4>
-                    <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                      <li>iPhone или iPad с iOS 12.2 или новее</li>
-                      <li>Mac с macOS 10.14.4 или новее / PC с Windows 10 или новее</li>
-                      <li>Apple ID (можно использовать существующий или создать новый)</li>
-                      <li>USB-кабель для подключения устройства к компьютеру</li>
-                    </ul>
-
-                    <h4 className="text-lg font-medium mb-3">Установка на macOS:</h4>
+                    <h4 className="text-lg font-medium mb-3">Установка ESign:</h4>
                     <Steps>
-                      <Steps.Step>Скачайте <a href="https://altstore.io" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">AltServer <ExternalLink className="h-3 w-3 ml-1" /></a> для macOS с официального сайта</Steps.Step>
-                      <Steps.Step>Распакуйте и переместите AltServer в папку "Программы"</Steps.Step>
-                      <Steps.Step>Запустите AltServer (иконка появится в строке меню)</Steps.Step>
-                      <Steps.Step>Подключите устройство iOS к Mac через USB</Steps.Step>
-                      <Steps.Step>Выберите "Install AltStore" из меню AltServer</Steps.Step>
-                      <Steps.Step>Выберите ваше устройство и введите ваш Apple ID и пароль</Steps.Step>
-                      <Steps.Step>Дождитесь завершения установки AltStore на ваше устройство</Steps.Step>
+                      <Steps.Step>Откройте Safari на вашем iOS-устройстве</Steps.Step>
+                      <Steps.Step>Перейдите на официальный сайт ESign: <a href="https://esign.yyyue.xyz" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">esign.yyyue.xyz <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
+                      <Steps.Step>Нажмите на кнопку "Install" или "Установить"</Steps.Step>
+                      <Steps.Step>Подтвердите установку в появившемся диалоговом окне</Steps.Step>
+                      <Steps.Step>Дождитесь завершения установки ESign на ваше устройство</Steps.Step>
+                      <Steps.Step>Перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
+                      <Steps.Step>Найдите профиль ESign и нажмите "Доверять"</Steps.Step>
                     </Steps>
 
-                    <h4 className="text-lg font-medium mb-3 mt-6">Установка на Windows:</h4>
+                    <h4 className="text-lg font-medium mb-3 mt-6">Импорт сертификата разработчика:</h4>
                     <Steps>
-                      <Steps.Step>Скачайте <a href="https://altstore.io" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">AltServer <ExternalLink className="h-3 w-3 ml-1" /></a> для Windows с официального сайта</Steps.Step>
-                      <Steps.Step>Установите iTunes (не из Microsoft Store) и iCloud для Windows</Steps.Step>
-                      <Steps.Step>Установите и запустите AltServer (иконка появится в системном трее)</Steps.Step>
-                      <Steps.Step>Подключите устройство iOS к компьютеру через USB</Steps.Step>
-                      <Steps.Step>Щелкните правой кнопкой на иконке AltServer и выберите "Install AltStore"</Steps.Step>
-                      <Steps.Step>Выберите ваше устройство</Steps.Step>
-                      <Steps.Step>Введите ваш Apple ID и пароль</Steps.Step>
-                      <Steps.Step>Дождитесь завершения установки AltStore на ваше устройство</Steps.Step>
+                      <Steps.Step>Запросите у нашего менеджера в Telegram (<a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a>) файлы сертификата (.p12) и профиля (.mobileprovision)</Steps.Step>
+                      <Steps.Step>Откройте ESign на вашем устройстве</Steps.Step>
+                      <Steps.Step>Перейдите во вкладку "Settings" (Настройки)</Steps.Step>
+                      <Steps.Step>Выберите "Certificate" (Сертификат)</Steps.Step>
+                      <Steps.Step>Нажмите "Import P12" и выберите полученный файл .p12</Steps.Step>
+                      <Steps.Step>Введите пароль к сертификату (предоставляется менеджером вместе с файлом)</Steps.Step>
+                      <Steps.Step>После импорта сертификата, нажмите "Import .mobileprovision" и выберите полученный файл профиля</Steps.Step>
                     </Steps>
-                  </div>
 
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 mt-6">
-                    <h3 className="text-xl font-semibold mb-4">Установка IPA через AltStore</h3>
-                    
+                    <h4 className="text-lg font-medium mb-3 mt-6">Установка IPA через ESign:</h4>
                     <Steps>
-                      <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → Управление устройством</Steps.Step>
-                      <Steps.Step>Найдите свой Apple ID и нажмите "Доверять"</Steps.Step>
-                      <Steps.Step>Откройте AltStore на вашем устройстве</Steps.Step>
-                      <Steps.Step>Перейдите в раздел "My Apps" и нажмите "+" в верхнем углу</Steps.Step>
-                      <Steps.Step>Выберите IPA-файл, который вы хотите установить (вы можете скачать его через Safari и открыть в AltStore через "Поделиться")</Steps.Step>
-                      <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                      <Steps.Step>Скачайте IPA-файл на ваше устройство (через Safari или другой источник)</Steps.Step>
+                      <Steps.Step>Откройте ESign</Steps.Step>
+                      <Steps.Step>На главном экране нажмите кнопку "+" в верхнем правом углу</Steps.Step>
+                      <Steps.Step>Выберите "Import IPA" и найдите скачанный IPA-файл</Steps.Step>
+                      <Steps.Step>Выберите IPA-файл для установки из списка</Steps.Step>
+                      <Steps.Step>Нажмите кнопку "Sign" (Подписать) рядом с выбранным приложением</Steps.Step>
+                      <Steps.Step>В открывшемся меню выберите ваш импортированный сертификат разработчика</Steps.Step>
+                      <Steps.Step>Нажмите "Sign" и дождитесь завершения процесса подписи</Steps.Step>
+                      <Steps.Step>После подписи нажмите "Install" для установки приложения</Steps.Step>
+                      <Steps.Step>Подтвердите установку в появившемся диалоговом окне</Steps.Step>
                     </Steps>
 
                     <div className="mt-6 p-4 border border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50/50 dark:bg-blue-900/20">
@@ -302,12 +376,26 @@ const InstallationGuide = () => {
                         <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
                         <div>
                           <p className="text-gray-700 dark:text-gray-300 text-sm">
-                            <strong>Совет:</strong> Убедитесь, что компьютер с запущенным AltServer находится в той же Wi-Fi сети, что и ваше устройство iOS, чтобы обновление подписи приложений происходило автоматически.
-                          </p>
-                          <p className="text-gray-700 dark:text-gray-300 text-sm mt-2">
-                            Если у вас возникают проблемы с обновлением приложений, регулярно подключайте устройство к компьютеру с запущенным AltServer.
+                            <strong>Совет:</strong> Если вы не можете получить файлы сертификата напрямую, вы можете использовать ESign со стандартными методами подписи (которые работают 7 дней) и регулярно продлевать их, или использовать метод с ссылкой от менеджера.
                           </p>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 border border-green-200 dark:border-green-800 rounded-lg bg-green-50/50 dark:bg-green-900/20">
+                    <div className="flex gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-gray-700 dark:text-gray-300 text-sm">
+                          <strong>Преимущества ESign:</strong>
+                        </p>
+                        <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                          <li>Не требует компьютера для установки приложений</li>
+                          <li>Поддерживает импорт собственных сертификатов разработчика</li>
+                          <li>Простой и понятный интерфейс</li>
+                          <li>Возможность управлять несколькими приложениями</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -317,20 +405,20 @@ const InstallationGuide = () => {
                 <Button variant="outline" onClick={() => setActiveTab("udid")}>
                   Назад к получению UDID
                 </Button>
-                <Button onClick={() => setActiveTab("sideloadly")}>
-                  Перейти к Sideloadly
+                <Button onClick={() => setActiveTab("gbox")}>
+                  Перейти к GBox
                 </Button>
               </CardFooter>
             </Card>
           </TabsContent>
 
-          {/* Sideloadly Section */}
-          <TabsContent value="sideloadly" className="mt-6 space-y-8">
+          {/* GBox Section */}
+          <TabsContent value="gbox" className="mt-6 space-y-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl font-montserrat">Установка через Sideloadly</CardTitle>
+                <CardTitle className="text-2xl font-montserrat">Установка через GBox</CardTitle>
                 <CardDescription>
-                  Sideloadly - простой инструмент для установки IPA с компьютера на iOS без джейлбрейка
+                  GBox - альтернативный магазин приложений с поддержкой установки IPA-файлов
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -341,72 +429,94 @@ const InstallationGuide = () => {
                   <div>
                     <h3 className="text-lg font-semibold mb-2">О методе</h3>
                     <p className="text-gray-700 dark:text-gray-300">
-                      Sideloadly - это бесплатный инструмент для сайдлоадинга приложений на iOS и tvOS без джейлбрейка. Он работает как на Windows, так и на macOS, и отличается простым интерфейсом и высокой скоростью работы. Sideloadly позволяет устанавливать приложения как с бесплатным Apple ID (с ограничением в 7 дней), так и с сертификатом разработчика (действует год).
+                      GBox - это альтернативный магазин приложений для iOS, который позволяет устанавливать приложения, не представленные в официальном App Store, включая IPA-файлы. GBox поддерживает работу с сертификатами разработчика и предоставляет удобный интерфейс для управления приложениями.
                     </p>
                   </div>
                 </div>
 
                 <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
-                  <h3 className="text-xl font-semibold mb-4">Установка Sideloadly</h3>
+                  <h3 className="text-xl font-semibold mb-4">Установка GBox</h3>
                   
-                  <h4 className="text-lg font-medium mb-3">Требования:</h4>
-                  <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                    <li>iPhone или iPad с iOS 10 или новее</li>
-                    <li>Mac с macOS 10.13 или новее / PC с Windows 7 или новее</li>
-                    <li>Apple ID (можно использовать существующий или создать новый)</li>
-                    <li>USB-кабель для подключения устройства к компьютеру</li>
-                  </ul>
-
                   <Steps>
-                    <Steps.Step>Скачайте <a href="https://sideloadly.io" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">Sideloadly <ExternalLink className="h-3 w-3 ml-1" /></a> с официального сайта для вашей операционной системы</Steps.Step>
-                    <Steps.Step>Установите iTunes (для Windows) или убедитесь, что он установлен (для macOS)</Steps.Step>
-                    <Steps.Step>Установите и запустите Sideloadly</Steps.Step>
+                    <Steps.Step>Откройте Safari на вашем iOS-устройстве</Steps.Step>
+                    <Steps.Step>Перейдите на официальный сайт GBox: <a href="https://gbox.run" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">gbox.run <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
+                    <Steps.Step>Нажмите на кнопку "Install" или "Download" для загрузки GBox</Steps.Step>
+                    <Steps.Step>Подтвердите установку в появившемся диалоговом окне</Steps.Step>
+                    <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                    <Steps.Step>Перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
+                    <Steps.Step>Найдите профиль GBox и нажмите "Доверять"</Steps.Step>
+                    <Steps.Step>Теперь вы можете открыть и использовать GBox</Steps.Step>
                   </Steps>
                 </div>
 
                 <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-4">Установка IPA через Sideloadly</h3>
+                  <h3 className="text-xl font-semibold mb-4">Использование GBox с сертификатом разработчика</h3>
                   
+                  <h4 className="text-lg font-medium mb-3">Импорт сертификата (если есть файлы .p12 и .mobileprovision):</h4>
                   <Steps>
-                    <Steps.Step>Подключите устройство iOS к компьютеру через USB</Steps.Step>
-                    <Steps.Step>Запустите Sideloadly</Steps.Step>
-                    <Steps.Step>Перетащите IPA-файл в окно Sideloadly или нажмите на кнопку выбора файла</Steps.Step>
-                    <Steps.Step>Убедитесь, что ваше устройство отображается в выпадающем списке</Steps.Step>
-                    <Steps.Step>Введите ваш Apple ID и пароль (или используйте сертификат разработчика, если он у вас есть)</Steps.Step>
-                    <Steps.Step>Нажмите кнопку "Start" для начала процесса установки</Steps.Step>
-                    <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
-                    <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → Управление устройством/Профили</Steps.Step>
-                    <Steps.Step>Найдите профиль с вашим Apple ID и нажмите "Доверять"</Steps.Step>
-                    <Steps.Step>Теперь вы можете запустить установленное приложение</Steps.Step>
+                    <Steps.Step>Получите файлы сертификата (.p12) и профиля (.mobileprovision) от нашего менеджера</Steps.Step>
+                    <Steps.Step>Откройте GBox на вашем устройстве</Steps.Step>
+                    <Steps.Step>Перейдите во вкладку "Settings" или "Настройки"</Steps.Step>
+                    <Steps.Step>Найдите раздел "Developer Certificate" или "Сертификаты"</Steps.Step>
+                    <Steps.Step>Следуйте инструкциям для импорта сертификата и профиля</Steps.Step>
+                    <Steps.Step>Введите пароль к сертификату, если потребуется</Steps.Step>
                   </Steps>
 
-                  <div className="mt-6 p-4 border border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50/50 dark:bg-blue-900/20">
-                    <div className="flex gap-3">
-                      <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm">
-                          <strong>Совет:</strong> При использовании обычного Apple ID (не сертификата разработчика) приложения будут работать только 7 дней, после чего их нужно будет переустановить.
-                        </p>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm mt-2">
-                          Если у вас есть сертификат разработчика, установите его в Sideloadly во вкладке настроек перед установкой приложений.
-                        </p>
-                      </div>
-                    </div>
+                  <h4 className="text-lg font-medium mb-3 mt-6">Установка IPA через GBox:</h4>
+                  <Steps>
+                    <Steps.Step>Скачайте IPA-файл на ваше устройство iOS</Steps.Step>
+                    <Steps.Step>Откройте GBox</Steps.Step>
+                    <Steps.Step>Перейдите во вкладку "My Apps" или "Мои приложения"</Steps.Step>
+                    <Steps.Step>Нажмите на кнопку "+" или "Import"</Steps.Step>
+                    <Steps.Step>Выберите скачанный IPA-файл</Steps.Step>
+                    <Steps.Step>GBox предложит подписать приложение вашим сертификатом разработчика</Steps.Step>
+                    <Steps.Step>Выберите ваш сертификат из списка</Steps.Step>
+                    <Steps.Step>Нажмите "Install" или "Установить"</Steps.Step>
+                    <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                  </Steps>
+
+                  <h4 className="text-lg font-medium mb-3 mt-6">Альтернативный метод (через библиотеку GBox):</h4>
+                  <Steps>
+                    <Steps.Step>Откройте GBox</Steps.Step>
+                    <Steps.Step>Перейдите во вкладку "Store" или "Магазин"</Steps.Step>
+                    <Steps.Step>Найдите нужное приложение в каталоге GBox</Steps.Step>
+                    <Steps.Step>Нажмите на приложение и затем на кнопку "Get" или "Скачать"</Steps.Step>
+                    <Steps.Step>Выберите "Sign with Developer Certificate" (Подписать сертификатом разработчика)</Steps.Step>
+                    <Steps.Step>Выберите ваш импортированный сертификат</Steps.Step>
+                    <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                  </Steps>
+                </div>
+
+                <div className="mt-6 p-4 border border-orange-200 dark:border-orange-800 rounded-lg bg-orange-50/50 dark:bg-orange-900/20">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 dark:text-gray-300 text-sm">
+                      <strong>Примечание:</strong> GBox может предлагать платные подписки или дополнительные функции. Для использования с вашим собственным сертификатом разработчика обычно достаточно базовой (бесплатной) версии приложения.
+                    </p>
                   </div>
                 </div>
 
                 <div className="mt-6 p-4 border border-green-200 dark:border-green-800 rounded-lg bg-green-50/50 dark:bg-green-900/20">
                   <div className="flex gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      <strong>Преимущества Sideloadly:</strong> Простой интерфейс, быстрая установка, поддержка Windows и macOS, возможность использования как Apple ID, так и сертификата разработчика.
-                    </p>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>Преимущества GBox:</strong>
+                      </p>
+                      <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                        <li>Встроенная библиотека приложений, отсутствующих в App Store</li>
+                        <li>Поддержка импорта собственных IPA-файлов</li>
+                        <li>Возможность использования с сертификатом разработчика</li>
+                        <li>Не требуется подключение к компьютеру</li>
+                        <li>Удобное управление установленными приложениями</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setActiveTab("altstore")}>
-                  Назад к AltStore
+                <Button variant="outline" onClick={() => setActiveTab("esign")}>
+                  Назад к ESign
                 </Button>
                 <Button onClick={() => setActiveTab("other")}>
                   Другие методы
@@ -426,6 +536,57 @@ const InstallationGuide = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-8">
+                  {/* Sideloadly with Certificate */}
+                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-blue transition-all duration-300">
+                    <h3 className="text-xl font-semibold mb-4">Sideloadly с сертификатом разработчика</h3>
+                    
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="mt-1 w-10 h-10 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Info className="w-5 h-5 text-theme-blue" />
+                      </div>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        Sideloadly - это бесплатный инструмент для сайдлоадинга приложений на iOS и tvOS с компьютера. При использовании с сертификатом разработчика он обеспечивает работу приложений в течение всего срока действия сертификата (1 год).
+                      </p>
+                    </div>
+
+                    <h4 className="text-lg font-medium mb-3">Требования:</h4>
+                    <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                      <li>iPhone или iPad с iOS 10 или новее</li>
+                      <li>Mac с macOS 10.13 или новее / PC с Windows 7 или новее</li>
+                      <li>Файлы сертификата разработчика (.p12 и .mobileprovision)</li>
+                      <li>USB-кабель для подключения устройства к компьютеру</li>
+                    </ul>
+                    
+                    <Steps>
+                      <Steps.Step>Скачайте <a href="https://sideloadly.io" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">Sideloadly <ExternalLink className="h-3 w-3 ml-1" /></a> с официального сайта для вашей операционной системы</Steps.Step>
+                      <Steps.Step>Установите iTunes (для Windows) или убедитесь, что он установлен (для macOS)</Steps.Step>
+                      <Steps.Step>Установите и запустите Sideloadly</Steps.Step>
+                      <Steps.Step>Подключите устройство iOS к компьютеру через USB</Steps.Step>
+                      <Steps.Step>Перетащите IPA-файл в окно Sideloadly или нажмите на кнопку выбора файла</Steps.Step>
+                      <Steps.Step>Убедитесь, что ваше устройство отображается в выпадающем списке</Steps.Step>
+                      <Steps.Step>Нажмите на значок шестеренки (настройки)</Steps.Step>
+                      <Steps.Step>Выберите опцию "Use custom .p12 & .mobileprovision"</Steps.Step>
+                      <Steps.Step>Укажите путь к файлу .p12 и введите пароль (полученный от менеджера)</Steps.Step>
+                      <Steps.Step>Укажите путь к файлу .mobileprovision</Steps.Step>
+                      <Steps.Step>Закройте окно настроек и нажмите кнопку "Start" для начала процесса установки</Steps.Step>
+                      <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                      <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
+                      <Steps.Step>Найдите профиль разработчика и нажмите "Доверять"</Steps.Step>
+                      <Steps.Step>Теперь вы можете запустить установленное приложение</Steps.Step>
+                    </Steps>
+
+                    <div className="mt-6 p-4 border border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50/50 dark:bg-blue-900/20">
+                      <div className="flex gap-3">
+                        <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
+                        <div>
+                          <p className="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Совет:</strong> Для получения файлов сертификата (.p12 и .mobileprovision) обратитесь к нашему менеджеру в Telegram: <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Method 1: Apple Configurator 2 */}
                   <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-blue transition-all duration-300">
                     <h3 className="text-xl font-semibold mb-4">Apple Configurator 2 (только для macOS)</h3>
@@ -477,7 +638,7 @@ const InstallationGuide = () => {
                     <h4 className="text-lg font-medium mb-3">Требования:</h4>
                     <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
                       <li>Mac с macOS 10.13 или новее / PC с Windows 7 или новее</li>
-                      <li>Apple ID или сертификат разработчика</li>
+                      <li>Сертификат разработчика</li>
                       <li>USB-кабель для подключения устройства</li>
                     </ul>
                     
@@ -489,7 +650,7 @@ const InstallationGuide = () => {
                       <Steps.Step>Нажмите на "Установить приложение" в правой части окна</Steps.Step>
                       <Steps.Step>Выберите IPA-файл на вашем компьютере</Steps.Step>
                       <Steps.Step>Следуйте инструкциям на экране для завершения установки</Steps.Step>
-                      <Steps.Step>Введите свой Apple ID или выберите сертификат разработчика, если потребуется</Steps.Step>
+                      <Steps.Step>При запросе выберите ваш сертификат разработчика</Steps.Step>
                       <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → Профили и управление устройством</Steps.Step>
                       <Steps.Step>Найдите профиль и нажмите "Доверять"</Steps.Step>
                     </Steps>
@@ -513,7 +674,7 @@ const InstallationGuide = () => {
                         <Info className="w-5 h-5 text-theme-blue" />
                       </div>
                       <p className="text-gray-700 dark:text-gray-300">
-                        iOS App Signer в сочетании с Xcode позволяет переподписывать IPA-файлы вашим Apple ID или сертификатом разработчика и устанавливать их на устройство.
+                        iOS App Signer в сочетании с Xcode позволяет переподписывать IPA-файлы вашим сертификатом разработчика и устанавливать их на устройство.
                       </p>
                     </div>
 
@@ -521,7 +682,7 @@ const InstallationGuide = () => {
                     <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
                       <li>Mac с macOS 10.13 или новее</li>
                       <li>Xcode (скачивается из Mac App Store)</li>
-                      <li>Apple ID (бесплатный или платный)</li>
+                      <li>Сертификат разработчика</li>
                       <li>iOS App Signer</li>
                     </ul>
                     
@@ -529,6 +690,7 @@ const InstallationGuide = () => {
                       <Steps.Step>Установите Xcode из Mac App Store</Steps.Step>
                       <Steps.Step>Скачайте <a href="https://dantheman827.github.io/ios-app-signer/" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">iOS App Signer <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
                       <Steps.Step>Запустите Xcode и войдите в свой Apple ID (Xcode → Preferences → Accounts)</Steps.Step>
+                      <Steps.Step>Импортируйте ваш сертификат разработчика в Xcode</Steps.Step>
                       <Steps.Step>Создайте новый пустой проект в Xcode (File → New → Project)</Steps.Step>
                       <Steps.Step>Подключите устройство iOS к Mac</Steps.Step>
                       <Steps.Step>В Xcode выберите ваше устройство в качестве цели для запуска</Steps.Step>
@@ -542,49 +704,14 @@ const InstallationGuide = () => {
                       <Steps.Step>Выберите переподписанный IPA-файл и дождитесь завершения установки</Steps.Step>
                     </Steps>
                   </div>
-
-                  {/* Method 4: SignTools */}
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-theme-blue transition-all duration-300">
-                    <h3 className="text-xl font-semibold mb-4">SignTools (для продвинутых пользователей)</h3>
-                    
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="mt-1 w-10 h-10 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Info className="w-5 h-5 text-theme-blue" />
-                      </div>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        SignTools - это открытый веб-сервис для подписи IPA-файлов без компьютера. Вы можете развернуть его на своем сервере или использовать общедоступные экземпляры.
-                      </p>
-                    </div>
-
-                    <h4 className="text-lg font-medium mb-3">Основная информация:</h4>
-                    <ul className="list-disc pl-5 space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-                      <li>Позволяет подписывать IPA-файлы через веб-интерфейс</li>
-                      <li>Требуется базовое понимание работы с серверами</li>
-                      <li>Требуется Apple ID или сертификат разработчика</li>
-                      <li>Можно настроить для использования на мобильных устройствах</li>
-                    </ul>
-                    
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
-                      Подробные инструкции по установке и использованию SignTools можно найти в <a href="https://github.com/SignTools/SignTools" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">официальном репозитории GitHub <ExternalLink className="h-3 w-3 ml-1" /></a>.
-                    </p>
-
-                    <div className="p-4 border border-orange-200 dark:border-orange-800 rounded-lg bg-orange-50/50 dark:bg-orange-900/20">
-                      <div className="flex gap-3">
-                        <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0 mt-1" />
-                        <p className="text-gray-700 dark:text-gray-300 text-sm">
-                          <strong>Предупреждение:</strong> Установка и настройка SignTools может быть сложной для неопытных пользователей. Рекомендуется использовать более простые методы, такие как AltStore или Sideloadly, если у вас нет опыта работы с серверными приложениями.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setActiveTab("sideloadly")}>
-                  Назад к Sideloadly
+                <Button variant="outline" onClick={() => setActiveTab("gbox")}>
+                  Назад к GBox
                 </Button>
-                <Button onClick={() => setActiveTab("udid")}>
-                  Вернуться к UDID
+                <Button onClick={() => setActiveTab("manager")}>
+                  Вернуться к началу
                 </Button>
               </CardFooter>
             </Card>

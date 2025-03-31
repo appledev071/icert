@@ -24,7 +24,7 @@ const Step = ({ children, className }: StepProps) => {
   return (
     <li className={cn("flex gap-3 items-start", className)}>
       <div className="w-6 h-6 rounded-full bg-theme-blue flex items-center justify-center text-white text-xs flex-shrink-0 mt-0.5">
-        {/* Bullet point */}
+        {/* Using a small bullet point dot for better visual */}
         <span>·</span>
       </div>
       <span className="text-gray-700 dark:text-gray-300">{children}</span>
