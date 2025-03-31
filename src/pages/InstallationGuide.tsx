@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -14,7 +13,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const InstallationGuide = () => {
   const isMobile = useIsMobile();
-  const [activeTab, setActiveTab] = useState("manager");
+  const [activeTab, setActiveTab] = useState("udid");
 
   // Function to scroll to top when navigating
   const scrollToTop = () => {
@@ -98,14 +97,8 @@ const InstallationGuide = () => {
         </div>
 
         {/* Installation Methods Tabs */}
-        <Tabs defaultValue="manager" value={activeTab} onValueChange={setActiveTab} className="w-full space-y-6">
+        <Tabs defaultValue="udid" value={activeTab} onValueChange={setActiveTab} className="w-full space-y-6">
           <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full h-auto overflow-x-auto">
-            <TabsTrigger value="manager" className="py-3 px-4">
-              <div className="flex flex-col items-center">
-                <Smartphone className="h-5 w-5 mb-1" />
-                <span>Ссылка от менеджера</span>
-              </div>
-            </TabsTrigger>
             <TabsTrigger value="udid" className="py-3 px-4">
               <div className="flex flex-col items-center">
                 <Smartphone className="h-5 w-5 mb-1" />
@@ -131,85 +124,6 @@ const InstallationGuide = () => {
               </div>
             </TabsTrigger>
           </TabsList>
-
-          {/* Manager Link Section */}
-          <TabsContent value="manager" className="mt-6 space-y-8">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-2xl font-montserrat">Установка через ссылку от менеджера</CardTitle>
-                    <CardDescription>
-                      Самый простой способ установки IPA с использованием сертификата разработчика
-                    </CardDescription>
-                  </div>
-                  <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800">
-                    Рекомендуемый метод
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="mt-1 w-10 h-10 bg-theme-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Info className="w-5 h-5 text-theme-blue" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2">О методе</h3>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        После приобретения сертификата разработчика наш менеджер предоставит вам специальную ссылку для установки приложений. Это самый простой способ, который не требует дополнительных инструментов или сложных настроек.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-4">Как установить приложение через ссылку</h3>
-
-                    <Steps>
-                      <Steps.Step>Связаться с нашим менеджером в Telegram: <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
-                      <Steps.Step>Сообщить менеджеру о приобретении сертификата и запросить ссылку для установки приложения</Steps.Step>
-                      <Steps.Step>Отправить менеджеру UDID вашего устройства (если вы еще не предоставили его при покупке сертификата)</Steps.Step>
-                      <Steps.Step>Получить от менеджера специальную ссылку для установки приложения</Steps.Step>
-                      <Steps.Step>Открыть полученную ссылку в браузере Safari на устройстве iOS</Steps.Step>
-                      <Steps.Step>Нажать на кнопку "Установить" или "Download" на открывшейся странице</Steps.Step>
-                      <Steps.Step>Подтвердить установку в появившемся диалоговом окне</Steps.Step>
-                      <Steps.Step>Дождаться завершения установки приложения на ваше устройство</Steps.Step>
-                      <Steps.Step>На устройстве iOS перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
-                      <Steps.Step>Найдите профиль разработчика и нажмите "Доверять"</Steps.Step>
-                    </Steps>
-
-                    <div className="mt-6 p-4 border border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50/50 dark:bg-blue-900/20">
-                      <div className="flex gap-3">
-                        <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
-                        <div>
-                          <p className="text-gray-700 dark:text-gray-300 text-sm">
-                            <strong>Преимущества:</strong> Не требует установки дополнительных программ или подключения к компьютеру. Процесс установки занимает всего несколько минут.
-                          </p>
-                          <p className="text-gray-700 dark:text-gray-300 text-sm mt-2">
-                            Если ссылка перестала работать или вам нужно установить другое приложение, просто свяжитесь с менеджером повторно.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-4 border border-orange-200 dark:border-orange-800 rounded-lg bg-orange-50/50 dark:bg-orange-900/20">
-                    <div className="flex gap-3">
-                      <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0 mt-1" />
-                      <p className="text-gray-700 dark:text-gray-300 text-sm">
-                        <strong>Важно:</strong> Устанавливайте приложения только по ссылкам, полученным от официального менеджера @icertmanager. Не используйте ссылки из непроверенных источников, чтобы избежать установки вредоносного ПО.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setActiveTab("udid")}>
-                  Перейти к получению UDID
-                </Button>
-              </CardFooter>
-            </Card>
-          </TabsContent>
 
           {/* UDID Section */}
           <TabsContent value="udid" className="mt-6 space-y-8">
@@ -298,10 +212,7 @@ const InstallationGuide = () => {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={() => setActiveTab("manager")}>
-                  Назад к ссылке от менеджера
-                </Button>
+              <CardFooter className="flex justify-end">
                 <Button onClick={() => setActiveTab("esign")}>
                   Перейти к ESign
                 </Button>
@@ -333,13 +244,13 @@ const InstallationGuide = () => {
                   </div>
 
                   <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-4">Как установить ESign и использовать его</h3>
+                    <h3 className="text-xl font-semibold mb-4">Получение и установка ESign</h3>
                     
-                    <h4 className="text-lg font-medium mb-3">Установка ESign:</h4>
                     <Steps>
-                      <Steps.Step>Откройте Safari на вашем iOS-устройстве</Steps.Step>
-                      <Steps.Step>Перейдите на официальный сайт ESign: <a href="https://esign.yyyue.xyz" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">esign.yyyue.xyz <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
-                      <Steps.Step>Нажмите на кнопку "Install" или "Установить"</Steps.Step>
+                      <Steps.Step>Свяжитесь с нашим менеджером в Telegram: <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
+                      <Steps.Step>Запросите у менеджера ссылку для установки приложения ESign</Steps.Step>
+                      <Steps.Step>Откройте полученную ссылку на вашем iOS-устройстве в браузере Safari</Steps.Step>
+                      <Steps.Step>Нажмите на кнопку "Установить" или "Install" на открывшейся странице</Steps.Step>
                       <Steps.Step>Подтвердите установку в появившемся диалоговом окне</Steps.Step>
                       <Steps.Step>Дождитесь завершения установки ESign на ваше устройство</Steps.Step>
                       <Steps.Step>Перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
@@ -376,7 +287,7 @@ const InstallationGuide = () => {
                         <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" />
                         <div>
                           <p className="text-gray-700 dark:text-gray-300 text-sm">
-                            <strong>Совет:</strong> Если вы не можете получить файлы сертификата напрямую, вы можете использовать ESign со стандартными методами подписи (которые работают 7 дней) и регулярно продлевать их, или использовать метод с ссылкой от менеджера.
+                            <strong>Совет:</strong> Если вы не можете получить файлы сертификата напрямую, вы можете использовать ESign со стандартными методами подписи (которые работают 7 дней) и регулярно продлевать их.
                           </p>
                         </div>
                       </div>
@@ -435,14 +346,15 @@ const InstallationGuide = () => {
                 </div>
 
                 <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
-                  <h3 className="text-xl font-semibold mb-4">Установка GBox</h3>
+                  <h3 className="text-xl font-semibold mb-4">Получение и установка GBox</h3>
                   
                   <Steps>
-                    <Steps.Step>Откройте Safari на вашем iOS-устройстве</Steps.Step>
-                    <Steps.Step>Перейдите на официальный сайт GBox: <a href="https://gbox.run" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">gbox.run <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
-                    <Steps.Step>Нажмите на кнопку "Install" или "Download" для загрузки GBox</Steps.Step>
+                    <Steps.Step>Свяжитесь с нашим менеджером в Telegram: <a href="https://t.me/icertmanager" target="_blank" rel="noopener noreferrer" className="text-theme-blue hover:underline inline-flex items-center">@icertmanager <ExternalLink className="h-3 w-3 ml-1" /></a></Steps.Step>
+                    <Steps.Step>Запросите у менеджера ссылку для установки приложения GBox</Steps.Step>
+                    <Steps.Step>Откройте полученную ссылку на вашем iOS-устройстве в браузере Safari</Steps.Step>
+                    <Steps.Step>Нажмите на кнопку "Установить" или "Install" на открывшейся странице</Steps.Step>
                     <Steps.Step>Подтвердите установку в появившемся диалоговом окне</Steps.Step>
-                    <Steps.Step>Дождитесь завершения установки приложения</Steps.Step>
+                    <Steps.Step>Дождитесь завершения установки GBox на ваше устройство</Steps.Step>
                     <Steps.Step>Перейдите в Настройки → Основные → VPN и управление устройством</Steps.Step>
                     <Steps.Step>Найдите профиль GBox и нажмите "Доверять"</Steps.Step>
                     <Steps.Step>Теперь вы можете открыть и использовать GBox</Steps.Step>
@@ -710,7 +622,7 @@ const InstallationGuide = () => {
                 <Button variant="outline" onClick={() => setActiveTab("gbox")}>
                   Назад к GBox
                 </Button>
-                <Button onClick={() => setActiveTab("manager")}>
+                <Button onClick={() => setActiveTab("udid")}>
                   Вернуться к началу
                 </Button>
               </CardFooter>
