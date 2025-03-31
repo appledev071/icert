@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Send } from "lucide-react";
+import { Send, FileText, Shield } from "lucide-react";
 
 interface LandingFooterProps {
   contactMessage: string;
@@ -34,7 +34,6 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
             <li><Link to="/wiki" className="hover:text-theme-blue transition-colors">Wiki</Link></li>
             <li><Link to="/installation-guide" className="hover:text-theme-blue transition-colors">Инструкция по установке</Link></li>
             <li><Link to="/faq" className="hover:text-theme-blue transition-colors">Часто задаваемые вопросы</Link></li>
-            <li><Link to="/vpn-pricing" className="hover:text-theme-blue transition-colors">VPN</Link></li>
             <li><Link to="/about" className="hover:text-theme-blue transition-colors">О нас</Link></li>
           </ul>
         </div>
@@ -45,6 +44,23 @@ export const LandingFooter: React.FC<LandingFooterProps> = ({
               <Send className="ml-2 h-4 w-4" />
             </Button>
           </a>
+        </div>
+      </div>
+      
+      {/* Legal documents section */}
+      <div className="border-t border-gray-800 pt-6 mb-6">
+        <h3 className="text-xl font-montserrat text-theme-blue dark:text-theme-blue mb-4">
+          Правовая информация
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link to="/privacy-policy" className="flex items-center text-theme-light-muted hover:text-theme-blue transition-colors">
+            <FileText className="mr-2 h-4 w-4" />
+            Условия обработки персональных данных
+          </Link>
+          <Link to="/terms-of-use" className="flex items-center text-theme-light-muted hover:text-theme-blue transition-colors">
+            <Shield className="mr-2 h-4 w-4" />
+            Условия использования
+          </Link>
         </div>
       </div>
       

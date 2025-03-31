@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import {
   PricingCard,
@@ -8,7 +9,6 @@ import { HeroSection } from "@/components/developer-certificate/HeroSection";
 import { FeaturesSection } from "@/components/developer-certificate/FeaturesSection";
 import { CtaSection } from "@/components/developer-certificate/CtaSection";
 import { LandingFooter } from "@/components/developer-certificate/LandingFooter";
-import { VpnSection } from "@/components/developer-certificate/VpnSection";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -63,12 +63,53 @@ const Index = () => {
       ],
       glowColor: "rgba(34, 197, 94, 0.5)" // Green glow
     },
+    {
+      title: "Парный обычный",
+      price: "1799₽",
+      iconBgColor: "bg-indigo-500",
+      gradientColors:
+        "bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20",
+      features: [
+        { text: "Срок действия 1 год" },
+        { text: "Выдача в течение 3 дней" },
+        { text: "Два устройства" },
+        { text: "Экономия 199₽" },
+      ],
+      glowColor: "rgba(99, 102, 241, 0.5)" // Indigo glow
+    },
+    {
+      title: "Парный моментальный",
+      price: "2799₽",
+      iconBgColor: "bg-amber-500",
+      gradientColors:
+        "bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20",
+      features: [
+        { text: "Срок действия 1 год" },
+        { text: "Выдача в течение 30 минут" },
+        { text: "Два устройства" },
+        { text: "Экономия 199₽" },
+      ],
+      glowColor: "rgba(245, 158, 11, 0.5)" // Amber glow
+    },
+    {
+      title: "Супермоментальный",
+      price: "1999₽",
+      iconBgColor: "bg-rose-500",
+      gradientColors:
+        "bg-gradient-to-br from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/20",
+      features: [
+        { text: "Срок действия 1 год" },
+        { text: "Выдача в течение 15 минут" },
+        { text: "Одно устройство" },
+        { text: "Для отозванных сертификатов" },
+      ],
+      glowColor: "rgba(244, 63, 94, 0.5)" // Rose glow
+    },
   ];
 
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
-    { label: "VPN", href: "/vpn-pricing" },
     { label: "О нас", href: "/about" },
   ];
 
@@ -119,9 +160,6 @@ const Index = () => {
           ))}
         </div>
       </section>
-
-      {/* VPN section */}
-      <VpnSection />
 
       {/* CTA section with standard spacing */}
       <div className="py-12">
