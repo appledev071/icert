@@ -90,6 +90,23 @@ export const ThemedLandingWrapper: React.FC<ThemedLandingWrapperProps> = ({ chil
              style={{ top: '10%', left: '70%', animationDelay: '9s' }}></div>
         <div className="blue-flash absolute w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-flash" 
              style={{ top: '50%', left: '40%', animationDelay: '12s' }}></div>
+        
+        {/* NEW: Light theme paper texture overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxmaWx0ZXIgaWQ9Im5vaXNlIiB4PSIwIiB5PSIwIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjY1IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiAvPgogICAgPGZlQmxlbmQgbW9kZT0ic29mdC1saWdodCIgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjA1IiAvPgo8L3N2Zz4=')]
+                      dark:bg-none opacity-30 mix-blend-overlay pointer-events-none"></div>
+        
+        {/* NEW: Animated pencil lines for light theme */}
+        <div className="absolute h-[2px] w-[200px] bg-gray-300/30 dark:bg-transparent top-[15%] left-[5%] transform rotate-[30deg] hidden light:block"></div>
+        <div className="absolute h-[2px] w-[150px] bg-gray-300/30 dark:bg-transparent top-[35%] right-[10%] transform -rotate-[15deg] hidden light:block"></div>
+        <div className="absolute h-[2px] w-[300px] bg-gray-300/30 dark:bg-transparent bottom-[25%] left-[20%] transform rotate-[5deg] hidden light:block"></div>
+        
+        {/* NEW: Notion-style decorative elements */}
+        <div className="absolute w-16 h-16 border-[3px] border-dashed border-gray-300/30 dark:border-transparent rounded-full top-[22%] right-[15%] transform rotate-12 hidden light:block"></div>
+        <div className="absolute w-8 h-32 border-[3px] border-dotted border-gray-300/20 dark:border-transparent rounded-xl bottom-[30%] left-[8%] transform -rotate-6 hidden light:block"></div>
+        
+        {/* NEW: Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSJub25lIiAvPgogIDxwYXRoIGQ9Ik0wIDBoNDBNMCA0MGg0ME00MCAwdjQwTTAgMHY0MCIgc3Ryb2tlPSIjZTVlN2ViIiBzdHJva2Utb3BhY2l0eT0iMC4xIiBzdHJva2Utd2lkdGg9IjEiIC8+Cjwvc3ZnPg==')]
+                      opacity-10 dark:opacity-0 pointer-events-none"></div>
       </div>
 
       {/* Content container */}

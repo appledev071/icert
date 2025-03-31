@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,100 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* NEW: Light mode paper texture */
+:root:not(.dark) {
+  background-image: 
+    radial-gradient(#00000010 1px, transparent 0),
+    radial-gradient(#00000010 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  background-attachment: fixed;
+}
+
+/* NEW: Notion-style hand-drawn decorations */
+.notion-decorative-line {
+  height: 3px;
+  background-color: rgba(55, 53, 47, 0.1);
+  border-radius: 3px;
+  transform: rotate(-0.5deg);
+}
+
+.notion-decorative-circle {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(55, 53, 47, 0.1);
+  border-radius: 50%;
+  transform: rotate(10deg);
+}
+
+.notion-decorative-square {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(55, 53, 47, 0.1);
+  transform: rotate(15deg);
+}
+
+/* NEW: Pencil scribble animations */
+@keyframes scribble {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.pencil-scribble {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: scribble 10s ease-in-out forwards;
+}
+
+/* NEW: Floating paper animations */
+@keyframes float-paper {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+
+.floating-paper {
+  animation: float-paper 8s ease-in-out infinite;
+}
+
+/* NEW: Pencil highlight hover effect */
+.pencil-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.pencil-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: rgba(255, 221, 87, 0.3);
+  z-index: -1;
+  transform: rotate(-1deg) translateY(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pencil-highlight:hover::after {
+  opacity: 1;
+}
+
+/* NEW: Hand-drawn box shadows for light mode */
+:root:not(.dark) .hand-drawn-box {
+  box-shadow: 
+    2px 2px 0 rgba(0, 0, 0, 0.1),
+    4px 4px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
 }

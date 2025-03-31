@@ -42,14 +42,14 @@ export const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center gap-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 px-3 py-1.5 rounded-full shadow-sm transition-all duration-300">
-      <Sun className="h-4 w-4 text-yellow-500 dark:text-gray-400" />
+    <div className="flex items-center gap-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 px-3 py-1.5 rounded-full shadow-sm transition-all duration-300 group hover:border-gray-300 dark:hover:border-gray-700">
+      <Sun className="h-4 w-4 text-yellow-500 dark:text-gray-400 transition-transform duration-300 group-hover:rotate-12" />
       <Switch
         checked={isDarkMode}
         onCheckedChange={toggleTheme}
         className="data-[state=checked]:bg-theme-blue data-[state=unchecked]:bg-gray-200"
       />
-      <Moon className="h-4 w-4 text-gray-400 dark:text-theme-blue" />
+      <Moon className="h-4 w-4 text-gray-400 dark:text-theme-blue transition-transform duration-300 group-hover:-rotate-12" />
       <span className="sr-only">Переключить тему</span>
     </div>
   );
