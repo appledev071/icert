@@ -3,14 +3,15 @@
 ## Содержание
 1. [Подготовка сервера](#1-подготовка-сервера)
 2. [Настройка домена](#2-настройка-домена)
-3. [Установка необходимого ПО](#3-установка-необходимого-по)
-4. [Настройка Nginx](#4-настройка-nginx)
-5. [SSL сертификат](#5-ssl-сертификат)
-6. [Деплой сайта](#6-деплой-сайта)
-7. [Настройка CI/CD](#7-настройка-cicd)
-8. [Мониторинг](#8-мониторинг)
-9. [Безопасность](#9-безопасность)
-10. [Полезные команды](#10-полезные-команды)
+3. [Настройка Cloudflare](#3-настройка-cloudflare)
+4. [Установка необходимого ПО](#4-установка-необходимого-по)
+5. [Настройка Nginx](#5-настройка-nginx)
+6. [SSL сертификат](#6-ssl-сертификат)
+7. [Деплой сайта](#7-деплой-сайта)
+8. [Настройка CI/CD](#8-настройка-cicd)
+9. [Мониторинг](#9-мониторинг)
+10. [Безопасность](#10-безопасность)
+11. [Полезные команды](#11-полезные-команды)
 
 ## 1. Подготовка сервера
 
@@ -38,7 +39,7 @@ apt install -y curl wget git htop
 # Основная A-запись
 Тип: A
 Имя: @
-Значение: [IP-адрес вашего сервера]
+Значение: [IP-адрес вашего сервера] # Этот IP будет заменен на IP Cloudflare
 TTL: 3600
 
 # WWW поддомен
@@ -60,9 +61,55 @@ dig icert.space
 dig www.icert.space
 ```
 
-## 3. Установка необходимого ПО
+## 3. Настройка Cloudflare
 
-### 3.1. Установка Node.js
+### 3.1. Добавление домена в Cloudflare
+1. Войдите в панель управления Cloudflare
+2. Добавьте ваш домен
+3. Измените nameservers на те, что предоставляет Cloudflare
+4. Дождитесь активации DNS (может занять до 24 часов)
+
+### 3.2. Настройка DNS записей в Cloudflare
+```
+# Основная A-запись
+Тип: A
+Имя: @
+Значение: [IP-адрес вашего сервера]
+Прокси: Включено (оранжевое облако)
+
+# WWW поддомен
+Тип: CNAME
+Имя: www
+Значение: @
+Прокси: Включено (оранжевое облако)
+```
+
+### 3.3. Настройка SSL/TLS
+1. Перейдите в раздел SSL/TLS
+2. Установите режим "Full (strict)"
+3. Включите "Always Use HTTPS"
+4. Включите "Automatic HTTPS Rewrites"
+
+### 3.4. Настройка правил файрвола
+1. Перейдите в раздел Security → WAF
+2. Создайте правило для защиты от DDoS
+3. Настройте правила для блокировки подозрительного трафика
+4. Включите "Under Attack Mode" при необходимости
+
+### 3.5. Оптимизация
+1. Включите "Auto Minify" для JavaScript, CSS и HTML
+2. Включите "Brotli" для сжатия
+3. Настройте кэширование в разделе Cache
+4. Включите "Rocket Loader" для оптимизации загрузки JavaScript
+
+### 3.6. Настройка IP-адресов
+1. В разделе Network → IP Access Rules добавьте IP вашего сервера в белый список
+2. Включите "IP Geolocation" для определения страны посетителей
+3. Настройте "HTTP/3" для улучшения производительности
+
+## 4. Установка необходимого ПО
+
+### 4.1. Установка Node.js
 ```bash
 # Добавление репозитория Node.js
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -75,7 +122,7 @@ node --version
 npm --version
 ```
 
-### 3.2. Установка Nginx
+### 4.2. Установка Nginx
 ```bash
 # Установка Nginx
 apt install -y nginx
@@ -85,21 +132,21 @@ systemctl start nginx
 systemctl enable nginx
 ```
 
-### 3.3. Установка Certbot
+### 4.3. Установка Certbot
 ```bash
 # Установка Certbot
 apt install -y certbot python3-certbot-nginx
 ```
 
-## 4. Настройка Nginx
+## 5. Настройка Nginx
 
-### 4.1. Создание конфигурации
+### 5.1. Создание конфигурации
 ```bash
 # Создание конфигурационного файла
 nano /etc/nginx/sites-available/icert
 ```
 
-### 4.2. Конфигурация Nginx
+### 5.2. Конфигурация Nginx
 ```nginx
 server {
     listen 80;
@@ -151,7 +198,7 @@ server {
 }
 ```
 
-### 4.3. Активация конфигурации
+### 5.3. Активация конфигурации
 ```bash
 # Создание символической ссылки
 ln -s /etc/nginx/sites-available/icert /etc/nginx/sites-enabled/
@@ -166,9 +213,9 @@ nginx -t
 systemctl restart nginx
 ```
 
-## 5. SSL сертификат
+## 6. SSL сертификат
 
-### 5.1. Получение сертификата
+### 6.1. Получение сертификата
 ```bash
 # Получение SSL сертификата
 certbot --nginx -d icert.space -d www.icert.space
@@ -177,15 +224,15 @@ certbot --nginx -d icert.space -d www.icert.space
 certbot renew --dry-run
 ```
 
-### 5.2. Настройка автообновления
+### 6.2. Настройка автообновления
 ```bash
 # Добавление в crontab
 echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
 ```
 
-## 6. Деплой сайта
+## 7. Деплой сайта
 
-### 6.1. Подготовка директории
+### 7.1. Подготовка директории
 ```bash
 # Создание директории для сайта
 mkdir -p /var/www/icert
@@ -195,7 +242,7 @@ chown -R www-data:www-data /var/www/icert
 chmod -R 755 /var/www/icert
 ```
 
-### 6.2. Копирование файлов
+### 7.2. Копирование файлов
 ```bash
 # Копирование собранного проекта
 cp -r dist/* /var/www/icert/
@@ -204,9 +251,9 @@ cp -r dist/* /var/www/icert/
 chown -R www-data:www-data /var/www/icert
 ```
 
-## 7. Настройка CI/CD
+## 8. Настройка CI/CD
 
-### 7.1. Создание GitHub Actions
+### 8.1. Создание GitHub Actions
 Создайте файл `.github/workflows/deploy.yml`:
 
 ```yaml
@@ -243,9 +290,9 @@ jobs:
           target: "/var/www/icert"
 ```
 
-## 8. Мониторинг
+## 9. Мониторинг
 
-### 8.1. Установка Prometheus и Grafana
+### 9.1. Установка Prometheus и Grafana
 ```bash
 # Создание docker-compose.yml
 nano docker-compose.yml
@@ -269,15 +316,15 @@ services:
       - prometheus
 ```
 
-### 8.2. Настройка мониторинга
+### 9.2. Настройка мониторинга
 ```bash
 # Запуск мониторинга
 docker-compose up -d
 ```
 
-## 9. Безопасность
+## 10. Безопасность
 
-### 9.1. Настройка файрвола
+### 10.1. Настройка файрвола
 ```bash
 # Установка UFW
 apt install -y ufw
@@ -289,7 +336,7 @@ ufw allow 443/tcp
 ufw enable
 ```
 
-### 9.2. Настройка fail2ban
+### 10.2. Настройка fail2ban
 ```bash
 # Установка fail2ban
 apt install -y fail2ban
@@ -315,9 +362,9 @@ maxretry = 3
 systemctl restart fail2ban
 ```
 
-## 10. Полезные команды
+## 11. Полезные команды
 
-### 10.1. Мониторинг
+### 11.1. Мониторинг
 ```bash
 # Просмотр логов Nginx
 tail -f /var/log/nginx/access.log
@@ -327,7 +374,7 @@ tail -f /var/log/nginx/error.log
 htop
 ```
 
-### 10.2. Обслуживание
+### 11.2. Обслуживание
 ```bash
 # Перезапуск Nginx
 systemctl restart nginx
@@ -339,7 +386,7 @@ systemctl status nginx
 certbot certificates
 ```
 
-### 10.3. Бэкапы
+### 11.3. Бэкапы
 ```bash
 # Создание бэкапа
 tar -czf /var/backups/icert_$(date +%Y%m%d).tar.gz /var/www/icert
