@@ -147,7 +147,18 @@ nano /etc/nginx/sites-available/icert
 ```
 
 ### 5.2. Конфигурация Nginx
+
+1. Основной конфиг Nginx (`/etc/nginx/nginx.conf`):
 ```nginx
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 768;
+    multi_accept on;
+}
+
 http {
     # Основные настройки
     include /etc/nginx/mime.types;
@@ -172,7 +183,72 @@ http {
     gzip_comp_level 6;
     gzip_types text/plain text/css text/xml application/json application/javascript application/xml+rss application/atom+xml image/svg+xml;
 
-    # Настройки SSL
+    # Подключение конфигураций сайтов
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}
+```
+
+2. Конфигурация сайта (`/etc/nginx/sites-available/icert`):
+```nginx
+server {
+    listen 80;
+    server_name icert.space www.icert.space;
+
+    # Редирект на HTTPS (Cloudflare)
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name icert.space www.icert.space;
+
+    # Настройки для работы с Cloudflare
+    set_real_ip_from 103.21.244.0/22;
+    set_real_ip_from 103.22.200.0/22;
+    set_real_ip_from 103.31.4.0/22;
+    set_real_ip_from 104.16.0.0/13;
+    set_real_ip_from 104.17.0.0/15;
+    set_real_ip_from 104.18.0.0/15;
+    set_real_ip_from 104.19.0.0/15;
+    set_real_ip_from 104.20.0.0/15;
+    set_real_ip_from 104.21.0.0/15;
+    set_real_ip_from 104.22.0.0/15;
+    set_real_ip_from 104.23.0.0/15;
+    set_real_ip_from 104.24.0.0/15;
+    set_real_ip_from 104.25.0.0/15;
+    set_real_ip_from 104.26.0.0/15;
+    set_real_ip_from 104.27.0.0/15;
+    set_real_ip_from 104.28.0.0/15;
+    set_real_ip_from 131.0.72.0/22;
+    set_real_ip_from 141.101.0.0/16;
+    set_real_ip_from 162.158.0.0/15;
+    set_real_ip_from 172.64.0.0/13;
+    set_real_ip_from 172.65.0.0/13;
+    set_real_ip_from 172.66.0.0/13;
+    set_real_ip_from 172.67.0.0/13;
+    set_real_ip_from 173.245.48.0/20;
+    set_real_ip_from 188.114.96.0/20;
+    set_real_ip_from 188.114.97.0/20;
+    set_real_ip_from 188.114.98.0/20;
+    set_real_ip_from 188.114.99.0/20;
+    set_real_ip_from 190.93.240.0/20;
+    set_real_ip_from 190.93.241.0/20;
+    set_real_ip_from 190.93.242.0/20;
+    set_real_ip_from 190.93.243.0/20;
+    set_real_ip_from 197.234.240.0/22;
+    set_real_ip_from 197.234.242.0/23;
+    set_real_ip_from 198.41.128.0/17;
+    set_real_ip_from 2400:cb00::/32;
+    set_real_ip_from 2606:4700::/32;
+    set_real_ip_from 2803:f800::/32;
+    set_real_ip_from 2405:b500::/32;
+    set_real_ip_from 2405:8100::/32;
+    set_real_ip_from 2c0f:f248::/32;
+    set_real_ip_from 2a06:98c0::/29;
+    real_ip_header CF-Connecting-IP;
+
+    # SSL настройки для Cloudflare
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers off;
@@ -180,39 +256,21 @@ http {
     ssl_session_cache shared:SSL:50m;
     ssl_session_tickets off;
 
-    # Настройки серверов
-    server {
-        listen 80;
-        server_name icert.space www.icert.space;
+    # HSTS
+    add_header Strict-Transport-Security "max-age=63072000" always;
 
-        # Редирект с HTTP на HTTPS
-        return 301 https://$server_name$request_uri;
+    root /var/www/icert/dist;
+    index index.html;
+
+    # Кэширование статических файлов
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, no-transform";
     }
 
-    server {
-        listen 443 ssl http2;
-        server_name icert.space www.icert.space;
-
-        # SSL сертификаты
-        ssl_certificate /etc/letsencrypt/live/icert.space/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/icert.space/privkey.pem;
-
-        # HSTS
-        add_header Strict-Transport-Security "max-age=63072000" always;
-
-        root /var/www/icert/dist;
-        index index.html;
-
-        # Кэширование статических файлов
-        location /assets/ {
-            expires 1y;
-            add_header Cache-Control "public, no-transform";
-        }
-
-        # Основной location
-        location / {
-            try_files $uri $uri/ /index.html;
-        }
+    # Основной location
+    location / {
+        try_files $uri $uri/ /index.html;
     }
 }
 ```
@@ -234,7 +292,23 @@ systemctl restart nginx
 
 ## 6. SSL сертификат
 
-### 6.1. Получение сертификата
+### 6.1. Настройка SSL в Cloudflare
+1. Перейдите в раздел SSL/TLS в панели управления Cloudflare
+2. Установите режим "Full (strict)"
+3. Включите "Always Use HTTPS"
+4. Включите "Automatic HTTPS Rewrites"
+5. Включите "Minimum TLS Version" и установите значение 1.2
+6. Включите "Opportunistic Encryption"
+7. Включите "TLS 1.3"
+8. Включите "Automatic HTTPS Rewrites"
+
+### 6.2. Дополнительные настройки безопасности
+1. Включите "Browser Integrity Check"
+2. Включите "Security Level" и установите значение "High"
+3. Включите "Bot Fight Mode"
+4. Настройте "WAF" (Web Application Firewall)
+
+### 6.3. Получение сертификата
 ```bash
 # Получение SSL сертификата
 certbot --nginx -d icert.space -d www.icert.space
@@ -243,7 +317,7 @@ certbot --nginx -d icert.space -d www.icert.space
 certbot renew --dry-run
 ```
 
-### 6.2. Настройка автообновления
+### 6.4. Настройка автообновления
 ```bash
 # Добавление в crontab
 echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
