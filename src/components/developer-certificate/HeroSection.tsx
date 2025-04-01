@@ -84,22 +84,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="relative flex-1 flex items-center justify-center">
         <div className="w-full max-w-6xl mx-auto px-8">
           <h1 className={`${isMobile ? 'text-4xl leading-tight' : 'text-5xl md:text-6xl leading-tight'} font-bold text-black dark:text-white mb-6 text-center`}>
-            <span className="text-theme-blue relative inline-block">
-              Расширенные возможности <br/>
-            </span>
-            <span className="block">для ваших устройств</span>
-          </h1>
+          <span className="text-theme-blue relative inline-block">
+            Расширенные возможности <br/>
+          </span>
+          <span className="block">для ваших устройств</span>
+        </h1>
           
           <p className={`${isMobile ? 'text-base' : 'text-lg'} text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto text-center`}>
-            Устанавливайте любые приложения, тестируйте бета-версии и
-            используйте эксклюзивные функции на вашем iPhone и iPad
-          </p>
+          Устанавливайте любые приложения, тестируйте бета-версии и
+          используйте эксклюзивные функции на вашем iPhone и iPad
+        </p>
           
           <div className="flex justify-center">
-            <Button className={`bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white ${isMobile ? 'text-sm py-5 px-6' : 'text-base py-6 px-8'} rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group`}>
-              Начать сейчас
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+          <Button className={`bg-black hover:bg-gray-900 text-white dark:bg-theme-blue dark:hover:bg-blue-600 dark:text-white ${isMobile ? 'text-sm py-5 px-6' : 'text-base py-6 px-8'} rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group`}>
+            Начать сейчас
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </Button>
           </div>
         </div>
       </div>
