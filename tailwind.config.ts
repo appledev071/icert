@@ -85,16 +85,13 @@ const config = {
         },
         "glow-pulse-slow": {
           "0%": { 
-            opacity: "0.4",
-            transform: "scale(1)"
+            opacity: "0.4"
           },
           "50%": { 
-            opacity: "0.6",
-            transform: "scale(1.05)"
+            opacity: "0.6"
           },
           "100%": { 
-            opacity: "0.4",
-            transform: "scale(1)"
+            opacity: "0.4"
           }
         },
         "light-beam": {
@@ -122,10 +119,6 @@ const config = {
           "0%": { opacity: "0", transform: "translateX(-20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" }
         },
-        "fade-in-down": {
-          "0%": { opacity: "0", transform: "translateY(-20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" }
-        },
         "border-run": {
           "0%": { backgroundPosition: "0% 0%" },
           "25%": { backgroundPosition: "100% 0%" },
@@ -135,9 +128,7 @@ const config = {
         },
         "blob-float": {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "25%": { transform: "translate(5%, -5%) scale(1.05)" },
-          "50%": { transform: "translate(0, -10%) scale(0.95)" },
-          "75%": { transform: "translate(-5%, -5%) scale(1.05)" }
+          "50%": { transform: "translate(0, -5%) scale(0.98)" }
         }
       },
       animation: {

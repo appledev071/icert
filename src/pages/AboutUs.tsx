@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -24,7 +23,6 @@ const AboutUs = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
-    { label: "VPN", href: "/vpn-pricing" },
     { label: "О нас", href: "/about" },
   ];
 
@@ -61,7 +59,7 @@ const AboutUs = () => {
           
           <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             О нас
-            <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">

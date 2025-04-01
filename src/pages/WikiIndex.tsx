@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -40,21 +39,21 @@ const WikiIndex = () => {
       icon: <Monitor className="w-6 h-6 text-theme-blue" />,
       description: "Пошаговые руководства по установке и настройке",
       link: "/installation-guide",
-      color: "bg-green-50 dark:bg-green-900/20"
+      color: "bg-blue-50 dark:bg-blue-900/20"
     },
     {
       title: "Часто задаваемые вопросы",
       icon: <HelpCircle className="w-6 h-6 text-theme-blue" />,
       description: "Ответы на популярные вопросы о наших услугах",
       link: "/faq",
-      color: "bg-amber-50 dark:bg-amber-900/20"
+      color: "bg-blue-50 dark:bg-blue-900/20"
     },
     {
       title: "О нас",
       icon: <Info className="w-6 h-6 text-theme-blue" />,
       description: "Информация о нашей компании и миссии",
       link: "/about",
-      color: "bg-red-50 dark:bg-red-900/20"
+      color: "bg-blue-50 dark:bg-blue-900/20"
     }
   ];
 
@@ -91,7 +90,7 @@ const WikiIndex = () => {
           
           <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
             Wiki
-            <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
+            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -48,9 +47,9 @@ const TermsOfUse = () => {
 
       {/* Main content */}
       <section className="py-12 animate-fade-in-up">
-        <h1 className="text-4xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
+        <h1 className="text-4xl md:text-5xl font-bold font-montserrat text-black dark:text-white mb-6 relative">
           Условия использования
-          <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
+          <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-theme-blue to-blue-400"></div>
         </h1>
 
         <div className="prose dark:prose-invert max-w-none mt-8 text-gray-700 dark:text-gray-300">
@@ -135,8 +134,7 @@ const TermsOfUse = () => {
 
       {/* Footer */}
       <LandingFooter
-        contactMessage=""
-        contactHandle="@icertmanager"
+        contactHandle="icertmanager"
         disclaimer="*в случае если UDID предоставляется для iPhone при покупке сертификата для iPad - средства не возвращаются"
       />
     </ThemedLandingWrapper>

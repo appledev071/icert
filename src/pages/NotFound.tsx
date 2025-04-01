@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ThemedLandingWrapper } from "@/components/developer-certificate";
 import { LandingHeader } from "@/components/developer-certificate/LandingHeader";
@@ -15,7 +14,6 @@ const NotFound = () => {
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "Wiki", href: "/wiki" },
-    { label: "VPN", href: "/vpn-pricing" },
     { label: "О нас", href: "/about" },
   ];
 

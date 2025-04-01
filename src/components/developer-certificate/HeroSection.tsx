@@ -41,43 +41,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   hideSparkles = false,
 }) => {
   const isMobile = useIsMobile();
+  // Явно определяем, что мы находимся на ПК
+  const isDesktop = !isMobile;
   
   return (
     <section 
       className="min-h-[calc(100vh-100px)] relative flex flex-col justify-center py-[100px]" 
     >
-      {/* Контейнер для фоновых эффектов на всю ширину */}
+      {/* Фоновые эффекты удалены, оставлен только простой фон */}
       <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
-        {/* Background effects */}
-        {/* Верхний правый угол */}
-        <div className="absolute -top-20 -right-[10vw] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-gradient-radial from-blue-500/50 via-blue-400/30 to-transparent dark:from-blue-400/30 dark:via-blue-500/20 rounded-full blur-3xl -z-10"></div>
-        
-        {/* Нижний левый угол */}
-        <div className="absolute -bottom-20 -left-[15vw] w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] bg-gradient-radial from-purple-500/40 via-fuchsia-500/30 to-transparent dark:from-purple-400/20 dark:via-fuchsia-400/20 rounded-full blur-[100px] -z-10"></div>
-        
-        {/* Центр справа */}
-        <div className="absolute top-1/2 -right-[20vw] w-[45vw] h-[45vw] max-w-[700px] max-h-[700px] bg-gradient-radial from-teal-500/40 via-emerald-500/30 to-transparent dark:from-teal-400/20 dark:via-emerald-400/20 rounded-full blur-[120px] -z-10"></div>
-        
-        {/* Верхний левый угол */}
-        <div className="absolute -top-[10vw] -left-[10vw] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-gradient-radial from-indigo-500/40 via-violet-500/30 to-transparent dark:from-indigo-400/25 dark:via-violet-400/20 rounded-full blur-[90px] -z-10"></div>
-        
-        {/* Нижний правый угол */}
-        <div className="absolute -bottom-[15vw] -right-[10vw] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] bg-gradient-radial from-sky-500/40 via-blue-500/30 to-transparent dark:from-blue-400/20 dark:via-blue-400/20 rounded-full blur-[130px] -z-10"></div>
-        
-        {/* Центральная область */}
-        <div className="absolute top-1/3 left-1/4 w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] bg-gradient-radial from-cyan-500/40 via-blue-500/30 to-transparent dark:from-cyan-400/25 dark:via-blue-400/20 rounded-full blur-[80px] -z-10"></div>
-        
-        {/* Дополнительное свечение для обеих тем */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                      w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-gradient-radial from-blue-500/40 via-indigo-500/30 to-transparent 
-                      rounded-full blur-[150px] -z-10 dark:from-blue-400/30 dark:via-blue-500/10 dark:to-transparent"></div>
-
-        {/* Новые декоративные свечения для светлой темы */}
-        <div className="absolute -top-[5vw] left-1/4 w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] bg-gradient-radial from-rose-500/30 via-pink-500/20 to-transparent 
-                      rounded-full blur-[100px] -z-10 dark:opacity-0"></div>
-        
-        <div className="absolute bottom-1/4 -right-[5vw] w-[30vw] h-[30vw] max-w-[450px] max-h-[450px] bg-gradient-radial from-amber-500/30 via-orange-500/20 to-transparent 
-                      rounded-full blur-[90px] -z-10 dark:opacity-0"></div>
+        {/* Все эффекты удалены */}
       </div>
 
       {/* Контейнер для контента */}

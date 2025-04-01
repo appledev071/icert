@@ -64,8 +64,8 @@ export const FeaturesSection: React.FC = () => {
             key={index} 
             variants={itemVariants}
             className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 
-                      hover:border-theme-blue transition-all duration-500 group
-                      hover:shadow-glow-sm border-animated"
+                      hover:border-theme-blue/50 transition-all duration-500 group
+                      hover:shadow-glow-sm"
           >
             <div className="flex items-start gap-4">
               <div className="mt-1 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">

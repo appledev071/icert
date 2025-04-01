@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   PricingCard,
   ThemedLandingWrapper,
@@ -25,7 +25,8 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+// Используем облегченные варианты анимаций для мобильных устройств
+const desktopItemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -34,16 +35,27 @@ const itemVariants = {
   },
 };
 
+const mobileItemVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.3 } 
+  },
+};
+
 const Index = () => {
   const isMobile = useIsMobile();
+  
+  // Используем соответствующие варианты анимаций в зависимости от устройства
+  const itemVariants = isMobile ? mobileItemVariants : desktopItemVariants;
   
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Pricing card data with different glow colors
-  const pricingCards = [
+  // Мемоизируем данные карточек, чтобы избежать повторных вычислений
+  const pricingCards = useMemo(() => [
     {
       title: "iPad",
       price: "399₽",
@@ -125,7 +137,7 @@ const Index = () => {
       ],
       glowColor: "rgba(244, 63, 94, 0.5)" // Rose glow
     },
-  ];
+  ], []);
 
   const menuItems = [
     { label: "Главная", href: "/" },
@@ -153,7 +165,7 @@ const Index = () => {
         subtitle="Расширенные возможности для вашего iPhone и iPad"
         logoUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/2e98bfd98eea8e1e9276756a26afa94aea5545d6"
         logoAlt="iCert Logo"
-        hideSparkles={true}
+        hideSparkles={isMobile}
       />
 
       {/* Features section */}
@@ -198,6 +210,7 @@ const Index = () => {
         <button 
           onClick={scrollToTop}
           className="bg-theme-blue/10 hover:bg-theme-blue/20 text-theme-blue w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+          aria-label="Прокрутить наверх"
         >
           <ArrowUp className="h-5 w-5" />
         </button>
@@ -206,8 +219,7 @@ const Index = () => {
       {/* Footer section */}
       <div id="contacts">
         <LandingFooter
-          contactMessage=""
-          contactHandle="@icertmanager"
+          contactHandle="icertmanager"
           disclaimer="*в случае если UDID предоставляется для iPhone при покупке сертификата для iPad - средства не возвращаются"
         />
       </div>
