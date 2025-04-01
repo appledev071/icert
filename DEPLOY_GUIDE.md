@@ -391,7 +391,7 @@ chmod 644 /var/www/icert/.env
 npm install -g pm2
 
 # Создаем конфигурацию PM2
-cat > /var/www/icert/ecosystem.config.js << 'EOL'
+cat > /var/www/icert/ecosystem.config.cjs << 'EOL'
 module.exports = {
   apps: [{
     name: 'icert',
@@ -407,7 +407,7 @@ EOL
 
 # Запускаем приложение через PM2
 cd /var/www/icert
-pm2 start ecosystem.config.js
+pm2 start ecosystem.config.cjs
 pm2 save
 pm2 startup
 ```
