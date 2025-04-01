@@ -7,7 +7,7 @@
 4. [Установка необходимого ПО](#4-установка-необходимого-по)
 5. [Настройка Nginx](#5-настройка-nginx)
 6. [SSL сертификат](#6-ssl-сертификат)
-7. [Деплой сайта](#7-деплой-сайта)
+7. [Настройка сайта](#7-настройка-сайта)
 8. [Настройка CI/CD](#8-настройка-cicd)
 9. [Мониторинг](#9-мониторинг)
 10. [Безопасность](#10-безопасность)
@@ -323,25 +323,103 @@ certbot renew --dry-run
 echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
 ```
 
-## 7. Деплой сайта
+## 7. Настройка сайта
 
-### 7.1. Подготовка директории
+### 7.1. Клонирование репозитория
 ```bash
-# Создание директории для сайта
+# Создаем директорию для сайта
 mkdir -p /var/www/icert
 
-# Установка прав
-chown -R www-data:www-data /var/www/icert
-chmod -R 755 /var/www/icert
+# Клонируем репозиторий
+cd /var/www/icert
+git clone https://github.com/your-username/icert.git .
+
+# Устанавливаем зависимости
+npm install
+
+# Собираем проект
+npm run build
 ```
 
-### 7.2. Копирование файлов
+### 7.2. Настройка прав доступа
 ```bash
-# Копирование собранного проекта
-cp -r dist/* /var/www/icert/
-
-# Проверка прав
+# Устанавливаем владельца директории
 chown -R www-data:www-data /var/www/icert
+
+# Устанавливаем права доступа
+chmod -R 755 /var/www/icert
+chmod -R 775 /var/www/icert/node_modules
+```
+
+### 7.3. Настройка автоматического обновления
+```bash
+# Создаем скрипт для обновления
+cat > /var/www/icert/update.sh << 'EOL'
+#!/bin/bash
+cd /var/www/icert
+git pull
+npm install
+npm run build
+chown -R www-data:www-data .
+chmod -R 755 .
+chmod -R 775 node_modules
+EOL
+
+# Делаем скрипт исполняемым
+chmod +x /var/www/icert/update.sh
+
+# Добавляем в crontab (обновление каждый день в 3 утра)
+(crontab -l 2>/dev/null; echo "0 3 * * * /var/www/icert/update.sh") | crontab -
+```
+
+### 7.4. Настройка переменных окружения
+```bash
+# Создаем файл с переменными окружения
+cat > /var/www/icert/.env << 'EOL'
+VITE_API_URL=https://api.icert.space
+VITE_APP_ENV=production
+EOL
+
+# Устанавливаем права доступа
+chown www-data:www-data /var/www/icert/.env
+chmod 644 /var/www/icert/.env
+```
+
+### 7.5. Настройка PM2 для управления процессами
+```bash
+# Устанавливаем PM2 глобально
+npm install -g pm2
+
+# Создаем конфигурацию PM2
+cat > /var/www/icert/ecosystem.config.js << 'EOL'
+module.exports = {
+  apps: [{
+    name: 'icert',
+    script: 'npm',
+    args: 'run preview',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 3000
+    }
+  }]
+}
+EOL
+
+# Запускаем приложение через PM2
+cd /var/www/icert
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup
+```
+
+### 7.6. Настройка автоматического перезапуска при сбоях
+```bash
+# Настраиваем автоматический перезапуск PM2
+pm2 startup
+pm2 save
+
+# Проверяем статус
+pm2 status
 ```
 
 ## 8. Настройка CI/CD
