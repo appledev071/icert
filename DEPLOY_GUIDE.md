@@ -148,23 +148,31 @@ nano /etc/nginx/sites-available/icert
 
 ### 5.2. Конфигурация Nginx
 ```nginx
-server {
-    listen 80;
-    server_name icert.space www.icert.space;
+http {
+    # Основные настройки
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    charset utf-8;
 
-    # Редирект с HTTP на HTTPS
-    return 301 https://$server_name$request_uri;
-}
+    # Настройки логирования
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
 
-server {
-    listen 443 ssl http2;
-    server_name icert.space www.icert.space;
+    # Настройки оптимизации
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
 
-    # SSL сертификаты
-    ssl_certificate /etc/letsencrypt/live/icert.space/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/icert.space/privkey.pem;
+    # Настройки сжатия
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/xml+rss application/atom+xml image/svg+xml;
 
-    # Улучшенные настройки SSL
+    # Настройки SSL
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers off;
@@ -172,29 +180,40 @@ server {
     ssl_session_cache shared:SSL:50m;
     ssl_session_tickets off;
 
-    # HSTS
-    add_header Strict-Transport-Security "max-age=63072000" always;
+    # Настройки серверов
+    server {
+        listen 80;
+        server_name icert.space www.icert.space;
 
-    root /var/www/icert/dist;
-    index index.html;
-
-    # Кэширование статических файлов
-    location /assets/ {
-        expires 1y;
-        add_header Cache-Control "public, no-transform";
+        # Редирект с HTTP на HTTPS
+        return 301 https://$server_name$request_uri;
     }
 
-    # Основной location
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
+    server {
+        listen 443 ssl http2;
+        server_name icert.space www.icert.space;
 
-    # Gzip сжатие
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_comp_level 6;
-    gzip_types text/plain text/css text/xml application/json application/javascript application/xml+rss application/atom+xml image/svg+xml;
+        # SSL сертификаты
+        ssl_certificate /etc/letsencrypt/live/icert.space/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/icert.space/privkey.pem;
+
+        # HSTS
+        add_header Strict-Transport-Security "max-age=63072000" always;
+
+        root /var/www/icert/dist;
+        index index.html;
+
+        # Кэширование статических файлов
+        location /assets/ {
+            expires 1y;
+            add_header Cache-Control "public, no-transform";
+        }
+
+        # Основной location
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+    }
 }
 ```
 
