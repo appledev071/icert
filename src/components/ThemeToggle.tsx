@@ -1,14 +1,21 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { Sun, Moon } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import { motion, AnimatePresence } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-export const ThemeToggle: React.FC = () => {
+// Используем memo для предотвращения ненужных перерендеров
+const ThemeToggle: React.FC = memo(() => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
+  // Синхронизация с системными настройками и localStorage
   useEffect(() => {
+    // Предотвращаем гидрацию в SSR
+    setMounted(true);
+    
     const isDark = localStorage.getItem("theme") === "dark" || 
                  (!localStorage.getItem("theme") && 
                   window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -16,8 +23,22 @@ export const ThemeToggle: React.FC = () => {
     setIsDarkMode(isDark);
     isDark ? document.documentElement.classList.add("dark") : 
             document.documentElement.classList.remove("dark");
+            
+    // Слушаем изменения системной темы
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem("theme")) {
+        setIsDarkMode(e.matches);
+        e.matches ? document.documentElement.classList.add("dark") :
+                    document.documentElement.classList.remove("dark");
+      }
+    };
+    
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  // Переключение темы
   const toggleTheme = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
@@ -41,16 +62,52 @@ export const ThemeToggle: React.FC = () => {
     }
   };
 
+  // Предотвращаем рендеринг во время SSR для избежания несоответствий
+  if (!mounted) {
+    return <div className="w-9 h-9 rounded-full bg-transparent"></div>;
+  }
+
   return (
-    <div className="flex items-center gap-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 px-3 py-1.5 rounded-full shadow-sm transition-all duration-300 group hover:border-gray-300 dark:hover:border-gray-700">
-      <Sun className="h-4 w-4 text-yellow-500 dark:text-gray-400 transition-transform duration-300 group-hover:rotate-12" />
-      <Switch
-        checked={isDarkMode}
-        onCheckedChange={toggleTheme}
-        className="data-[state=checked]:bg-theme-blue data-[state=unchecked]:bg-gray-200"
-      />
-      <Moon className="h-4 w-4 text-gray-400 dark:text-theme-blue transition-transform duration-300 group-hover:-rotate-12" />
-      <span className="sr-only">Переключить тему</span>
-    </div>
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      onClick={toggleTheme}
+      className={`
+        flex items-center justify-center w-9 h-9 rounded-full 
+        transition-all duration-300 ease-out
+        ${isDarkMode 
+          ? 'bg-gray-800 hover:bg-gray-700' 
+          : 'bg-blue-50 hover:bg-blue-100'
+        }
+        shadow-sm hover:shadow-md
+      `}
+      aria-label={isDarkMode ? "Включить светлую тему" : "Включить тёмную тему"}
+      title={isDarkMode ? "Включить светлую тему" : "Включить тёмную тему"}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={isDarkMode ? 'dark' : 'light'}
+          initial={{ scale: 0.5, opacity: 0, rotate: -30 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          exit={{ scale: 0.5, opacity: 0, rotate: 30 }}
+          transition={{ 
+            duration: isMobile ? 0.2 : 0.3, 
+            ease: [0.19, 1.0, 0.22, 1.0] 
+          }}
+        >
+          {isDarkMode ? (
+            <Moon className="h-5 w-5 text-blue-400" />
+          ) : (
+            <Sun className="h-5 w-5 text-amber-500" />
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </motion.button>
   );
-};
+});
+
+// Добавляем display name для инструментов разработки
+ThemeToggle.displayName = 'ThemeToggle';
+
+export { ThemeToggle };

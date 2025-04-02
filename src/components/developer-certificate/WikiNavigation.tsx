@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { BookOpen, FileText, HelpCircle, Users, Download } from "lucide-react";
 
 export const WikiNavigation: React.FC = () => {
   const location = useLocation();
@@ -14,11 +14,11 @@ export const WikiNavigation: React.FC = () => {
   }, [location.pathname]);
   
   const wikiLinks = [
-    { path: "/wiki", label: "Wiki" },
-    { path: "/developer-certificate-info", label: "О сертификатах" },
-    { path: "/installation-guide", label: "Установка" },
-    { path: "/faq", label: "FAQ" },
-    { path: "/about", label: "О нас" },
+    { path: "/wiki", label: "Wiki", icon: <BookOpen className="h-3.5 w-3.5 md:h-4 md:w-4" /> },
+    { path: "/developer-certificate-info", label: "О сертификатах", icon: <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" /> },
+    { path: "/installation-guide", label: "Установка", icon: <Download className="h-3.5 w-3.5 md:h-4 md:w-4" /> },
+    { path: "/faq", label: "FAQ", icon: <HelpCircle className="h-3.5 w-3.5 md:h-4 md:w-4" /> },
+    { path: "/about", label: "О нас", icon: <Users className="h-3.5 w-3.5 md:h-4 md:w-4" /> },
   ];
 
   // Function to scroll to top when navigating
@@ -35,12 +35,13 @@ export const WikiNavigation: React.FC = () => {
             to={link.path}
             onClick={scrollToTop}
             className={`px-3 md:px-4 py-2 whitespace-nowrap rounded-md transition-colors duration-300 
-              ${isMobile ? 'text-xs' : 'text-sm'} font-medium font-montserrat ${
+              ${isMobile ? 'text-xs' : 'text-sm'} font-medium font-montserrat flex items-center gap-1.5 md:gap-2 ${
               location.pathname === link.path
                 ? "bg-theme-blue text-white"
                 : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             }`}
           >
+            {link.icon}
             {link.label}
           </Link>
         ))}
